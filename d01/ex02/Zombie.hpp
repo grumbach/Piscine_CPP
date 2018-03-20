@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Pony.hpp                                           :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/20 18:24:13 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/21 20:17:54 by agrumbac         ###   ########.fr       */
+/*   Created: 2018/03/20 21:28:26 by agrumbac          #+#    #+#             */
+/*   Updated: 2018/03/21 20:17:58 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PONY_H
-# define PONY_H
+#ifndef ZOMBIE_H
+# define ZOMBIE_H
 
-class Pony {
+#include <iostream>
+
+class Zombie {
 
 private:
-	unsigned int			skin_color;
-	unsigned int			hair_color;
-	static unsigned int		_living_ponies;
+	std::string		type;
+	std::string		name;
 
 public:
-	Pony (int skin, int hair);
-	~Pony ();
+	Zombie (std::string type, std::string name);
+	~Zombie ();
 
-	static unsigned int		_ponies_alive();
-	void					show (void);
+	void			announce();
 };
 
 #endif

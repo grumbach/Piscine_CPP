@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Pony.hpp                                           :+:      :+:    :+:   */
+/*   ZombieEvent.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/20 18:24:13 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/21 20:17:54 by agrumbac         ###   ########.fr       */
+/*   Created: 2018/03/20 21:28:29 by agrumbac          #+#    #+#             */
+/*   Updated: 2018/03/21 20:26:19 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PONY_H
-# define PONY_H
+#include "ZombieEvent.hpp"
 
-class Pony {
+ZombieEvent::ZombieEvent(std::string default_type)
+	: ZombieType(default_type)
+{ }
 
-private:
-	unsigned int			skin_color;
-	unsigned int			hair_color;
-	static unsigned int		_living_ponies;
+ZombieEvent::~ZombieEvent()
+{ }
 
-public:
-	Pony (int skin, int hair);
-	~Pony ();
+void			ZombieEvent::setZombieType(std::string type)
+{
+	this->ZombieType = type;
+}
 
-	static unsigned int		_ponies_alive();
-	void					show (void);
-};
+Zombie*			ZombieEvent::newZombie(std::string name)
+{
+	Zombie		*zombie = new Zombie(this->ZombieType, name);
 
-#endif
+	return(zombie);
+}
