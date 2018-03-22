@@ -1,0 +1,17 @@
+int		errors(int err)
+{
+	std::cerr << "des: ";
+
+	if (err == 1)
+		std::cerr << "failed to read file";
+	if (err == 2)
+	{
+		std::cerr << "invalid number of parameters";
+		std::cerr << std::endl << "usage: [valid file] [string to replace] [new string]";
+	}
+	if (err == 3)
+		std::cerr << "failed to write file";
+
+	std::cerr << std::endl;
+	return (-1);
+}

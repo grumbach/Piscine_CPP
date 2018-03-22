@@ -1,0 +1,8 @@
+Return length of string
+Returns the length of the string, in terms of bytes.
+
+This is the number of actual bytes that conform the contents of the string, which is not necessarily equal to its storage capacity.
+
+Note that string objects handle bytes without knowledge of the encoding that may eventually be used to encode the characters it contains. Therefore, the value returned may not correspond to the actual number of encoded characters in sequences of multi-byte or variable-length characters (such as UTF-8).
+
+Both string::size and string::length are synonyms and return the exact same value.

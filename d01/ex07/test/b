@@ -1,0 +1,6 @@
+Find content in string
+Searches the string for the first occurrence of the sequence specified by its arguments.
+
+When pos is specified, the search only includes characters at or after position pos, ignoring any possible occurrences that include characters before pos.
+
+Notice that unlike member find_first_of, whenever more than one character is being searched for, it is not enough that just one of these characters match, but the entire sequence must match.
