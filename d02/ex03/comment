@@ -1,0 +1,2 @@
+guy asks : "What do you think of using a namespace instead of a class to represent fixed point values ? I mean, with a scoped typedef on int, we could write scoped functions and save the cost of instanciations, but at the same time, we’d loose some handy syntax. What’s your point of view ?"
+I think : "Web developper"
