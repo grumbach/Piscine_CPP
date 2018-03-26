@@ -1,46 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.cpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/26 14:55:04 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/26 17:01:54 by agrumbac         ###   ########.fr       */
+/*   Created: 2018/03/26 15:56:57 by agrumbac          #+#    #+#             */
+/*   Updated: 2018/03/26 17:03:55 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 
-FragTrap::FragTrap( void )
+ScavTrap::ScavTrap( void )
 	: hit_points (100)
 	, max_hit_points (100)
-	, energy_points (100)
-	, max_energy_points (100)
+	, energy_points (50)
+	, max_energy_points (50)
 	, level (1)
-	, name ("FR4GTR4P")
-	, melee_attack_damage (30)
-	, ranged_attack_damage (20)
-	, armor_damage_reduction (5)
+	, name ("Scavling")
+	, melee_attack_damage (20)
+	, ranged_attack_damage (15)
+	, armor_damage_reduction (3)
 {
-	std::cout << "Hahaha minion!! I ascend!!" << std::endl;
+	std::cout << "Hahaha YYYYYYYYYYaaaa!!!" << std::endl;
 }
 
-FragTrap::FragTrap( std::string const & name )
+ScavTrap::ScavTrap( std::string const & name )
 	: hit_points (100)
 	, max_hit_points (100)
-	, energy_points (100)
-	, max_energy_points (100)
+	, energy_points (50)
+	, max_energy_points (50)
 	, level (1)
 	, name (name)
-	, melee_attack_damage (30)
-	, ranged_attack_damage (20)
-	, armor_damage_reduction (5)
+	, melee_attack_damage (20)
+	, ranged_attack_damage (15)
+	, armor_damage_reduction (3)
 {
-	std::cout << "Hahaha minion!! I ascend!!" << std::endl;
+	std::cout << "Hahaha YYYYYYYYYYaaaa!!!" << std::endl;
 }
 
-FragTrap::FragTrap( FragTrap const & src )
+ScavTrap::ScavTrap( ScavTrap const & src )
 	: hit_points (src.hit_points)
 	, max_hit_points (src.max_hit_points)
 	, energy_points (src.energy_points)
@@ -51,15 +51,15 @@ FragTrap::FragTrap( FragTrap const & src )
 	, ranged_attack_damage (src.ranged_attack_damage)
 	, armor_damage_reduction (src.armor_damage_reduction)
 {
-	std::cout << "Hahaha minion!! I ascend!!" << std::endl;
+	std::cout << "Hahaha YYYYYYYYYYaaaa!!!" << std::endl;
 }
 
-FragTrap::~FragTrap()
+ScavTrap::~ScavTrap()
 {
-	std::cout << "OOoooh?! Stairs? Nooooooo!!" << std::endl;
+	std::cout << "AAAH AAAHH AAAHH!! I see the liiiggghhtt.." << std::endl;
 }
 
-FragTrap &		FragTrap::operator=( FragTrap const & rhs )
+ScavTrap &		ScavTrap::operator=( ScavTrap const & rhs )
 {
 	this->hit_points = rhs.hit_points;
 	this->max_hit_points = rhs.max_hit_points;
@@ -78,21 +78,21 @@ FragTrap &		FragTrap::operator=( FragTrap const & rhs )
 ** Features
 */
 
-void			FragTrap::rangedAttack(std::string const & target)
+void			ScavTrap::rangedAttack(std::string const & target)
 {
-	std::cout << "FR4G-TP <" << this->name << "> attacks <" << \
+	std::cout << "SC4V-TP <" << this->name << "> attacks <" << \
 		target << "> at range, causing <" << this->ranged_attack_damage << \
 		"> points of damage !" << std::endl;
 }
 
-void			FragTrap::meleeAttack(std::string const & target)
+void			ScavTrap::meleeAttack(std::string const & target)
 {
-	std::cout << "FR4G-TP <" << this->name << "> melee attacks <" << \
+	std::cout << "SC4V-TP <" << this->name << "> melee attacks <" << \
 		target << ">, causing <" << this->melee_attack_damage << \
 		"> points of damage !" << std::endl;
 }
 
-void			FragTrap::takeDamage(unsigned int amount)
+void			ScavTrap::takeDamage(unsigned int amount)
 {
 	unsigned int	damage_after_armor;
 
@@ -106,12 +106,12 @@ void			FragTrap::takeDamage(unsigned int amount)
 	else
 		this->hit_points -= damage_after_armor;
 
-	std::cout << "FR4G-TP <" << this->name << "> takes <" << \
+	std::cout << "SC4V-TP <" << this->name << "> takes <" << \
 		damage_after_armor << "> points of damage !" << \
 		" Hit Points are currently at: " << this->hit_points << std::endl;
 }
 
-void			FragTrap::beRepaired(unsigned int amount)
+void			ScavTrap::beRepaired(unsigned int amount)
 {
 	if (amount > this->max_hit_points || \
 		this->hit_points + amount > this->max_hit_points)
@@ -119,12 +119,12 @@ void			FragTrap::beRepaired(unsigned int amount)
 	else
 		this->hit_points += amount;
 
-	std::cout << "FR4G-TP <" << this->name << "> gets a repair of <" << \
+	std::cout << "SC4V-TP <" << this->name << "> gets a repair of <" << \
 		amount << "> Hit Points (currently: " << this->hit_points << \
 		")"<< std::endl;
 }
 
-void			FragTrap::vaulthunter_dot_exe(std::string const & target)
+void			ScavTrap::challengeNewcomer(std::string const & target)
 {
 	static int			seed = 0;
 	if (!seed++)
@@ -132,12 +132,13 @@ void			FragTrap::vaulthunter_dot_exe(std::string const & target)
 	int					rand = std::rand() % 5;
 	const std::string	subroutines[5] =
 	{
-		"Aannnnd Opeeeeen!!",
-		"You are cordially invited to my birthday Party!",
-		"Doors, I WAS MADE TO OPEN DOORS!!!",
-		"High Five!!!",
-		"My mighty Minion! Destroy thy master's enemy!"
+		"Get a blackhole!",
+		"Backup the Blockchain forget your private key!",
+		"Ain't level 3 yet?",
+		"Ain't getting no xp on your Facebook wall bro!",
+		"Get a cold coffee!"
 	};
+
 	if (this->energy_points < 25)
 	{
 		std::cout << "No enough energy!" << std::endl;
@@ -145,8 +146,8 @@ void			FragTrap::vaulthunter_dot_exe(std::string const & target)
 	else
 	{
 		this->energy_points -= 25;
-		std::cout << "<" << target << "> recieved surprise attack: " << std::endl;
-		std::cout << "\tsubroutine: " << this->name << ": ";
+		std::cout << "<" << target << "> recieved taunt: " << std::endl;
+		std::cout << "\tilliterate prose: " << this->name << ": ";
 		std::cout << subroutines[rand] << std::endl;
 	}
 }
