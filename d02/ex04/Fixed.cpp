@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 16:32:04 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/25 21:35:42 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/26 11:58:41 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ bool					Fixed::operator!=(Fixed const & rhs) const
 
 Fixed 					Fixed::operator+ (Fixed const & rhs) const
 {
-	Fixed result;
+	Fixed				result;
 
 	result.raw_value = this->raw_value + rhs.getRawBits();
 	return result;
@@ -108,7 +108,7 @@ Fixed 					Fixed::operator+ (Fixed const & rhs) const
 
 Fixed 					Fixed::operator- (Fixed const & rhs) const
 {
-	Fixed result;
+	Fixed				result;
 
 	result.raw_value = this->raw_value - rhs.getRawBits();
 	return result;
@@ -116,17 +116,25 @@ Fixed 					Fixed::operator- (Fixed const & rhs) const
 
 Fixed 					Fixed::operator/ (Fixed const & rhs) const
 {
-	Fixed result;
+	Fixed				result;
+	long				overflow_guard;
 
-	result.raw_value = (this->raw_value / rhs.toFloat());
+	overflow_guard = this->raw_value;
+	overflow_guard <<= Fixed::_binary_point;
+	overflow_guard /= rhs.getRawBits();
+	result.raw_value = overflow_guard;
 	return result;
 }
 
 Fixed 					Fixed::operator* (Fixed const & rhs) const
 {
-	Fixed result;
+	Fixed				result;
+	long				overflow_guard;
 
-	result.raw_value = (this->raw_value * rhs.getRawBits()) >> Fixed::_binary_point;
+	overflow_guard = this->raw_value;
+	overflow_guard *= rhs.getRawBits();
+	overflow_guard >>= Fixed::_binary_point;
+	result.raw_value = overflow_guard;
 	return result;
 }
 
@@ -160,7 +168,7 @@ Fixed 					Fixed::operator--(int)
 	Fixed				old_value;
 
 	old_value = *this;
-	this->raw_value++;
+	this->raw_value--;
 
 	return old_value;
 }
