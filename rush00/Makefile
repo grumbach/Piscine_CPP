@@ -1,22 +1,32 @@
 NAME = ft_retro
 
-CPPFLAGS = -Wall -Wextra -Werror
+CCPP = clang++
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp
+FILENAMES = main.cpp \
+			Engine.cpp \
+			Collection.cpp \
+			Bounds.cpp \
+			Object.cpp
 
-HDR = Background.hpp
+INCLUDE = -I.
+LINK = -lncurses
 
-OBJ = $(SRC:.cpp=.o)
 
-all: ${NAME}
+all: $(NAME)
 
-${NAME}: ${OBJ} ${HDR}
-	clang++ ${CPPFLAGS} -I. -o $@ ${OBJ} -lncurses
+test: $(NAME)
+	./$(NAME)
+
+$(NAME): $(FILENAMES)
+	$(CCPP) $(CPPFLAGS) $(LINK) $(INCLUDE) $^ -o $@
 
 clean:
-	@/bin/rm -f ${OBJ}
+	@rm -f $(NAME)
+	@echo "removed $(NAME)"
 
 fclean: clean
-	@/bin/rm -f ${NAME}
 
 re: fclean all
+
+.PHONY: all clean fclean re
