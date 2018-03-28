@@ -16,9 +16,11 @@ class Object
         Object(const Object &);
         Object &operator=(const Object &);
         ~Object(void);
-        bool isEnabled(void);
+        bool getEnabled(void);
         t_point getPosition(void);
         void move(void);
+        void setPosition(int y, int x);
+        void setEnabled(bool);
 
     private:
         t_point pos;

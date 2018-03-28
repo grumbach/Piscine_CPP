@@ -47,27 +47,35 @@ void Engine::launch() {
     printw("lol");
     while (1) {
 
-        // remplace les anciens oiseaux par une etoile
+        // remplace les anciens oiseaux par un espace
         for (int i = 0; i < this->birds.getSize(); i++) {
-            if (this->birds.get(i).isEnabled()) {
-                int x = this->birds.get(i).getPosition().x;
-                int y = this->birds.get(i).getPosition().y;
+            Object *obj = this->birds.get(i);
+            if (obj->getEnabled()) {
+                int x = obj->getPosition().x;
+                int y = obj->getPosition().y;
                 mvaddch(y, x, ' ');
             }
         }
-        // this->birds.update();
-        usleep(10000);
+
+        // update la position de tous les oiseaux
+        dprintf(2, "update tous les birds (%d)\n", this->birds.getSize());
+        this->birds.updateObjects();
+
+        usleep(100000);
 
         // place des etoiles sur les nouvelles positions d'oiseaux
         for (int i = 0; i < this->birds.getSize(); i++) {
-            if (this->birds.get(i).isEnabled()) {
-                int x = this->birds.get(i).getPosition().x;
-                int y = this->birds.get(i).getPosition().y;
+            Object *obj = this->birds.get(i);
+            dprintf(2, "bird %d: %d\n", i, obj->getEnabled());
+            if (obj->getEnabled()) {
+                int x = obj->getPosition().x;
+                int y = obj->getPosition().y;
+                dprintf(2, "maintenant je place une etoile en %d, %d\n", y, x);
                 mvaddch(y, x, '*');
             }
         }
-        usleep(10000);
         refresh();
+        usleep(100000);
     }
 }
 

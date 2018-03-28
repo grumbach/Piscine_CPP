@@ -15,8 +15,8 @@ class Collection
         ~Collection(void);
         void    setBounds(Bounds newBounds);
         int     getSize(void) const;
-        Object  get(int index);
-        void updateObjects(void);
+        Object  *get(int index) const;
+        void    updateObjects(void);
 
     private:
         Bounds  bounds;
