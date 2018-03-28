@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 16:39:34 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/23 18:47:04 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/28 11:46:54 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ void		Logger::log(std::string const & dest, std::string const & message) const
 	std::string str = this->makeLogEntry(message);
 
 	typedef void	(Logger::*log_method)(std::string const &) const;
-	std::map <std::string, log_method> mapping;
-	mapping.insert(std::make_pair("console" , &Logger::logToConsole));
-	mapping.insert(std::make_pair("file" , &Logger::logToFile));
+	log_method		meth[2] =
+	{
+		&Logger::logToFile,
+		&Logger::logToConsole
+	};
 
-	log_method chosen = mapping[dest];
+	log_method chosen = meth[dest[0] % 2];
 	(this->*chosen)(str);
 }

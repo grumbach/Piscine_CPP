@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 16:39:07 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/23 18:25:00 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/28 11:46:02 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include <iostream>
 #include <ctime>
-#include <map>
 #include <fstream>
 
 class Logger {

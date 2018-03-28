@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 13:52:32 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/22 16:03:46 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/28 11:33:26 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define HUMAN_H
 
 #include <iostream>
-#include <map>
 
 class Human {
 
