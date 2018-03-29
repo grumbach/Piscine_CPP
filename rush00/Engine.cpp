@@ -47,7 +47,7 @@ void Engine::launch() {
     printw("lol");
     while (42) {
         // efface tout l'ecran
-        // clear();
+        clear();
 
         // // update la position de tous les oiseaux
         // dprintf(2, "update tous les birds (%d)\n", this->stars.getSize());

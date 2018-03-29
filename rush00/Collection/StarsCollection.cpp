@@ -11,35 +11,34 @@ StarsCollection::StarsCollection(const StarsCollection &) {
 };
 
 void StarsCollection::updateObjects() {
-    
-	// AObject *obj;
+	Star *obj;
 
-	// // parcours de tous les object pour les desactiver si ils sont sortis de l'ecran
-	// // et les faire bouger le cas echeant
-	// for (int i = 0; i < this->size; i++) {
-	// 	obj = &this->data[i];
-	// 	if (obj->getEnabled()) {
-	// 		if (obj->getPosition().y > this->bounds.cornerY + this->bounds.height) {
-	// 			dprintf(2, "obj disabled\n");
-	// 			obj->setEnabled(false);
-	// 		}
-	// 		obj->move();
-	// 	}
-	// }
+	// parcours de tous les object pour les desactiver si ils sont sortis de l'ecran
+	// et les faire bouger le cas echeant
+	for (int i = 0; i < this->size; i++) {
+		obj = (Star*)&this->data[i];
+		if (obj->getEnabled()) {
+			if (obj->getPosition().y > this->bounds.cornerY + this->bounds.height) {
+				dprintf(2, "obj disabled\n");
+				obj->setEnabled(false);
+			}
+			obj->move();
+		}
+	}
 
-	// for (int i = 0; i < this->size; i++) {
-	// 	obj = &this->data[i];
-	// 	// si l'objet n'est pas encore enabled
-	// 	if (!obj->getEnabled()) {
-	// 			dprintf(2, "objet pas actif positionne en %d,%d\n", obj->getPosition().y, obj->getPosition().x);
-	// 			// if (arc4random)
-	// 			// gotta check float point exception from % this->bounds.width.
-	// 			obj->setPosition(arc4random() % this->bounds.height - this->bounds.height, arc4random() % this->bounds.width);
-	// 			obj->setEnabled(true);
-	// 			dprintf(2, "obj activated\n");
-	// 		obj->move();
-	// 	}
-	// }
+	for (int i = 0; i < this->size; i++) {
+		obj = (Star*)&this->data[i];
+		// si l'objet n'est pas encore enabled
+		if (!obj->getEnabled()) {
+				dprintf(2, "objet pas actif positionne en %d,%d\n", obj->getPosition().y, obj->getPosition().x);
+				// if (arc4random)
+				// gotta check float point exception from % this->bounds.width.
+				obj->setPosition(arc4random() % this->bounds.height - this->bounds.height, arc4random() % this->bounds.width);
+				obj->setEnabled(true);
+				dprintf(2, "obj activated\n");
+			obj->move();
+		}
+	}
 }
 
 StarsCollection & StarsCollection::operator=(const StarsCollection &) {

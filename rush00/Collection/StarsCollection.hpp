@@ -6,7 +6,7 @@
 # include "ACollection.hpp"
 # include "../Object/Star.hpp"
 
-class StarsCollection
+class StarsCollection: public ACollection
 {
     public:
         StarsCollection(void);
@@ -14,13 +14,6 @@ class StarsCollection
         StarsCollection &operator=(const StarsCollection &);
         ~StarsCollection(void);
         void updateObjects(void);
-        virtual void    setBounds(Bounds newBounds);
-        virtual int     getSize(void) const;
-        virtual AObject *get(int index) const;
-    private:
-        Bounds  bounds;
-        int     size;
-        AObject *data;
 };
 
 std::ostream & operator<<( std::ostream & o, StarsCollection const & coll );

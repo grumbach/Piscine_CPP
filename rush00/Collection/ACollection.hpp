@@ -18,7 +18,7 @@ class ACollection
         AObject *get(int index) const;
         virtual void    updateObjects(void) = 0;
 
-    private:
+    protected:
         Bounds  bounds;
         int     size;
         AObject *data;
