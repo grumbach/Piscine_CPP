@@ -3,12 +3,15 @@ NAME = ft_retro
 CCPP = clang++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-FILENAMES = main.cpp \
-			Engine.cpp \
-			Bounds.cpp \
-			Collection/ACollection.cpp \
-			Object/AObject.cpp \
-			Object/Star.cpp
+FILENAMES = main.cpp							\
+			Engine.cpp							\
+			Bounds.cpp							\
+			Collection/ACollection.cpp			\
+			Collection/StarsCollection.cpp		\
+			Collection/RocketsCollection.cpp	\
+			Object/AObject.cpp					\
+			Object/Star.cpp						\
+			Object/Rocket.cpp
 
 INCLUDE = -I.
 LINK = -lncurses

@@ -15,7 +15,7 @@ Engine::Engine(void) {
 
     // change tous les caracteres de la fenetre en noir et blanc
     // init_pair(1, COLOR_WHITE, COLOR_BLACK);
-    // wbkgd(this->frame, COLOR_PAIR(1)); 
+    // wbkgd(this->frame, COLOR_PAIR(1));
 
     move(LINES / 2, COLS / 2 ); // test
 
@@ -29,6 +29,7 @@ Engine::Engine(void) {
 
     // donne des bordures au spawner d etoiles
     this->stars.setBounds(Bounds(0, 0, this->maxHeight, this->maxWidth));
+    this->rockets.setBounds(Bounds(0, 0, this->maxHeight, this->maxWidth));
 }
 
 Engine::Engine(const Engine & ngin) {
@@ -44,7 +45,6 @@ bool Engine::start() {
 
 // THE BIG WHILE
 void Engine::launch() {
-    printw("lol");
     while (42) {
         // efface tout l'ecran
         clear();
@@ -52,24 +52,30 @@ void Engine::launch() {
         // // update la position de tous les oiseaux
         // dprintf(2, "update tous les birds (%d)\n", this->stars.getSize());
         this->stars.updateObjects();
-
-        usleep(10000);
+        this->rockets.updateObjects();
 
         // place des etoiles sur les nouvelles positions d'oiseaux
         for (int i = 0; i < this->stars.getSize(); i++) {
-            AObject *obj = this->stars.get(i);
-            dprintf(2, "bird %d: %d\n", i, obj->getEnabled());
-            if (obj->getEnabled()) {
-                int x = obj->getPosition().x;
-                int y = obj->getPosition().y;
+            AObject *star = this->stars.get(i);
+            AObject *rocket = this->rockets.get(i);
+
+            dprintf(2, "bird %d: %d\n", i, star->getEnabled());
+            if (star->getEnabled()) {
+                int x = star->getPosition().x;
+                int y = star->getPosition().y;
                 dprintf(2, "maintenant je place une etoile en %d, %d\n", y, x);
-                mvaddch(y, x, '.');
+                mvaddch(y, x, star->getShape());
+            }
+            if (rocket->getEnabled()) {
+                int x = rocket->getPosition().x;
+                int y = rocket->getPosition().y;
+                mvaddch(y, x, rocket->getShape());
             }
         }
         // affiche le cadre tout autour de la window
         box(this->frame, 0, 0);
         refresh();
-        usleep(10000);
+        usleep(100000);
     }
 }
 

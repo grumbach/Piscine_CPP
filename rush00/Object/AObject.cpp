@@ -20,6 +20,11 @@ t_point AObject::getPosition(void) {
     return this->pos;
 }
 
+char    AObject::getShape(void) const
+{
+    return this->shape;
+}
+
 // bouge l'objet dans sa direction (pour l'instant toujours vers le bas mais on rajoutera peut etre une direction apres)
 // void AObject::move(void) {
 //     if (this->enabled)

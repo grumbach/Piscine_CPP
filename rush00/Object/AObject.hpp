@@ -21,10 +21,13 @@ class AObject
         virtual void setPosition(int y, int x);
         virtual void setEnabled(bool);
         virtual void move(void) = 0;
+		char getShape(void) const;
 
     protected:
         t_point pos;
 		bool    enabled;
+		char	shape;
+
 };
 
 std::ostream & operator<<( std::ostream & o, AObject const & collidr );

@@ -1,8 +1,6 @@
 #ifndef STAR_HPP
 # define STAR_HPP
 
-# include <iostream>
-# include <string>
 # include "AObject.hpp"
 
 class Star: public AObject

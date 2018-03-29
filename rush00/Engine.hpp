@@ -6,6 +6,7 @@
 # include <iostream>
 # include <string>
 # include "Collection/StarsCollection.hpp"
+# include "Collection/RocketsCollection.hpp"
 
 class Engine {
 	public:
@@ -22,6 +23,7 @@ class Engine {
 		WINDOW      *frame;
 		// Pilot    p;
 		StarsCollection stars;
+		RocketsCollection rockets;
 		int         maxHeight;
 		int         maxWidth;
 };

@@ -1,24 +1,22 @@
-#include "StarsCollection.hpp"
+#include "RocketsCollection.hpp"
 
-StarsCollection::StarsCollection(void)
-{
+RocketsCollection::RocketsCollection(void) {
 
 	this->size = 40;
-	this->data = new Star[this->size];
+	this->data = new Rocket[this->size];
 };
 
-StarsCollection::StarsCollection(const StarsCollection &)
-{
+RocketsCollection::RocketsCollection(const RocketsCollection &) {
 
 };
 
-void StarsCollection::updateObjects() {
-	Star *obj;
+void RocketsCollection::updateObjects() {
+	Rocket *obj;
 
 	// parcours de tous les object pour les desactiver si ils sont sortis de l'ecran
 	// et les faire bouger le cas echeant
 	for (int i = 0; i < this->size; i++) {
-		obj = (Star*)&this->data[i];
+		obj = (Rocket*)&this->data[i];
 		if (obj->getEnabled()) {
 			if (obj->getPosition().y > this->bounds.cornerY + this->bounds.height) {
 				dprintf(2, "obj disabled\n");
@@ -34,15 +32,15 @@ void StarsCollection::updateObjects() {
 	}
 }
 
-StarsCollection & StarsCollection::operator=(const StarsCollection &) {
+RocketsCollection & RocketsCollection::operator=(const RocketsCollection &) {
 	return *this;
 };
 
-StarsCollection::~StarsCollection(void) {
+RocketsCollection::~RocketsCollection(void) {
 
 };
 
-std::ostream & operator<<( std::ostream & o, StarsCollection const & coll ) {
+std::ostream & operator<<( std::ostream & o, RocketsCollection const & coll ) {
 	(void)coll;
 	// o << coll << std::endl;
 
