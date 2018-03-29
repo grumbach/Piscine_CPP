@@ -17,15 +17,15 @@ Engine::Engine(void) {
     // init_pair(1, COLOR_WHITE, COLOR_BLACK);
     // wbkgd(this->frame, COLOR_PAIR(1)); 
 
-    // pose un cadre de la taille de toute la fenetre
-    box(this->frame, 0, 0);
-
     move(LINES / 2, COLS / 2 ); // test
 
     // TODO: placer le joueur
 
     // recupere les dimensions de la fenetre (getmaxyx est une macro qui set les deux derniers parametres)
     getmaxyx(this->frame, this->maxHeight, this->maxWidth);
+    if (this->maxHeight <= 0 || this->maxWidth <= 0) {
+        this->crash("The terminal is way too small ! Please enlarge the window.");
+    }
 
     // donne des bordures au spawner de birds
     this->birds.setBounds(Bounds(0, 0, this->maxHeight, this->maxWidth));
@@ -45,37 +45,31 @@ bool Engine::start() {
 // THE BIG WHILE
 void Engine::launch() {
     printw("lol");
-    while (1) {
+    while (42) {
+        // efface tout l'ecran
+        clear();
 
-        // remplace les anciens oiseaux par un espace
-        for (int i = 0; i < this->birds.getSize(); i++) {
-            Object *obj = this->birds.get(i);
-            if (obj->getEnabled()) {
-                int x = obj->getPosition().x;
-                int y = obj->getPosition().y;
-                mvaddch(y, x, ' ');
-            }
-        }
-
-        // update la position de tous les oiseaux
-        dprintf(2, "update tous les birds (%d)\n", this->birds.getSize());
+        // // update la position de tous les oiseaux
+        // dprintf(2, "update tous les birds (%d)\n", this->birds.getSize());
         this->birds.updateObjects();
 
-        usleep(100000);
+        usleep(10000);
 
         // place des etoiles sur les nouvelles positions d'oiseaux
         for (int i = 0; i < this->birds.getSize(); i++) {
-            Object *obj = this->birds.get(i);
+            Star *obj = this->birds.get(i);
             dprintf(2, "bird %d: %d\n", i, obj->getEnabled());
             if (obj->getEnabled()) {
                 int x = obj->getPosition().x;
                 int y = obj->getPosition().y;
                 dprintf(2, "maintenant je place une etoile en %d, %d\n", y, x);
-                mvaddch(y, x, '*');
+                mvaddch(y, x, '.');
             }
         }
+        // affiche le cadre tout autour de la window
+        box(this->frame, 0, 0);
         refresh();
-        usleep(100000);
+        usleep(10000);
     }
 }
 

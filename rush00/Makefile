@@ -5,9 +5,10 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 FILENAMES = main.cpp \
 			Engine.cpp \
-			Collection.cpp \
+			ACollection.cpp \
 			Bounds.cpp \
-			Object.cpp
+			Object/AObject.cpp \
+			Object/Star.cpp
 
 INCLUDE = -I.
 LINK = -lncurses

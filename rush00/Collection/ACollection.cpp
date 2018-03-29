@@ -1,28 +1,28 @@
-#include "Collection.hpp"
+#include "ACollection.hpp"
 
-Collection::Collection(void) {
+ACollection::ACollection(void) {
     // create 10 birds
-    this->size = 1;
-    this->data = new Object[1];
+    this->size = 40;
+    this->data = new Object[this->size];
 };
 
-Collection::Collection(const Collection &) {
+ACollection::ACollection(const ACollection &) {
 
 };
 
-int Collection::getSize(void) const {
+int ACollection::getSize(void) const {
     return this->size;
 }
 
-Object *Collection::get(int index) const {
+Object *ACollection::get(int index) const {
     return &this->data[index];
 }
 
-void Collection::setBounds(Bounds b) {
+void ACollection::setBounds(Bounds b) {
     this->bounds = b;
 }
 
-void Collection::updateObjects() {
+void ACollection::updateObjects() {
     Object *obj;
 
     // parcours de tous les object pour les desactiver si ils sont sortis de l'ecran
@@ -42,29 +42,26 @@ void Collection::updateObjects() {
         obj = &this->data[i];
         // si l'objet n'est pas encore enabled
         if (!obj->getEnabled()) {
-            if (obj->getPosition().y < this->bounds.cornerY) {
                 dprintf(2, "objet pas actif positionne en %d,%d\n", obj->getPosition().y, obj->getPosition().x);
+                // if (arc4random)
                 // gotta check float point exception from % this->bounds.width.
-                obj->setPosition(3, arc4random() % this->bounds.width);
+                obj->setPosition(arc4random() % this->bounds.height - this->bounds.height, arc4random() % this->bounds.width);
                 obj->setEnabled(true);
                 dprintf(2, "obj activated\n");
-            } else {
-                dprintf(2, "obj a fini sa course ;(\n");
-            }
             obj->move();
         }
     }
 }
 
-Collection & Collection::operator=(const Collection &) {
+ACollection & ACollection::operator=(const ACollection &) {
     return *this;
 };
 
-Collection::~Collection(void) {
+ACollection::~ACollection(void) {
 
 };
 
-std::ostream & operator<<( std::ostream & o, Collection const & coll ) {
+std::ostream & operator<<( std::ostream & o, ACollection const & coll ) {
     (void)coll;
 	// o << coll << std::endl;
 

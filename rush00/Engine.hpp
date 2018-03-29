@@ -5,7 +5,7 @@
 # include <unistd.h>
 # include <iostream>
 # include <string>
-# include "Collection.hpp"
+# include "ACollection.hpp"
 
 class Engine {
     public:
@@ -21,7 +21,7 @@ class Engine {
     private:
         WINDOW      *frame;
         // Pilot    p;
-        Collection  birds;
+        ACollection  birds;
         int         maxHeight;
         int         maxWidth;
 };
