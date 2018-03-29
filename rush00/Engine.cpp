@@ -27,8 +27,8 @@ Engine::Engine(void) {
         this->crash("The terminal is way too small ! Please enlarge the window.");
     }
 
-    // donne des bordures au spawner de birds
-    this->birds.setBounds(Bounds(0, 0, this->maxHeight, this->maxWidth));
+    // donne des bordures au spawner d etoiles
+    this->stars.setBounds(Bounds(0, 0, this->maxHeight, this->maxWidth));
 }
 
 Engine::Engine(const Engine & ngin) {
@@ -47,17 +47,17 @@ void Engine::launch() {
     printw("lol");
     while (42) {
         // efface tout l'ecran
-        clear();
+        // clear();
 
         // // update la position de tous les oiseaux
-        // dprintf(2, "update tous les birds (%d)\n", this->birds.getSize());
-        this->birds.updateObjects();
+        // dprintf(2, "update tous les birds (%d)\n", this->stars.getSize());
+        this->stars.updateObjects();
 
         usleep(10000);
 
         // place des etoiles sur les nouvelles positions d'oiseaux
-        for (int i = 0; i < this->birds.getSize(); i++) {
-            Star *obj = this->birds.get(i);
+        for (int i = 0; i < this->stars.getSize(); i++) {
+            AObject *obj = this->stars.get(i);
             dprintf(2, "bird %d: %d\n", i, obj->getEnabled());
             if (obj->getEnabled()) {
                 int x = obj->getPosition().x;

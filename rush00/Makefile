@@ -5,8 +5,8 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 FILENAMES = main.cpp \
 			Engine.cpp \
-			ACollection.cpp \
 			Bounds.cpp \
+			Collection/ACollection.cpp \
 			Object/AObject.cpp \
 			Object/Star.cpp
 

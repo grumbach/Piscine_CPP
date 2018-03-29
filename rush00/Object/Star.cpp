@@ -1,7 +1,7 @@
 #include "Star.hpp"
 
 // par defaut, on met les gameobjects en dehors de la fenetre
-Star::Star(void): AObject(void) {
+Star::Star(void) {
     dprintf(2, "objet init en -1,-1\n");
     this->pos.x = -1;
     this->pos.y = -1;
@@ -12,29 +12,11 @@ Star::Star(const Star &) {
 
 };
 
-bool Star::getEnabled(void) {
-    return this->enabled;
-}
-
-t_point Star::getPosition(void) {
-    return this->pos;
-}
-
 // bouge l'objet dans sa direction (pour l'instant toujours vers le bas mais on rajoutera peut etre une direction apres)
-// void Star::move(void) {
-//     if (this->enabled)
-//         this->pos.y += 1;
-//     dprintf(2, "obj a bouge en %d,%d, %d\n", this->pos.y, this->pos.x, this->enabled);
-// }
-
-void Star::setPosition(int y, int x) {
-    this->pos.y = y;
-    this->pos.x = x;
-    dprintf(2, "My position is now %d %d\n", this->pos.y, this->pos.x);
-}
-
-void Star::setEnabled(bool enabled) {
-    this->enabled = enabled;
+void Star::move(void) {
+    if (this->enabled)
+        this->pos.y += 1;
+    dprintf(2, "star a bouge en %d,%d, %d\n", this->pos.y, this->pos.x, this->enabled);
 }
 
 Star & Star::operator=(const Star & rhs) {

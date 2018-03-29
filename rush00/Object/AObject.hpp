@@ -20,7 +20,7 @@ class AObject
         virtual t_point getPosition(void);
         virtual void setPosition(int y, int x);
         virtual void setEnabled(bool);
-        void move(void);
+        virtual void move(void) = 0;
 
     protected:
         t_point pos;
