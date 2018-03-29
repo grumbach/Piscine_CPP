@@ -11,7 +11,8 @@ FILENAMES = main.cpp							\
 			Collection/RocketsCollection.cpp	\
 			Object/AObject.cpp					\
 			Object/Star.cpp						\
-			Object/Rocket.cpp
+			Object/Rocket.cpp					\
+			Object/Pilot.cpp
 
 INCLUDE = -I.
 LINK = -lncurses

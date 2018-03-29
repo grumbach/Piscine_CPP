@@ -18,7 +18,7 @@ Star::Star(const Star &) {
 void Star::move(void) {
     if (this->enabled)
         this->pos.y += 1;
-    dprintf(2, "star a bouge en %d,%d, %d\n", this->pos.y, this->pos.x, this->enabled);
+    // dprintf(2, "star a bouge en %d,%d, %d\n", this->pos.y, this->pos.x, this->enabled);
 }
 
 Star & Star::operator=(const Star & rhs) {

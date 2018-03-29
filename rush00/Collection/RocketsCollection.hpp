@@ -12,6 +12,7 @@ class RocketsCollection: public ACollection
         RocketsCollection &operator=(const RocketsCollection &);
         ~RocketsCollection(void);
         void updateObjects(void);
+        void fire(int y, int x);
 };
 
 std::ostream & operator<<( std::ostream & o, RocketsCollection const & coll );

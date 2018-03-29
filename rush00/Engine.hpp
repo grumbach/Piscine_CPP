@@ -6,7 +6,7 @@
 # include <iostream>
 # include <string>
 # include "Collection/StarsCollection.hpp"
-# include "Collection/RocketsCollection.hpp"
+# include "Object/Pilot.hpp"
 
 class Engine {
 	public:
@@ -18,14 +18,13 @@ class Engine {
 		void        launch();                               // fly the airplane
 		void        finish();                               // land the airplane safely.
 		void        crash(std::string const stopMessage);   // in case of error, display a crash message and exit.
+		static int  maxHeight;
+		static int  maxWidth;
 
 	private:
 		WINDOW      *frame;
-		// Pilot    p;
+		Pilot		pilot;
 		StarsCollection stars;
-		RocketsCollection rockets;
-		int         maxHeight;
-		int         maxWidth;
 };
 
 std::ostream &      operator<<( std::ostream & o, Engine const & ngin );

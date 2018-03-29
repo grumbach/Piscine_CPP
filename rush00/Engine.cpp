@@ -1,4 +1,5 @@
 #include "Engine.hpp"
+#include "bindings.hpp"
 
 Engine::Engine(void) {
     this->frame = initscr();    // renvoie l'addresse de la fenetre creee
@@ -29,7 +30,7 @@ Engine::Engine(void) {
 
     // donne des bordures au spawner d etoiles
     this->stars.setBounds(Bounds(0, 0, this->maxHeight, this->maxWidth));
-    this->rockets.setBounds(Bounds(0, 0, this->maxHeight, this->maxWidth));
+    this->pilot.setPosition(this->maxHeight / 2, this->maxWidth / 2);
 }
 
 Engine::Engine(const Engine & ngin) {
@@ -52,26 +53,47 @@ void Engine::launch() {
         // // update la position de tous les oiseaux
         // dprintf(2, "update tous les birds (%d)\n", this->stars.getSize());
         this->stars.updateObjects();
-        this->rockets.updateObjects();
+        this->pilot.getRockets().updateObjects();
 
         // place des etoiles sur les nouvelles positions d'oiseaux
         for (int i = 0; i < this->stars.getSize(); i++) {
             AObject *star = this->stars.get(i);
-            AObject *rocket = this->rockets.get(i);
-
-            dprintf(2, "bird %d: %d\n", i, star->getEnabled());
             if (star->getEnabled()) {
                 int x = star->getPosition().x;
                 int y = star->getPosition().y;
-                dprintf(2, "maintenant je place une etoile en %d, %d\n", y, x);
                 mvaddch(y, x, star->getShape());
             }
+        }
+
+        for (int i = 0; i < this->pilot.getRockets().getSize(); i++) {
+            AObject *rocket = this->pilot.getRockets().get(i);
             if (rocket->getEnabled()) {
                 int x = rocket->getPosition().x;
                 int y = rocket->getPosition().y;
                 mvaddch(y, x, rocket->getShape());
             }
         }
+
+        mvaddch(this->pilot.getPosition().y, this->pilot.getPosition().x, this->pilot.getShape());
+
+        // get keypress
+        char keypressed = wgetch(this->frame);
+        dprintf(2, "key pressed: %d\n", keypressed);
+        switch (keypressed) {
+            case KEY_ARROW_LEFT:
+            case KEY_ARROW_RIGHT:
+            case KEY_ARROW_UP:
+            case KEY_ARROW_DOWN:
+                this->pilot.setDirection(keypressed);
+                keypressed = -1;
+                break;
+            case KEY_SPACE:
+                this->pilot.shoot();
+            default:
+                break;
+
+        }
+        pilot.move();
         // affiche le cadre tout autour de la window
         box(this->frame, 0, 0);
         refresh();
@@ -104,3 +126,6 @@ std::ostream & operator<<( std::ostream & o, Engine const & ngin ) {
 
     return o;
 }
+
+int Engine::maxHeight = 1;
+int Engine::maxWidth = 1;

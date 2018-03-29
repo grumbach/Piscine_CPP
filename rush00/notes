@@ -6,11 +6,14 @@ game entities
 - missiles ennemis
 - asteroides
 
-1. mettre le joueur
-2. detecter les touches
-3. deplacer le joueur
-4. faire tirer le joueur
-5. faire les missiles
-6. faire les interfaces
+1. mettre le joueur       [ok]
+2. detecter les touches   [ok]
+3. deplacer le joueur     [ok]
+4. faire tirer le joueur  [ok]
+5. faire les missiles     [ok]
+6. faire les interfaces   [ok]
 7. faire les ennemis
 8. faire les collisions
+9. refacto
+
+On pourrait donner des fonctions Update() a chaque objet comme dans Unity3d et toutes les lancer depuis le main

@@ -26,7 +26,7 @@ class AObject
     protected:
         t_point pos;
 		bool    enabled;
-		char	shape;
+        char	shape;
 
 };
 

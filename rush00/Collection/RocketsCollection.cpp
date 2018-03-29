@@ -10,6 +10,21 @@ RocketsCollection::RocketsCollection(const RocketsCollection &) {
 
 };
 
+void RocketsCollection::fire(int y, int x) {
+	Rocket *rkt;
+
+	dprintf(2, "FIRE ROCKET COLLECYION\n");
+	for (int i = 0; i < this->size; i++) {
+		rkt = (Rocket*)&this->data[i];
+		if (!rkt->getEnabled()) {
+			rkt->setPosition(y, x);
+			rkt->setEnabled(true);
+			dprintf(2, "set rkt (%d) to %d,%d\n", rkt->getEnabled(), rkt->getPosition().y, rkt->getPosition().x);
+			return;
+		}
+	}
+}
+
 void RocketsCollection::updateObjects() {
 	Rocket *obj;
 
@@ -18,15 +33,10 @@ void RocketsCollection::updateObjects() {
 	for (int i = 0; i < this->size; i++) {
 		obj = (Rocket*)&this->data[i];
 		if (obj->getEnabled()) {
-			if (obj->getPosition().y > this->bounds.cornerY + this->bounds.height) {
-				dprintf(2, "obj disabled\n");
+			if (obj->getPosition().y < this->bounds.cornerY) {
+				// dprintf(2, "obj disabled\n");
 				obj->setEnabled(false);
 			}
-		} else {
-			dprintf(2, "objet pas actif positionne en %d,%d\n", obj->getPosition().y, obj->getPosition().x);
-			obj->setPosition(arc4random() % this->bounds.height - this->bounds.height, arc4random() % this->bounds.width);
-			obj->setEnabled(true);
-			dprintf(2, "obj activated\n");
 		}
 		obj->move();
 	}

@@ -35,7 +35,7 @@ char    AObject::getShape(void) const
 void AObject::setPosition(int y, int x) {
     this->pos.y = y;
     this->pos.x = x;
-    dprintf(2, "My position is now %d %d\n", this->pos.y, this->pos.x);
+    // dprintf(2, "My position is now %d %d\n", this->pos.y, this->pos.x);
 }
 
 void AObject::setEnabled(bool enabled) {
