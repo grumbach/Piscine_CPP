@@ -9,10 +9,12 @@ FILENAMES = main.cpp							\
 			Collection/ACollection.cpp			\
 			Collection/StarsCollection.cpp		\
 			Collection/RocketsCollection.cpp	\
+			Collection/EnemiesCollection.cpp	\
 			Object/AObject.cpp					\
 			Object/Star.cpp						\
 			Object/Rocket.cpp					\
-			Object/Pilot.cpp
+			Object/Pilot.cpp					\
+			Object/Enemy.cpp
 
 INCLUDE = -I.
 LINK = -lncurses

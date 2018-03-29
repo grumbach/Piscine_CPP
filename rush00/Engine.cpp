@@ -31,6 +31,7 @@ Engine::Engine(void) {
     // donne des bordures au spawner d etoiles
     this->stars.setBounds(Bounds(0, 0, this->maxHeight, this->maxWidth));
     this->pilot.setPosition(this->maxHeight / 2, this->maxWidth / 2);
+    this->enemies.setBounds(Bounds(0, 0, this->maxHeight, this->maxWidth));
 }
 
 Engine::Engine(const Engine & ngin) {
@@ -50,12 +51,12 @@ void Engine::launch() {
         // efface tout l'ecran
         clear();
 
-        // // update la position de tous les oiseaux
         // dprintf(2, "update tous les birds (%d)\n", this->stars.getSize());
         this->stars.updateObjects();
         this->pilot.getRockets().updateObjects();
+        this->enemies.updateObjects();
 
-        // place des etoiles sur les nouvelles positions d'oiseaux
+        // BERRK 3 FOIS LA MEME
         for (int i = 0; i < this->stars.getSize(); i++) {
             AObject *star = this->stars.get(i);
             if (star->getEnabled()) {
@@ -71,6 +72,15 @@ void Engine::launch() {
                 int x = rocket->getPosition().x;
                 int y = rocket->getPosition().y;
                 mvaddch(y, x, rocket->getShape());
+            }
+        }
+
+        for (int i = 0; i < this->enemies.getSize(); i++) {
+            AObject *enemy = this->enemies.get(i);
+            if (enemy->getEnabled()) {
+                int x = enemy->getPosition().x;
+                int y = enemy->getPosition().y;
+                mvaddch(y, x, enemy->getShape());
             }
         }
 

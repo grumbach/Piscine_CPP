@@ -6,6 +6,7 @@
 # include <iostream>
 # include <string>
 # include "Collection/StarsCollection.hpp"
+# include "Collection/EnemiesCollection.hpp"
 # include "Object/Pilot.hpp"
 
 class Engine {
@@ -22,9 +23,10 @@ class Engine {
 		static int  maxWidth;
 
 	private:
-		WINDOW      *frame;
-		Pilot		pilot;
-		StarsCollection stars;
+		WINDOW      		*frame;
+		Pilot				pilot;
+		StarsCollection		stars;
+		EnemiesCollection	enemies;
 };
 
 std::ostream &      operator<<( std::ostream & o, Engine const & ngin );

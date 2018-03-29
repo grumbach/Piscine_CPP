@@ -12,8 +12,20 @@ game entities
 4. faire tirer le joueur  [ok]
 5. faire les missiles     [ok]
 6. faire les interfaces   [ok]
-7. faire les ennemis
+7. faire les ennemis      [ok]
 8. faire les collisions
-9. refacto
+9. gestion du temps
+10.gestion du nb ennemis sur la map
+11. refacto
 
 On pourrait donner des fonctions Update() a chaque objet comme dans Unity3d et toutes les lancer depuis le main
+
+Collisions
+Apres qu'une rocket ai avance,
+verifier parmis tous les ennemis
+    si l'un d'eux est sur la case
+    desactiver la rocket et l'ennemi (ou remplacer lennemi par un X qui sefface au tour suivant)
+pareil pour le joueur
+
+setBounds semble completement inutile (je voulais faire quelque chose que j'ai completement oublie)
+Autant mettre des barrieres bien definies en global dans Engine et y acceder de partout ?
