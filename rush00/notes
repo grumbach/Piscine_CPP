@@ -13,8 +13,8 @@ game entities
 5. faire les missiles     [ok]
 6. faire les interfaces   [ok]
 7. faire les ennemis      [ok]
-8. faire les collisions
-9. gestion du temps
+8. faire les collisions   [ok]
+9. gestion du temps       [ok]
 10.gestion du nb ennemis sur la map
 11. refacto
 
@@ -29,3 +29,6 @@ pareil pour le joueur
 
 setBounds semble completement inutile (je voulais faire quelque chose que j'ai completement oublie)
 Autant mettre des barrieres bien definies en global dans Engine et y acceder de partout ?
+
+
+delete les new[]!

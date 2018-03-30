@@ -27,13 +27,16 @@ void RocketsCollection::fire(int y, int x) {
 
 void RocketsCollection::updateObjects() {
 	Rocket *obj;
+	
+	if (!this->checkElapsedTime(100))
+		return;
 
 	// parcours de tous les object pour les desactiver si ils sont sortis de l'ecran
 	// et les faire bouger le cas echeant
 	for (int i = 0; i < this->size; i++) {
 		obj = (Rocket*)&this->data[i];
 		if (obj->getEnabled()) {
-			if (obj->getPosition().y < this->bounds.cornerY) {
+			if (obj->getPosition().y < 0) {
 				// dprintf(2, "obj disabled\n");
 				obj->setEnabled(false);
 			}

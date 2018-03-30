@@ -3,7 +3,6 @@
 
 # include <iostream>
 # include <string>
-# include "../Bounds.hpp"
 # include "../Object/Star.hpp"
 
 class ACollection
@@ -13,15 +12,15 @@ class ACollection
         ACollection(const ACollection &);
         ACollection &operator=(const ACollection &);
         ~ACollection(void);
-        void    setBounds(Bounds newBounds);
-        int     getSize(void) const;
-        AObject *get(int index) const;
+        int             getSize(void) const;
+        AObject         *get(int index) const;
         virtual void    updateObjects(void) = 0;
+        bool            checkElapsedTime(double waitTimeMs);
 
     protected:
-        Bounds  bounds;
-        int     size;
-        AObject *data;
+        int             size;
+        AObject         *data;
+        clock_t         lastUpdate;
 };
 
 std::ostream & operator<<( std::ostream & o, ACollection const & coll );

@@ -4,6 +4,7 @@ ACollection::ACollection(void): size(0), data(NULL) {
 	// create 10 birds
 	// this->size = 40;
 	// this->data = new AObject[this->size];
+	this->lastUpdate = clock();
 };
 
 ACollection::ACollection(const ACollection &) {
@@ -18,13 +19,21 @@ AObject *ACollection::get(int index) const {
 	return &this->data[index];
 }
 
-void ACollection::setBounds(Bounds b) {
-	this->bounds = b;
-}
-
 ACollection & ACollection::operator=(const ACollection &) {
 	return *this;
 };
+
+bool ACollection::checkElapsedTime(double waitTimeMs) {
+	clock_t	now = clock();
+	double diffticks = now - this->lastUpdate;
+	double diffms    = diffticks / ( CLOCKS_PER_SEC / 1000 );
+
+	if (diffms < waitTimeMs)
+		return false;
+
+	this->lastUpdate = now;
+	return true;
+}
 
 ACollection::~ACollection(void) {
 

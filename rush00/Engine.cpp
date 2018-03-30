@@ -11,27 +11,17 @@ Engine::Engine(void) {
     }
 	noecho();                   // desactive l'affichage de caractere quand on appuie sur les touches
 	curs_set(0);                // cache le curseur du terminal
-    keypad(stdscr, TRUE);       // rend possible la detection de pression sur les touches fleches
-    nodelay(stdscr, TRUE);      // rend l'input (avec getch) non bloquant (asynchrome en quelque sorte)
-
-    // change tous les caracteres de la fenetre en noir et blanc
-    // init_pair(1, COLOR_WHITE, COLOR_BLACK);
-    // wbkgd(this->frame, COLOR_PAIR(1));
-
-    move(LINES / 2, COLS / 2 ); // test
-
-    // TODO: placer le joueur
+    keypad(this->frame, TRUE);       // rend possible la detection de pression sur les touches fleches
+    nodelay(this->frame, TRUE);      // rend l'input (avec getch) non bloquant (asynchrome en quelque sorte)
 
     // recupere les dimensions de la fenetre (getmaxyx est une macro qui set les deux derniers parametres)
-    getmaxyx(this->frame, this->maxHeight, this->maxWidth);
-    if (this->maxHeight <= 0 || this->maxWidth <= 0) {
+    getmaxyx(this->frame, Engine::maxHeight, Engine::maxWidth);
+    if (Engine::maxHeight <= 0 || Engine::maxWidth <= 0) {
         this->crash("The terminal is way too small ! Please enlarge the window.");
     }
 
     // donne des bordures au spawner d etoiles
-    this->stars.setBounds(Bounds(0, 0, this->maxHeight, this->maxWidth));
-    this->pilot.setPosition(this->maxHeight / 2, this->maxWidth / 2);
-    this->enemies.setBounds(Bounds(0, 0, this->maxHeight, this->maxWidth));
+    this->pilot.setPosition(Engine::maxHeight / 2, ((Engine::maxWidth / 2) / 2) * 2);
 }
 
 Engine::Engine(const Engine & ngin) {
@@ -48,13 +38,27 @@ bool Engine::start() {
 // THE BIG WHILE
 void Engine::launch() {
     while (42) {
+        if (this->gameOver) {
+            mvprintw(Engine::maxHeight / 2, (Engine::maxWidth - 55) / 2, "   ___                                                 \n");
+            mvprintw(Engine::maxHeight / 2 + 1, (Engine::maxWidth - 55) / 2, "  / _ \\ __ _  _ __ ___    ___    ___ __   __ ___  _ __ \n");
+            mvprintw(Engine::maxHeight / 2 + 2, (Engine::maxWidth - 55) / 2, " / /_\\// _` || '_ ` _ \\  / _ \\  / _ \\\\ \\ / // _ \\| '__|\n");
+            mvprintw(Engine::maxHeight / 2 + 3, (Engine::maxWidth - 55) / 2, "/ /_\\\\| (_| || | | | | ||  __/ | (_) |\\ V /|  __/| |   \n");
+            mvprintw(Engine::maxHeight / 2 + 4, (Engine::maxWidth - 55) / 2, "\\____/ \\__,_||_| |_| |_| \\___|  \\___/  \\_/  \\___||_|   \n");
+            refresh();
+            continue;
+        }
+
         // efface tout l'ecran
         clear();
 
         // dprintf(2, "update tous les birds (%d)\n", this->stars.getSize());
         this->stars.updateObjects();
-        this->pilot.getRockets().updateObjects();
-        this->enemies.updateObjects();
+        this->enemies.updateObjects(); // bouge les ennemis
+        // LA ON CHECK TOUT
+        this->manageCollision();
+        this->pilot.getRockets().updateObjects(); // bouge le pilote
+        this->manageCollision();
+        mvaddch(this->pilot.getPosition().y, this->pilot.getPosition().x, this->pilot.getShape()); // bouge les rockets
 
         // BERRK 3 FOIS LA MEME
         for (int i = 0; i < this->stars.getSize(); i++) {
@@ -63,15 +67,6 @@ void Engine::launch() {
                 int x = star->getPosition().x;
                 int y = star->getPosition().y;
                 mvaddch(y, x, star->getShape());
-            }
-        }
-
-        for (int i = 0; i < this->pilot.getRockets().getSize(); i++) {
-            AObject *rocket = this->pilot.getRockets().get(i);
-            if (rocket->getEnabled()) {
-                int x = rocket->getPosition().x;
-                int y = rocket->getPosition().y;
-                mvaddch(y, x, rocket->getShape());
             }
         }
 
@@ -84,7 +79,15 @@ void Engine::launch() {
             }
         }
 
-        mvaddch(this->pilot.getPosition().y, this->pilot.getPosition().x, this->pilot.getShape());
+        for (int i = 0; i < this->pilot.getRockets().getSize(); i++) {
+            AObject *rocket = this->pilot.getRockets().get(i);
+            if (rocket->getEnabled()) {
+                int x = rocket->getPosition().x;
+                int y = rocket->getPosition().y;
+                mvaddch(y, x, rocket->getShape());
+            }
+        }
+
 
         // get keypress
         char keypressed = wgetch(this->frame);
@@ -105,11 +108,44 @@ void Engine::launch() {
         }
         pilot.move();
         // affiche le cadre tout autour de la window
-        box(this->frame, 0, 0);
+        // box(this->frame, 0, 0);
         refresh();
-        usleep(100000);
     }
 }
+
+void Engine::manageCollision(void) {
+    AObject *enemy;
+    AObject *rocket;
+
+    for (int i = 0; i < this->enemies.getSize(); i++) {
+        enemy = this->enemies.get(i);
+        if (!enemy->getEnabled())
+            continue;
+        for (int i = 0; i < this->pilot.getRockets().getSize(); i++) {
+            rocket = this->pilot.getRockets().get(i);
+            if (!rocket->getEnabled())
+                continue;
+            if (rocket->getPosition().y == enemy->getPosition().y && rocket->getPosition().x == enemy->getPosition().x) {
+                dprintf(2, "OMG ALERTE ROUGE CA TOUCHE\n");
+                mvaddch(enemy->getPosition().y, enemy->getPosition().x, 'X');
+                enemy->setPosition(-1, -1);
+                enemy->setEnabled(false);
+                rocket->setPosition(-1, -1);
+                rocket->setEnabled(false);
+                break;
+            }
+        }
+        if (enemy->getPosition().y == this->pilot.getPosition().y && enemy->getPosition().x == this->pilot.getPosition().x) {
+            this->gameOver = true;
+        }
+    }
+}
+
+
+
+// . . O< .
+
+
 
 void Engine::finish() {
     clear();

@@ -10,7 +10,6 @@ Pilot::Pilot(void)
     this->pos.y = -1;
     this->enabled = false;
     this->shape = '^';
-    this->rockets.setBounds(Bounds(0, 0, Engine::maxHeight, Engine::maxWidth));
 };
 
 Pilot::Pilot(const Pilot &) {
@@ -25,9 +24,17 @@ void Pilot::move(void) {
     if (this->dir == KEY_ARROW_DOWN)
         this->pos.y += 1;
     if (this->dir == KEY_ARROW_RIGHT)
-        this->pos.x += 2;
+        this->pos.x += 1;
     if (this->dir == KEY_ARROW_LEFT)
-        this->pos.x -= 2;
+        this->pos.x -= 1;
+    if (this->pos.x > Engine::maxWidth)
+        this->pos.x = 1;
+    if (this->pos.x < 0)
+        this->pos.x = Engine::maxWidth - 1;
+    if (this->pos.y > Engine::maxHeight - 1)
+        this->pos.y = Engine::maxHeight - 1;
+    if (this->pos.y < 0)
+        this->pos.y = 1;
     this->dir = KEY_NONE;
 }
 

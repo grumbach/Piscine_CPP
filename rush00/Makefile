@@ -5,7 +5,6 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 FILENAMES = main.cpp							\
 			Engine.cpp							\
-			Bounds.cpp							\
 			Collection/ACollection.cpp			\
 			Collection/StarsCollection.cpp		\
 			Collection/RocketsCollection.cpp	\
