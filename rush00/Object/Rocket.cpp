@@ -1,9 +1,7 @@
 #include "Rocket.hpp"
 
 // par defaut, on met les gameobjects en dehors de la fenetre
-Rocket::Rocket(void)
-{
-    dprintf(2, "objet init en -1,-1\n");
+Rocket::Rocket(void) {
     this->pos.x = -1;
     this->pos.y = -1;
     this->enabled = false;
@@ -18,7 +16,6 @@ Rocket::Rocket(const Rocket & src) {
 void Rocket::move(void) {
     if (this->enabled)
         this->pos.y -= 1;
-    // dprintf(2, "rocket a bouge en %d,%d, %d\n", this->pos.y, this->pos.x, this->enabled);
 }
 
 Rocket & Rocket::operator=(const Rocket & rhs) {

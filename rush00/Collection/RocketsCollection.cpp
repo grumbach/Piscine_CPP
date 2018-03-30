@@ -13,13 +13,11 @@ RocketsCollection::RocketsCollection(const RocketsCollection &copy) {
 void RocketsCollection::fire(int y, int x) {
 	Rocket *rkt;
 
-	dprintf(2, "FIRE ROCKET COLLECYION\n");
 	for (int i = 0; i < this->size; i++) {
 		rkt = (Rocket*)&this->data[i];
 		if (!rkt->getEnabled()) {
 			rkt->setPosition(y, x);
 			rkt->setEnabled(true);
-			dprintf(2, "set rkt (%d) to %d,%d\n", rkt->getEnabled(), rkt->getPosition().y, rkt->getPosition().x);
 			return;
 		}
 	}
@@ -37,7 +35,6 @@ void RocketsCollection::updateObjects() {
 		obj = (Rocket*)&this->data[i];
 		if (obj->getEnabled()) {
 			if (obj->getPosition().y < 0) {
-				// dprintf(2, "obj disabled\n");
 				obj->setEnabled(false);
 			}
 		}

@@ -25,6 +25,9 @@ void Engine::start() {
 
     // donne des bordures au spawner d etoiles
     this->pilot.setPosition(Engine::maxHeight / 2, ((Engine::maxWidth / 2) / 2) * 2);
+    init_color(COLOR_RED, 250, 250, 250);
+    init_pair(1, COLOR_RED, COLOR_BLACK);
+    init_pair(2, COLOR_YELLOW, COLOR_BLACK);
 }
 
 // Game loop
@@ -64,9 +67,9 @@ void Engine::manageCollision(void) {
             rocket = this->pilot.getRockets().get(i);
             if (!rocket->getEnabled())
                 continue;
+            // si la rocket est sur un ennemi
             if (rocket->getPosition().y == enemy->getPosition().y && rocket->getPosition().x == enemy->getPosition().x) {
-                dprintf(2, "OMG ALERTE ROUGE CA TOUCHE\n");
-                mvaddch(enemy->getPosition().y, enemy->getPosition().x, 'X');
+                this->score++;
                 enemy->setPosition(-1, -1);
                 enemy->setEnabled(false);
                 rocket->setPosition(-1, -1);
@@ -82,7 +85,13 @@ void Engine::manageCollision(void) {
 
 void Engine::printGame() {
     // affiche le pilote
+    attron(A_UNDERLINE);
+    attron(A_BOLD);
+    attron(COLOR_PAIR(2));
     mvaddch(this->pilot.getPosition().y, this->pilot.getPosition().x, this->pilot.getShape());
+    attroff(COLOR_PAIR(2));
+    attroff(A_BOLD);
+    attroff(A_UNDERLINE);
 
     // affiche toutes les etoiles ('.') qui passent en arriere plan
     for (int i = 0; i < this->stars.getSize(); i++) {
@@ -90,7 +99,11 @@ void Engine::printGame() {
         if (star->getEnabled()) {
             int x = star->getPosition().x;
             int y = star->getPosition().y;
+            // attron(A_DIM);
+            attron(COLOR_PAIR(1));
             mvaddch(y, x, star->getShape());
+            attroff(COLOR_PAIR(1));
+            // attroff(A_DIM);
         }
     }
 
@@ -113,7 +126,7 @@ void Engine::printGame() {
             mvaddch(y, x, rocket->getShape());
         }
     }
-    // box(this->frame, 0, 0); // on le met ou pas ?
+    mvprintw(1, 2, "Score: %d", this->score);
 }
 
 
@@ -124,8 +137,6 @@ void Engine::printGame() {
 //////////////////////////////////////////////////////////
 
 void Engine::keyGesture(char key) {
-    if (key != -1)
-            dprintf(2, "key pressed: %d\n", key);
     switch (key) {
         case KEY_ARROW_LEFT:
         case KEY_ARROW_RIGHT:
@@ -148,6 +159,8 @@ void Engine::keyGesture(char key) {
 }
 
 Engine::Engine(void) {
+    this->gameOver = false;
+    this->score = 0;
     this->start();
 }
 
@@ -157,11 +170,11 @@ Engine::Engine(const Engine & src) {
 }
 
 void Engine::printGameOver() {
-    mvprintw(Engine::maxHeight / 2    , (Engine::maxWidth - 55) / 2, "   ___                                                 \n");
-    mvprintw(Engine::maxHeight / 2 + 1, (Engine::maxWidth - 55) / 2, "  / _ \\ __ _  _ __ ___    ___    ___ __   __ ___  _ __ \n");
-    mvprintw(Engine::maxHeight / 2 + 2, (Engine::maxWidth - 55) / 2, " / /_\\// _` || '_ ` _ \\  / _ \\  / _ \\\\ \\ / // _ \\| '__|\n");
-    mvprintw(Engine::maxHeight / 2 + 3, (Engine::maxWidth - 55) / 2, "/ /_\\\\| (_| || | | | | ||  __/ | (_) |\\ V /|  __/| |   \n");
-    mvprintw(Engine::maxHeight / 2 + 4, (Engine::maxWidth - 55) / 2, "\\____/ \\__,_||_| |_| |_| \\___|  \\___/  \\_/  \\___||_|   \n");
+    mvprintw((Engine::maxHeight / 2    ) - 2, (Engine::maxWidth - 55) / 2, "   ___                                                 \n");
+    mvprintw((Engine::maxHeight / 2 + 1) - 2, (Engine::maxWidth - 55) / 2, "  / _ \\ __ _  _ __ ___    ___    ___ __   __ ___  _ __ \n");
+    mvprintw((Engine::maxHeight / 2 + 2) - 2, (Engine::maxWidth - 55) / 2, " / /_\\// _` || '_ ` _ \\  / _ \\  / _ \\\\ \\ / // _ \\| '__|\n");
+    mvprintw((Engine::maxHeight / 2 + 3) - 2, (Engine::maxWidth - 55) / 2, "/ /_\\\\| (_| || | | | | ||  __/ | (_) |\\ V /|  __/| |   \n");
+    mvprintw((Engine::maxHeight / 2 + 4) - 2, (Engine::maxWidth - 55) / 2, "\\____/ \\__,_||_| |_| |_| \\___|  \\___/  \\_/  \\___||_|   \n");
 }
 
 void Engine::finish() {
@@ -188,6 +201,7 @@ Engine & Engine::operator=(Engine const &copy) {
         this->stars = copy.stars;
         this->enemies = copy.enemies;
         this->gameOver = copy.gameOver;    
+        this->score = copy.score;
     }
     this->start();
     return *this;

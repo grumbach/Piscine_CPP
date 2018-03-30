@@ -3,9 +3,7 @@
 #include "../Engine.hpp"
 
 // par defaut, on met les gameobjects en dehors de la fenetre
-Pilot::Pilot(void)
-{
-    dprintf(2, "objet init en bas de la map\n");
+Pilot::Pilot(void) {
     this->pos.x = -1;
     this->pos.y = -1;
     this->enabled = false;
@@ -46,7 +44,7 @@ void Pilot::move(void) {
 }
 
 void Pilot::shoot(void) {
-    this->rockets.fire(this->pos.y, this->pos.x);
+    this->rockets.fire(this->pos.y - 1, this->pos.x);
 }
 
 void Pilot::setDirection(char dir) {

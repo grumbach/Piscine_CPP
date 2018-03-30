@@ -27,6 +27,7 @@ class Engine {
 		StarsCollection		stars;
 		EnemiesCollection	enemies;
 		bool				gameOver;
+		int					score;
 		void				printGameOver(void);
 		void        		crash(std::string const stopMessage);	// in case of error, display a crash message and exit.
 		void				manageCollision(void);

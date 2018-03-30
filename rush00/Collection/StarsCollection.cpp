@@ -22,14 +22,11 @@ void StarsCollection::updateObjects() {
 		obj = (Star*)&this->data[i];
 		if (obj->getEnabled()) {
 			if (obj->getPosition().y > Engine::maxHeight) {
-				// dprintf(2, "obj disabled\n");
 				obj->setEnabled(false);
 			}
 		} else {
-			// dprintf(2, "objet pas actif positionne en %d,%d\n", obj->getPosition().y, obj->getPosition().x);
 			obj->setPosition(arc4random() % Engine::maxHeight - Engine::maxHeight, arc4random() % Engine::maxWidth);
 			obj->setEnabled(true);
-			// dprintf(2, "obj activated\n");
 		}
 		obj->move();
 	}

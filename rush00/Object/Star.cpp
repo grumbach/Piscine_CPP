@@ -1,9 +1,7 @@
 #include "Star.hpp"
 
 // par defaut, on met les gameobjects en dehors de la fenetre
-Star::Star(void)
-{
-    dprintf(2, "objet init en -1,-1\n");
+Star::Star(void) {
     this->pos.x = -1;
     this->pos.y = -1;
     this->enabled = false;
@@ -18,7 +16,6 @@ Star::Star(const Star & src) {
 void Star::move(void) {
     if (this->enabled)
         this->pos.y += 1;
-    // dprintf(2, "star a bouge en %d,%d, %d\n", this->pos.y, this->pos.x, this->enabled);
 }
 
 Star & Star::operator=(const Star & rhs) {

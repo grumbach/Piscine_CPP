@@ -1,9 +1,7 @@
 #include "Enemy.hpp"
 
 // par defaut, on met les gameobjects en dehors de la fenetre
-Enemy::Enemy(void)
-{
-    dprintf(2, "objet init en -1,-1\n");
+Enemy::Enemy(void) {
     this->pos.x = -1;
     this->pos.y = -1;
     this->enabled = false;
@@ -18,7 +16,6 @@ Enemy::Enemy(const Enemy & src) {
 void Enemy::move(void) {
     if (this->enabled)
         this->pos.y += 1;
-    // dprintf(2, "Enemy a bouge en %d,%d, %d\n", this->pos.y, this->pos.x, this->enabled);
 }
 
 Enemy & Enemy::operator=(const Enemy & rhs) {
