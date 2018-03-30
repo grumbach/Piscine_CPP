@@ -58,11 +58,14 @@ RocketsCollection &Pilot::getRockets(void) {
 }
 
 Pilot & Pilot::operator=(const Pilot & rhs) {
-    this->pos.y = rhs.pos.y;
-    this->pos.x = rhs.pos.x;
-    this->enabled = rhs.enabled;
-    dprintf(2, "Objet modifie en %d,%d\n", this->pos.y, this->pos.x);
-    return *this;
+	if (this != &rhs) {
+	    this->pos.y = rhs.pos.y;
+	    this->pos.x = rhs.pos.x;
+	    this->enabled = rhs.enabled;
+		this->dir = rhs.dir;
+		this->rockets = rhs.rockets;
+	}
+	return *this;
 };
 
 Pilot::~Pilot(void) {

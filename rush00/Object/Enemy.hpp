@@ -8,7 +8,7 @@ class Enemy: public AObject
 	public:
 		Enemy(void);
 		Enemy(const Enemy & src);
-		Enemy &operator=(const Enemy &);
+		Enemy &operator=(const Enemy & rhs);
 		~Enemy(void);
 		void move(void);
 };

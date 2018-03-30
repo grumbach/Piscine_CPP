@@ -8,7 +8,7 @@ class Rocket: public AObject
 	public:
 		Rocket(void);
 		Rocket(const Rocket & src);
-		Rocket &operator=(const Rocket &);
+		Rocket &operator=(const Rocket & rhs);
 		~Rocket(void);
 		void move(void);
 };

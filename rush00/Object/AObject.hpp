@@ -14,7 +14,7 @@ class AObject
     public:
         AObject(void);
         AObject(const AObject & src);
-        AObject &operator=(const AObject &);
+        AObject &operator=(const AObject & rhs);
         virtual ~AObject(void);
         virtual bool getEnabled(void);
         virtual t_point getPosition(void);

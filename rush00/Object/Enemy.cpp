@@ -22,11 +22,12 @@ void Enemy::move(void) {
 }
 
 Enemy & Enemy::operator=(const Enemy & rhs) {
-    this->pos.y = rhs.pos.y;
-    this->pos.x = rhs.pos.x;
-    this->enabled = rhs.enabled;
-    dprintf(2, "Objet modifie en %d,%d\n", this->pos.y, this->pos.x);
-    return *this;
+	if (this != &rhs) {
+	    this->pos.y = rhs.pos.y;
+	    this->pos.x = rhs.pos.x;
+	    this->enabled = rhs.enabled;
+	}
+	return *this;
 };
 
 Enemy::~Enemy(void) {

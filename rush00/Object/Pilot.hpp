@@ -9,7 +9,7 @@ class Pilot: public AObject
 	public:
 		Pilot(void);
 		Pilot(const Pilot & src);
-		Pilot &operator=(const Pilot &);
+		Pilot &operator=(const Pilot & rhs);
 		~Pilot(void);
 		void				move(void);
 		void				setDirection(char dir);
