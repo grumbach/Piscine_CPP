@@ -22,6 +22,4 @@ class Pilot: public AObject
 		void				setDir(char dir);
 };
 
-std::ostream & operator<<( std::ostream & o, Pilot const & p );
-
 #endif

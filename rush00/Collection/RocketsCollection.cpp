@@ -27,7 +27,7 @@ void RocketsCollection::fire(int y, int x) {
 
 void RocketsCollection::updateObjects() {
 	Rocket *obj;
-	
+
 	if (!this->checkElapsedTime(100))
 		return;
 
@@ -52,10 +52,3 @@ RocketsCollection & RocketsCollection::operator=(const RocketsCollection &) {
 RocketsCollection::~RocketsCollection(void) {
 	delete [] this->data;
 };
-
-std::ostream & operator<<( std::ostream & o, RocketsCollection const & coll ) {
-	(void)coll;
-	// o << coll << std::endl;
-
-	return o;
-}

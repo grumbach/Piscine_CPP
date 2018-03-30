@@ -32,10 +32,3 @@ Rocket & Rocket::operator=(const Rocket & rhs) {
 Rocket::~Rocket(void) {
 
 };
-
-std::ostream & operator<<( std::ostream & o, Rocket const & obj ) {
-    (void)obj;
-	// o << obj << std::endl;
-
-	return o;
-}

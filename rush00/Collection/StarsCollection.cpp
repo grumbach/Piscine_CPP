@@ -42,10 +42,3 @@ StarsCollection & StarsCollection::operator=(const StarsCollection &) {
 StarsCollection::~StarsCollection(void) {
 	delete [] this->data;
 };
-
-std::ostream & operator<<( std::ostream & o, StarsCollection const & coll ) {
-	(void)coll;
-	// o << coll << std::endl;
-
-	return o;
-}

@@ -32,10 +32,3 @@ Enemy & Enemy::operator=(const Enemy & rhs) {
 Enemy::~Enemy(void) {
 
 };
-
-std::ostream & operator<<( std::ostream & o, Enemy const & obj ) {
-    (void)obj;
-	// o << obj << std::endl;
-
-	return o;
-}

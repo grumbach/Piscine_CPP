@@ -13,6 +13,4 @@ class Enemy: public AObject
 		void move(void);
 };
 
-std::ostream & operator<<( std::ostream & o, Enemy const & collidr );
-
 #endif

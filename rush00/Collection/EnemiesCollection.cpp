@@ -46,10 +46,3 @@ EnemiesCollection & EnemiesCollection::operator=(const EnemiesCollection &) {
 EnemiesCollection::~EnemiesCollection(void) {
 	delete [] this->data;
 };
-
-std::ostream & operator<<( std::ostream & o, EnemiesCollection const & coll ) {
-	(void)coll;
-	// o << coll << std::endl;
-
-	return o;
-}

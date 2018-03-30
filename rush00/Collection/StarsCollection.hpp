@@ -15,6 +15,4 @@ class StarsCollection: public ACollection
 
 };
 
-std::ostream & operator<<( std::ostream & o, StarsCollection const & coll );
-
 #endif

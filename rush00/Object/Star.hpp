@@ -13,6 +13,4 @@ class Star: public AObject
 		void move(void);
 };
 
-std::ostream & operator<<( std::ostream & o, Star const & collidr );
-
 #endif

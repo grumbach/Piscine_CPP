@@ -67,10 +67,3 @@ Pilot & Pilot::operator=(const Pilot & rhs) {
 Pilot::~Pilot(void) {
 
 };
-
-std::ostream & operator<<( std::ostream & o, Pilot const & obj ) {
-    (void)obj;
-	// o << obj << std::endl;
-
-	return o;
-}

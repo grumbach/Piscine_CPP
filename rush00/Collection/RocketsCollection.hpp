@@ -15,6 +15,4 @@ class RocketsCollection: public ACollection
         void fire(int y, int x);
 };
 
-std::ostream & operator<<( std::ostream & o, RocketsCollection const & coll );
-
 #endif

@@ -23,6 +23,4 @@ class ACollection
         clock_t         lastUpdate;
 };
 
-std::ostream & operator<<( std::ostream & o, ACollection const & coll );
-
 #endif

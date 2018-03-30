@@ -32,10 +32,3 @@ Star & Star::operator=(const Star & rhs) {
 Star::~Star(void) {
 
 };
-
-std::ostream & operator<<( std::ostream & o, Star const & obj ) {
-    (void)obj;
-	// o << obj << std::endl;
-
-	return o;
-}

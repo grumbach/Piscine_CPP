@@ -15,6 +15,4 @@ class EnemiesCollection: public ACollection
 
 };
 
-std::ostream & operator<<( std::ostream & o, EnemiesCollection const & coll );
-
 #endif

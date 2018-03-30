@@ -38,10 +38,3 @@ bool ACollection::checkElapsedTime(double waitTimeMs) {
 ACollection::~ACollection(void) {
 
 };
-
-std::ostream & operator<<( std::ostream & o, ACollection const & coll ) {
-	(void)coll;
-	// o << coll << std::endl;
-
-	return o;
-}

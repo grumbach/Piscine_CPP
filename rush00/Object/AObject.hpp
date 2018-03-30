@@ -30,6 +30,4 @@ class AObject
 
 };
 
-std::ostream & operator<<( std::ostream & o, AObject const & collidr );
-
 #endif

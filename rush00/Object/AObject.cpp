@@ -53,10 +53,3 @@ AObject & AObject::operator=(const AObject & rhs) {
 AObject::~AObject(void) {
 
 };
-
-std::ostream & operator<<( std::ostream & o, AObject const & obj ) {
-    (void)obj;
-	// o << obj << std::endl;
-
-	return o;
-}
