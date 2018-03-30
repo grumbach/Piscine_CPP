@@ -27,7 +27,7 @@ void RocketsCollection::fire(int y, int x) {
 
 void RocketsCollection::updateObjects() {
 	Rocket *obj;
-	
+
 	if (!this->checkElapsedTime(100))
 		return;
 

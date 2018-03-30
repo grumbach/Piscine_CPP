@@ -7,12 +7,10 @@ class Rocket: public AObject
 {
 	public:
 		Rocket(void);
-		Rocket(const Rocket &);
-		Rocket &operator=(const Rocket &);
+		Rocket(const Rocket & src);
+		Rocket &operator=(const Rocket & rhs);
 		~Rocket(void);
 		void move(void);
 };
-
-std::ostream & operator<<( std::ostream & o, Rocket const & collidr );
 
 #endif

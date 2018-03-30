@@ -10,8 +10,8 @@ Star::Star(void)
     this->shape = '.';
 };
 
-Star::Star(const Star &) {
-
+Star::Star(const Star & src) {
+	*this = src;
 };
 
 // bouge l'objet dans sa direction (pour l'instant toujours vers le bas mais on rajoutera peut etre une direction apres)
@@ -22,20 +22,14 @@ void Star::move(void) {
 }
 
 Star & Star::operator=(const Star & rhs) {
-    this->pos.y = rhs.pos.y;
-    this->pos.x = rhs.pos.x;
-    this->enabled = rhs.enabled;
-    dprintf(2, "Objet modifie en %d,%d\n", this->pos.y, this->pos.x);
-    return *this;
+	if (this != &rhs) {
+	    this->pos.y = rhs.pos.y;
+	    this->pos.x = rhs.pos.x;
+	    this->enabled = rhs.enabled;
+	}
+	return *this;
 };
 
 Star::~Star(void) {
 
 };
-
-std::ostream & operator<<( std::ostream & o, Star const & obj ) {
-    (void)obj;
-	// o << obj << std::endl;
-
-	return o;
-}

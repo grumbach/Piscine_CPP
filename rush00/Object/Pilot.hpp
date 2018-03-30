@@ -8,8 +8,8 @@ class Pilot: public AObject
 {
 	public:
 		Pilot(void);
-		Pilot(const Pilot &);
-		Pilot &operator=(const Pilot &);
+		Pilot(const Pilot & src);
+		Pilot &operator=(const Pilot & rhs);
 		~Pilot(void);
 		void				move(void);
 		void				setDirection(char dir);
@@ -21,7 +21,5 @@ class Pilot: public AObject
 		RocketsCollection	rockets;
 		void				setDir(char dir);
 };
-
-std::ostream & operator<<( std::ostream & o, Pilot const & p );
 
 #endif

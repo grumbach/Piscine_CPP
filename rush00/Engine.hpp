@@ -12,8 +12,8 @@
 class Engine {
 	public:
 		Engine(void);
-		Engine(const Engine &);
-		Engine &operator=(Engine const &copy);
+		Engine(const Engine &copy);
+		Engine &operator=(Engine const & copy);
 		~Engine(void);
 		void				start(void);
 		void        		launch(void);								// fly the airplane

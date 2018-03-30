@@ -49,4 +49,4 @@ EnemiesCollection & EnemiesCollection::operator=(const EnemiesCollection &copy) 
 
 EnemiesCollection::~EnemiesCollection(void) {
 	delete [] this->data;
-};
+}

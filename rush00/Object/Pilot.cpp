@@ -12,7 +12,8 @@ Pilot::Pilot(void)
     this->shape = '^';
 };
 
-Pilot::Pilot(const Pilot &) {
+Pilot::Pilot(const Pilot & src) {
+	*this = src;
 };
 
 // bouge l'objet dans sa direction (pour l'instant toujours vers le bas mais on rajoutera peut etre une direction apres)
@@ -57,20 +58,16 @@ RocketsCollection &Pilot::getRockets(void) {
 }
 
 Pilot & Pilot::operator=(const Pilot & rhs) {
-    this->pos.y = rhs.pos.y;
-    this->pos.x = rhs.pos.x;
-    this->enabled = rhs.enabled;
-    dprintf(2, "Objet modifie en %d,%d\n", this->pos.y, this->pos.x);
-    return *this;
+	if (this != &rhs) {
+	    this->pos.y = rhs.pos.y;
+	    this->pos.x = rhs.pos.x;
+	    this->enabled = rhs.enabled;
+		this->dir = rhs.dir;
+		this->rockets = rhs.rockets;
+	}
+	return *this;
 };
 
 Pilot::~Pilot(void) {
 
 };
-
-std::ostream & operator<<( std::ostream & o, Pilot const & obj ) {
-    (void)obj;
-	// o << obj << std::endl;
-
-	return o;
-}

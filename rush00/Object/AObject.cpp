@@ -8,8 +8,8 @@ AObject::AObject(void) {
     this->enabled = false;
 };
 
-AObject::AObject(const AObject &) {
-
+AObject::AObject(const AObject &copy) {
+	*this = copy;
 };
 
 bool AObject::getEnabled(void) {
@@ -42,21 +42,15 @@ void AObject::setEnabled(bool enabled) {
     this->enabled = enabled;
 }
 
-AObject & AObject::operator=(const AObject & rhs) {
-    this->pos.y = rhs.pos.y;
-    this->pos.x = rhs.pos.x;
-    this->enabled = rhs.enabled;
-    dprintf(2, "Objet modifie en %d,%d\n", this->pos.y, this->pos.x);
-    return *this;
+AObject & AObject::operator=(const AObject &copy) {
+	if (this != &copy) {
+	    this->pos.y = copy.pos.y;
+	    this->pos.x = copy.pos.x;
+	    this->enabled = copy.enabled;
+	}
+	return *this;
 };
 
 AObject::~AObject(void) {
 
 };
-
-std::ostream & operator<<( std::ostream & o, AObject const & obj ) {
-    (void)obj;
-	// o << obj << std::endl;
-
-	return o;
-}

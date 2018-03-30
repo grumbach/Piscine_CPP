@@ -13,8 +13,8 @@ class AObject
 {
     public:
         AObject(void);
-        AObject(const AObject &);
-        AObject &operator=(const AObject &);
+        AObject(const AObject &copy);
+        AObject &operator=(const AObject &copy);
         virtual ~AObject(void);
         virtual bool getEnabled(void);
         virtual t_point getPosition(void);
@@ -29,7 +29,5 @@ class AObject
         char	shape;
 
 };
-
-std::ostream & operator<<( std::ostream & o, AObject const & collidr );
 
 #endif

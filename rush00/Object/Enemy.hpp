@@ -7,12 +7,10 @@ class Enemy: public AObject
 {
 	public:
 		Enemy(void);
-		Enemy(const Enemy &);
-		Enemy &operator=(const Enemy &);
+		Enemy(const Enemy & src);
+		Enemy &operator=(const Enemy & rhs);
 		~Enemy(void);
 		void move(void);
 };
-
-std::ostream & operator<<( std::ostream & o, Enemy const & collidr );
 
 #endif
