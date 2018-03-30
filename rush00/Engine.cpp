@@ -136,8 +136,10 @@ void Engine::keyGesture(char key) {
             break;
         case KEY_SPACE:
             this->pilot.shoot();
+            break;
         case KEY_ECHAP:
             finish();
+            break;
         default:
             break;
 
