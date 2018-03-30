@@ -2,12 +2,9 @@
 
 int main(void) {
     Engine ngin;
+    Engine ngin2 = ngin;
 
-    dprintf(2, "\n\n-------------------------------\n\n");
-    if (!ngin.start())
-        return (-1);
-    ngin.launch();
-
-    ngin.finish();
+    ngin2.launch();
+    ngin2.finish();
     return 0;
 }
