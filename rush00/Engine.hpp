@@ -7,6 +7,7 @@
 # include <string>
 # include "Collection/StarsCollection.hpp"
 # include "Collection/EnemiesCollection.hpp"
+# include "Collection/RocksCollection.hpp"
 # include "Object/Pilot.hpp"
 
 class Engine {
@@ -26,11 +27,12 @@ class Engine {
 		Pilot				pilot;
 		StarsCollection		stars;
 		EnemiesCollection	enemies;
+		RocksCollection		rocks;
 		bool				gameOver;
 		int					score;
 		void				printGameOver(void);
 		void        		crash(std::string const stopMessage);	// in case of error, display a crash message and exit.
-		void				manageCollision(void);
+		void				manageCollision(ACollection &col);
 		void				printGame(void);
 		void				keyGesture(char key);
 };

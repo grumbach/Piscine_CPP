@@ -22,6 +22,7 @@ class AObject
         virtual void setEnabled(bool);
         virtual void move(void) = 0;
 		char getShape(void) const;
+        void setShape(char shape);
 
     protected:
         t_point pos;

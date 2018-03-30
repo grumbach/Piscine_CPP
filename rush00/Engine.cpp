@@ -5,7 +5,7 @@ int Engine::maxHeight = 1;
 int Engine::maxWidth = 1;
 
 void Engine::start() {
-    this->frame = initscr();    // renvoie l'addresse de la fenetre creee
+    this->frame = initscr();       // renvoie l'addresse de la fenetre creee
     if(!has_colors()) {
         this->crash("Cannot play if colors are disabled !");
         return ;
@@ -14,8 +14,8 @@ void Engine::start() {
     }
 	noecho();                       // desactive l'affichage de caractere quand on appuie sur les touches
 	curs_set(0);                    // cache le curseur du terminal
-    keypad(this->frame, TRUE);       // rend possible la detection de pression sur les touches fleches
-    nodelay(this->frame, TRUE);      // rend l'input (avec getch) non bloquant (asynchrome en quelque sorte)
+    keypad(this->frame, TRUE);      // rend possible la detection de pression sur les touches fleches
+    nodelay(this->frame, TRUE);     // rend l'input (avec getch) non bloquant (asynchrome en quelque sorte)
 
     // recupere les dimensions de la fenetre (getmaxyx est une macro qui set les deux derniers parametres)
     getmaxyx(this->frame, Engine::maxHeight, Engine::maxWidth);
@@ -43,10 +43,13 @@ void Engine::launch() {
         clear();                                    // efface tout l'ecran
         this->stars.updateObjects();                // fait bouger les etoiles (.) en background
         this->enemies.updateObjects();              // fait bouger les ennemis
-        this->manageCollision();                    // detruit les ennemis touchés
+        this->rocks.updateObjects();                // fait bouger les asteroides
+        this->manageCollision(this->enemies);       // detruit les ennemis touchés
+        this->manageCollision(this->rocks);         // creve face a un asteroide touché
         this->pilot.getRockets().updateObjects();   // fait bouger les missiles du pilote
         pilot.move();                               // fait bouger le pilote
-        this->manageCollision();                    // detruit les ennemis touchés
+        this->manageCollision(this->enemies);       // detruit les ennemis touchés
+        this->manageCollision(this->rocks);         // creve face a un asteroide touché
 
         this->printGame();                          // met le jeu dans le buffer ncurses
         refresh();                                  // rafraichit la fenetre du terminal
@@ -55,12 +58,12 @@ void Engine::launch() {
     }
 }
 
-void Engine::manageCollision(void) {
+void Engine::manageCollision(ACollection &col) {
     AObject *enemy;
     AObject *rocket;
 
-    for (int i = 0; i < this->enemies.getSize(); i++) {
-        enemy = this->enemies.get(i);
+    for (int i = 0; i < col.getSize(); i++) {
+        enemy = col.get(i);
         if (!enemy->getEnabled())
             continue;
         for (int i = 0; i < this->pilot.getRockets().getSize(); i++) {
@@ -69,9 +72,12 @@ void Engine::manageCollision(void) {
                 continue;
             // si la rocket est sur un ennemi
             if (rocket->getPosition().y == enemy->getPosition().y && rocket->getPosition().x == enemy->getPosition().x) {
-                this->score++;
-                enemy->setPosition(-1, -1);
-                enemy->setEnabled(false);
+                std::cerr << typeid(enemy).name() << std::endl;
+                if (enemy->getShape() == 'O'){
+                    this->score++;
+                    enemy->setPosition(-1, -1);
+                    enemy->setEnabled(false);
+                }
                 rocket->setPosition(-1, -1);
                 rocket->setEnabled(false);
                 break;
@@ -114,6 +120,16 @@ void Engine::printGame() {
             int x = enemy->getPosition().x;
             int y = enemy->getPosition().y;
             mvaddch(y, x, enemy->getShape());
+        }
+    }
+
+    // affiche tous les asteroides ('%')
+    for (int i = 0; i < this->rocks.getSize(); i++) {
+        AObject *rocks = this->rocks.get(i);
+        if (rocks->getEnabled()) {
+            int x = rocks->getPosition().x;
+            int y = rocks->getPosition().y;
+            mvaddch(y, x, rocks->getShape());
         }
     }
 

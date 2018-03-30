@@ -45,3 +45,7 @@ AObject & AObject::operator=(const AObject &copy) {
 AObject::~AObject(void) {
 
 };
+
+void    AObject::setShape(char shape){
+    this->shape = shape;
+}

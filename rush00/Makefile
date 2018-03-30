@@ -9,6 +9,7 @@ FILENAMES = main.cpp							\
 			Collection/StarsCollection.cpp		\
 			Collection/RocketsCollection.cpp	\
 			Collection/EnemiesCollection.cpp	\
+			Collection/RocksCollection.cpp	\
 			Object/AObject.cpp					\
 			Object/Star.cpp						\
 			Object/Rocket.cpp					\
