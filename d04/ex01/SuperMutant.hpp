@@ -7,12 +7,12 @@ class SuperMutant : public Enemy
 {
 
 public:
-    SuperMutant(SuperMutant const & src);
-    SuperMutant(void);
-    ~SuperMutant(void);
-    void takeDamage(int damage);
+		SuperMutant(SuperMutant const & src);
+		SuperMutant(void);
+		~SuperMutant(void);
+		void takeDamage(int damage);
 
-    SuperMutant & operator=( SuperMutant const & rhs );
+		SuperMutant & operator=( SuperMutant const & rhs );
 
 };
 

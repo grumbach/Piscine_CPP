@@ -7,19 +7,19 @@ class Enemy
 {
 
 protected:
-    int hp;
-    std::string const & type;
+		int hp;
+		std::string const & type;
 
 public:
-    Enemy(Enemy const & src);
-    Enemy(int hp, std::string const & type);
-    virtual ~Enemy(void);
-    std::string getType(void) const;
-    int getHP(void) const;
+		Enemy(Enemy const & src);
+		Enemy(int hp, std::string const & type);
+		virtual ~Enemy(void);
+		std::string getType(void) const;
+		int getHP(void) const;
 
-    virtual void takeDamage(int damage);
+		virtual void takeDamage(int damage);
 
-    Enemy & operator=( Enemy const & rhs );
+		Enemy & operator=( Enemy const & rhs );
 
 };
 
