@@ -152,7 +152,7 @@ Engine::Engine(void) {
 }
 
 Engine::Engine(const Engine & src) {
-    (void)src;
+    *this = src;
     this->start();
 }
 
@@ -181,13 +181,13 @@ void Engine::crash(std::string const stopMessage) {
 Engine::~Engine() {
 }
 
-Engine & Engine::operator=(const Engine &) {
+Engine & Engine::operator=(Engine const &copy) {
+    if (this != &copy){
+        this->pilot = copy.pilot;
+        this->frame = copy.frame;
+        this->stars = copy.stars;
+        this->enemies = copy.enemies;
+        this->gameOver = copy.gameOver;    
+    }
     return *this;
-}
-
-std::ostream & operator<<( std::ostream & o, Engine const & ngin ) {
-    (void)ngin;
-    // o << ngin << std::endl;
-
-    return o;
 }

@@ -11,10 +11,10 @@
 
 class Engine {
 	public:
-		Engine();
+		Engine(void);
 		Engine(const Engine &);
-		Engine &operator=(const Engine &);
-		~Engine();
+		Engine &operator=(Engine const &copy);
+		~Engine(void);
 		void				start(void);
 		void        		launch(void);								// fly the airplane
 		void        		finish(void);								// land the airplane safely.
@@ -33,7 +33,5 @@ class Engine {
 		void				printGame(void);
 		void				keyGesture(char key);
 };
-
-std::ostream				&operator<<( std::ostream & o, Engine const & ngin );
 
 #endif

@@ -15,7 +15,7 @@ game entities
 7. faire les ennemis      [ok]
 8. faire les collisions   [ok]
 9. gestion du temps       [ok]
-10.gestion du nb ennemis sur la map
+10.gestion du nb ennemis sur la map [ok]
 11. refacto
 
 On pourrait donner des fonctions Update() a chaque objet comme dans Unity3d et toutes les lancer depuis le main
@@ -32,3 +32,4 @@ Autant mettre des barrieres bien definies en global dans Engine et y acceder de 
 
 
 delete les new[]!
+faire la forme canonique
