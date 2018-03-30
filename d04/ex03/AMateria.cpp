@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 17:03:22 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/30 11:39:55 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/30 13:12:39 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,5 @@ unsigned int			AMateria::getXP() const
 void					AMateria::use( ICharacter& target )
 {
 	(void)target;
-	std::cout << "tutu" << '\n';
 	this->xp_ += 10;
 }
