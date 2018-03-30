@@ -15,7 +15,7 @@ class AObject
         AObject(void);
         AObject(const AObject &);
         AObject &operator=(const AObject &);
-        ~AObject(void);
+        virtual ~AObject(void);
         virtual bool getEnabled(void);
         virtual t_point getPosition(void);
         virtual void setPosition(int y, int x);

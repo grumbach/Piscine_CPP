@@ -50,7 +50,7 @@ RocketsCollection & RocketsCollection::operator=(const RocketsCollection &) {
 };
 
 RocketsCollection::~RocketsCollection(void) {
-
+	delete [] this->data;
 };
 
 std::ostream & operator<<( std::ostream & o, RocketsCollection const & coll ) {

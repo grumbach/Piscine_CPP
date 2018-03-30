@@ -138,7 +138,8 @@ void Engine::keyGesture(char key) {
             this->pilot.shoot();
             break;
         case KEY_ECHAP:
-            finish();
+            this->finish();
+            exit(0);
             break;
         default:
             break;
@@ -167,7 +168,6 @@ void Engine::finish() {
     clear();
     refresh();
     endwin();
-    exit(0);
 }
 
 void Engine::crash(std::string const stopMessage) {

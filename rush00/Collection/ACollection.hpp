@@ -11,7 +11,7 @@ class ACollection
         ACollection(void);
         ACollection(const ACollection &);
         ACollection &operator=(const ACollection &);
-        ~ACollection(void);
+        virtual ~ACollection(void);
         int             getSize(void) const;
         AObject         *get(int index) const;
         virtual void    updateObjects(void) = 0;

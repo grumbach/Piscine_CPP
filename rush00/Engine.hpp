@@ -15,9 +15,9 @@ class Engine {
 		Engine(const Engine &);
 		Engine &operator=(const Engine &);
 		~Engine();
-		void				start();
-		void        		launch();								// fly the airplane
-		void        		finish();								// land the airplane safely.
+		void				start(void);
+		void        		launch(void);								// fly the airplane
+		void        		finish(void);								// land the airplane safely.
 		static int  		maxHeight;
 		static int  		maxWidth;
 
@@ -27,10 +27,10 @@ class Engine {
 		StarsCollection		stars;
 		EnemiesCollection	enemies;
 		bool				gameOver;
-		void				printGameOver();
+		void				printGameOver(void);
 		void        		crash(std::string const stopMessage);	// in case of error, display a crash message and exit.
-		void				manageCollision();
-		void				printGame();
+		void				manageCollision(void);
+		void				printGame(void);
 		void				keyGesture(char key);
 };
 
