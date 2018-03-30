@@ -17,16 +17,22 @@ Pilot::Pilot(const Pilot &) {
 
 // bouge l'objet dans sa direction (pour l'instant toujours vers le bas mais on rajoutera peut etre une direction apres)
 void Pilot::move(void) {
-    if (this->dir == KEY_NONE)
-        return;
-    if (this->dir == KEY_ARROW_UP)
-        this->pos.y -= 1;
-    if (this->dir == KEY_ARROW_DOWN)
-        this->pos.y += 1;
-    if (this->dir == KEY_ARROW_RIGHT)
-        this->pos.x += 1;
-    if (this->dir == KEY_ARROW_LEFT)
-        this->pos.x -= 1;
+    switch (this->dir) {
+        case KEY_ARROW_UP:
+            this->pos.y -= 1;
+            break;
+        case KEY_ARROW_DOWN:
+            this->pos.y += 1;
+            break;
+        case KEY_ARROW_RIGHT:
+            this->pos.x += 1;
+            break;
+        case KEY_ARROW_LEFT:
+            this->pos.x -= 1;
+            break;
+        default:
+            break;
+    }
     if (this->pos.x > Engine::maxWidth)
         this->pos.x = 1;
     if (this->pos.x < 0)

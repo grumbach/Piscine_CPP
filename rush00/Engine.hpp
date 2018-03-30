@@ -31,6 +31,7 @@ class Engine {
 		void        		crash(std::string const stopMessage);	// in case of error, display a crash message and exit.
 		void				manageCollision();
 		void				printGame();
+		void				keyGesture(char key);
 };
 
 std::ostream				&operator<<( std::ostream & o, Engine const & ngin );

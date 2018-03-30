@@ -48,25 +48,7 @@ void Engine::launch() {
         this->printGame();                          // met le jeu dans le buffer ncurses
         refresh();                                  // rafraichit la fenetre du terminal
 
-
-        // get keypress
-        char keypressed = wgetch(this->frame);
-        if (keypressed != -1)
-            dprintf(2, "key pressed: %d\n", keypressed);
-        switch (keypressed) {
-            case KEY_ARROW_LEFT:
-            case KEY_ARROW_RIGHT:
-            case KEY_ARROW_UP:
-            case KEY_ARROW_DOWN:
-                this->pilot.setDirection(keypressed);
-                keypressed = -1;
-                break;
-            case KEY_SPACE:
-                this->pilot.shoot();
-            default:
-                break;
-
-        }
+        this->keyGesture(wgetch(this->frame));      // detecte les touches
     }
 }
 
@@ -141,6 +123,26 @@ void Engine::printGame() {
 ///
 //////////////////////////////////////////////////////////
 
+void Engine::keyGesture(char key) {
+    if (key != -1)
+            dprintf(2, "key pressed: %d\n", key);
+    switch (key) {
+        case KEY_ARROW_LEFT:
+        case KEY_ARROW_RIGHT:
+        case KEY_ARROW_UP:
+        case KEY_ARROW_DOWN:
+            this->pilot.setDirection(key);
+            key = -1;
+            break;
+        case KEY_SPACE:
+            this->pilot.shoot();
+        case KEY_ECHAP:
+            finish();
+        default:
+            break;
+
+    }
+}
 
 Engine::Engine(void) {
     this->start();
