@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 17:03:22 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/27 19:22:26 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/30 11:39:55 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 AMateria::AMateria( void )
 	: type_("default")
-	, xp_(10)
+	, xp_(0)
 { }
 
 AMateria::AMateria( std::string const & type )
 	: type_(type)
-	, xp_(10)
+	, xp_(0)
 { }
 
 AMateria::AMateria( AMateria const & src )
 	: type_(src.getType())
-	, xp_(10)
+	, xp_(0)
 { }
 
 AMateria::~AMateria()
@@ -53,7 +53,7 @@ unsigned int			AMateria::getXP() const
 
 void					AMateria::use( ICharacter& target )
 {
-	//TODO
-	(void ) target;
-	// target.xp += this->xp_;
+	(void)target;
+	std::cout << "tutu" << '\n';
+	this->xp_ += 10;
 }

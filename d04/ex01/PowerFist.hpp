@@ -7,12 +7,12 @@ class PowerFist :  public AWeapon
 {
 
 public:
-    PowerFist(PowerFist const & src);
-    PowerFist(void);
-    ~PowerFist(void);
-    virtual void attack(void) const;
+		PowerFist(PowerFist const & src);
+		PowerFist(void);
+		~PowerFist(void);
+		virtual void attack(void) const;
 
-    PowerFist & operator=( PowerFist const & rhs );
+		PowerFist & operator=( PowerFist const & rhs );
 
 };
 
