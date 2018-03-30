@@ -7,8 +7,8 @@ StarsCollection::StarsCollection(void) {
 	this->data = new Star[this->size];
 };
 
-StarsCollection::StarsCollection(const StarsCollection &) {
-
+StarsCollection::StarsCollection(const StarsCollection &copy) {
+	*this = copy;
 };
 
 void StarsCollection::updateObjects() {
@@ -35,17 +35,13 @@ void StarsCollection::updateObjects() {
 	}
 }
 
-StarsCollection & StarsCollection::operator=(const StarsCollection &) {
+StarsCollection & StarsCollection::operator=(const StarsCollection &copy) {
+	this->data = copy.data;
+	this->size = copy.size;
+	this->lastUpdate = copy.lastUpdate;
 	return *this;
 };
 
 StarsCollection::~StarsCollection(void) {
 	delete [] this->data;
 };
-
-std::ostream & operator<<( std::ostream & o, StarsCollection const & coll ) {
-	(void)coll;
-	// o << coll << std::endl;
-
-	return o;
-}

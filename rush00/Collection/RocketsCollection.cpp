@@ -6,8 +6,8 @@ RocketsCollection::RocketsCollection(void) {
 	this->data = new Rocket[this->size];
 };
 
-RocketsCollection::RocketsCollection(const RocketsCollection &) {
-
+RocketsCollection::RocketsCollection(const RocketsCollection &copy) {
+	*this = copy;
 };
 
 void RocketsCollection::fire(int y, int x) {
@@ -45,17 +45,13 @@ void RocketsCollection::updateObjects() {
 	}
 }
 
-RocketsCollection & RocketsCollection::operator=(const RocketsCollection &) {
+RocketsCollection & RocketsCollection::operator=(const RocketsCollection &copy) {
+	this->data = copy.data;
+	this->size = copy.size;
+	this->lastUpdate = copy.lastUpdate;
 	return *this;
 };
 
 RocketsCollection::~RocketsCollection(void) {
 	delete [] this->data;
 };
-
-std::ostream & operator<<( std::ostream & o, RocketsCollection const & coll ) {
-	(void)coll;
-	// o << coll << std::endl;
-
-	return o;
-}

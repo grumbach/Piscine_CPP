@@ -8,13 +8,11 @@ class StarsCollection: public ACollection
 {
     public:
         StarsCollection(void);
-        StarsCollection(const StarsCollection &);
-        StarsCollection &operator=(const StarsCollection &);
+        StarsCollection(const StarsCollection &copy);
+        StarsCollection &operator=(const StarsCollection &copy);
         ~StarsCollection(void);
         void updateObjects(void);
 
 };
-
-std::ostream & operator<<( std::ostream & o, StarsCollection const & coll );
 
 #endif

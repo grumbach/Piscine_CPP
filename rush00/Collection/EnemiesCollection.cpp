@@ -7,9 +7,8 @@ EnemiesCollection::EnemiesCollection(void)
 	this->data = new Enemy[this->size];
 };
 
-EnemiesCollection::EnemiesCollection (const EnemiesCollection &)
-{
-
+EnemiesCollection::EnemiesCollection (const EnemiesCollection &copy){
+	*this = copy;
 };
 
 void EnemiesCollection::updateObjects() {
@@ -39,17 +38,15 @@ void EnemiesCollection::updateObjects() {
 	}
 }
 
-EnemiesCollection & EnemiesCollection::operator=(const EnemiesCollection &) {
+EnemiesCollection & EnemiesCollection::operator=(const EnemiesCollection &copy) {
+	if (this != &copy){
+		this->data = copy.data;
+		this->size = copy.size;
+		this->lastUpdate = copy.lastUpdate;
+	}
 	return *this;
 };
 
 EnemiesCollection::~EnemiesCollection(void) {
 	delete [] this->data;
 };
-
-std::ostream & operator<<( std::ostream & o, EnemiesCollection const & coll ) {
-	(void)coll;
-	// o << coll << std::endl;
-
-	return o;
-}

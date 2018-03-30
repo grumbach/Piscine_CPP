@@ -8,13 +8,11 @@ class EnemiesCollection: public ACollection
 {
     public:
         EnemiesCollection(void);
-        EnemiesCollection(const EnemiesCollection &);
-        EnemiesCollection &operator=(const EnemiesCollection &);
+        EnemiesCollection(const EnemiesCollection &copy);
+        EnemiesCollection &operator=(const EnemiesCollection &copy);
         ~EnemiesCollection(void);
         void updateObjects(void);
 
 };
-
-std::ostream & operator<<( std::ostream & o, EnemiesCollection const & coll );
 
 #endif

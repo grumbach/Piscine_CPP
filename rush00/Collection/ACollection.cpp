@@ -7,8 +7,8 @@ ACollection::ACollection(void): size(0), data(NULL) {
 	this->lastUpdate = clock();
 };
 
-ACollection::ACollection(const ACollection &) {
-
+ACollection::ACollection(const ACollection &copy) {
+	*this = copy;
 };
 
 int ACollection::getSize(void) const {
@@ -19,9 +19,12 @@ AObject *ACollection::get(int index) const {
 	return &this->data[index];
 }
 
-ACollection & ACollection::operator=(const ACollection &) {
+ACollection & ACollection::operator=(const ACollection &copy) {
+	this->data = copy.data;
+	this->size = copy.size;
+	this->lastUpdate = copy.lastUpdate;
 	return *this;
-};
+}
 
 bool ACollection::checkElapsedTime(double waitTimeMs) {
 	clock_t	now = clock();
@@ -38,10 +41,3 @@ bool ACollection::checkElapsedTime(double waitTimeMs) {
 ACollection::~ACollection(void) {
 
 };
-
-std::ostream & operator<<( std::ostream & o, ACollection const & coll ) {
-	(void)coll;
-	// o << coll << std::endl;
-
-	return o;
-}

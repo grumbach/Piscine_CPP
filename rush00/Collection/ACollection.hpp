@@ -9,8 +9,8 @@ class ACollection
 {
     public:
         ACollection(void);
-        ACollection(const ACollection &);
-        ACollection &operator=(const ACollection &);
+        ACollection(const ACollection &copy);
+        ACollection &operator=(const ACollection &copy);
         virtual ~ACollection(void);
         int             getSize(void) const;
         AObject         *get(int index) const;
@@ -22,7 +22,5 @@ class ACollection
         AObject         *data;
         clock_t         lastUpdate;
 };
-
-std::ostream & operator<<( std::ostream & o, ACollection const & coll );
 
 #endif

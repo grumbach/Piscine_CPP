@@ -8,13 +8,11 @@ class RocketsCollection: public ACollection
 {
     public:
         RocketsCollection(void);
-        RocketsCollection(const RocketsCollection &);
-        RocketsCollection &operator=(const RocketsCollection &);
+        RocketsCollection(const RocketsCollection &copy);
+        RocketsCollection &operator=(const RocketsCollection &copy);
         ~RocketsCollection(void);
         void updateObjects(void);
         void fire(int y, int x);
 };
-
-std::ostream & operator<<( std::ostream & o, RocketsCollection const & coll );
 
 #endif

@@ -189,5 +189,6 @@ Engine & Engine::operator=(Engine const &copy) {
         this->enemies = copy.enemies;
         this->gameOver = copy.gameOver;    
     }
+    this->start();
     return *this;
 }
