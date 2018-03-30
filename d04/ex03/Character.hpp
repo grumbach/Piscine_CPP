@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 17:38:40 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/27 19:21:12 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/30 11:32:24 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ public:
 	virtual void 					use(int idx, ICharacter& target);
 
 	AMateria *			inventory_[INVENTORY_SIZE];
-	unsigned int		xp_;
 
 private:
 

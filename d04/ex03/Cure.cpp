@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/27 17:16:57 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/27 19:30:10 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/30 11:41:02 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ AMateria *		Cure::clone( void ) const
 
 void			Cure::use( ICharacter & target )
 {
-	AMateria::use(target);
 	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }

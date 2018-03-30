@@ -9,22 +9,22 @@ class Character
 {
 
 private:
-    std::string name;
-    int AP;
-    AWeapon *weapon;
+		std::string name;
+		int AP;
+		AWeapon *weapon;
 
 public:
-    Character(Character const & src);
-    Character(std::string const & name);
-    ~Character(void);
-    void recoverAP();
-    void equip(AWeapon*);
-    void attack(Enemy*);
-    std::string getName() const;
-    int getAP() const;
-    std::string getWeapon() const;
+		Character(Character const & src);
+		Character(std::string const & name);
+		~Character(void);
+		void recoverAP();
+		void equip(AWeapon*);
+		void attack(Enemy*);
+		std::string getName() const;
+		int getAP() const;
+		std::string getWeapon() const;
 
-    Character & operator=( Character const & rhs );
+		Character & operator=( Character const & rhs );
 
 };
 

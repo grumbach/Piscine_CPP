@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Ice.cpp                                            :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/27 17:31:17 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/30 11:40:46 by agrumbac         ###   ########.fr       */
+/*   Created: 2018/03/28 16:39:40 by agrumbac          #+#    #+#             */
+/*   Updated: 2018/03/29 16:44:43 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Ice.hpp"
+#ifndef ROBOTOMYREQUESTFORM_H
+# define ROBOTOMYREQUESTFORM_H
 
-Ice::Ice( void ) : AMateria("ice")
-{ }
+#include "Form.hpp"
 
-Ice::Ice( Ice const & src ) : AMateria(src)
-{ }
+class RobotomyRequestForm : public Form {
 
-Ice::~Ice()
-{ }
+public:
 
-/*
-** Features
-*/
+	RobotomyRequestForm( std::string const & target );
+	RobotomyRequestForm( RobotomyRequestForm const & src );
+	~RobotomyRequestForm();
 
-AMateria *		Ice::clone( void ) const
-{
-	AMateria	*clone = new Ice();
+	RobotomyRequestForm &			operator=( RobotomyRequestForm const & rhs );
 
-	return clone;
-}
+	bool			execute( Bureaucrat const & executor ) const;
 
-void			Ice::use( ICharacter & target )
-{
-	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
-}
+};
+
+#endif
