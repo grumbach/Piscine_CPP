@@ -7,7 +7,7 @@ class Star: public AObject
 {
 	public:
 		Star(void);
-		Star(const Star &);
+		Star(const Star & src);
 		Star &operator=(const Star &);
 		~Star(void);
 		void move(void);

@@ -8,7 +8,7 @@ class StarsCollection: public ACollection
 {
     public:
         StarsCollection(void);
-        StarsCollection(const StarsCollection &);
+        StarsCollection(const StarsCollection & src);
         StarsCollection &operator=(const StarsCollection &);
         ~StarsCollection(void);
         void updateObjects(void);

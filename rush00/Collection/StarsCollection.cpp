@@ -7,8 +7,8 @@ StarsCollection::StarsCollection(void) {
 	this->data = new Star[this->size];
 };
 
-StarsCollection::StarsCollection(const StarsCollection &) {
-
+StarsCollection::StarsCollection(const StarsCollection & src) {
+	*this = src;
 };
 
 void StarsCollection::updateObjects() {

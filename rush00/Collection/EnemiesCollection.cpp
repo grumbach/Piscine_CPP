@@ -7,9 +7,8 @@ EnemiesCollection::EnemiesCollection(void)
 	this->data = new Enemy[this->size];
 };
 
-EnemiesCollection::EnemiesCollection (const EnemiesCollection &)
-{
-
+EnemiesCollection::EnemiesCollection (const EnemiesCollection & src) {
+	*this = src;
 };
 
 void EnemiesCollection::updateObjects() {

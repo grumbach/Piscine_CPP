@@ -10,8 +10,8 @@ Rocket::Rocket(void)
     this->shape = '|';
 };
 
-Rocket::Rocket(const Rocket &) {
-
+Rocket::Rocket(const Rocket & src) {
+	*this = src;
 };
 
 // bouge l'objet dans sa direction (pour l'instant toujours vers le bas mais on rajoutera peut etre une direction apres)

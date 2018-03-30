@@ -10,8 +10,8 @@ Star::Star(void)
     this->shape = '.';
 };
 
-Star::Star(const Star &) {
-
+Star::Star(const Star & src) {
+	*this = src;
 };
 
 // bouge l'objet dans sa direction (pour l'instant toujours vers le bas mais on rajoutera peut etre une direction apres)

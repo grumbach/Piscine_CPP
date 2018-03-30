@@ -10,8 +10,8 @@ Enemy::Enemy(void)
     this->shape = 'O';
 };
 
-Enemy::Enemy(const Enemy &) {
-
+Enemy::Enemy(const Enemy & src) {
+	*this = src;
 };
 
 // bouge l'objet dans sa direction (pour l'instant toujours vers le bas mais on rajoutera peut etre une direction apres)

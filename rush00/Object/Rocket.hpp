@@ -7,7 +7,7 @@ class Rocket: public AObject
 {
 	public:
 		Rocket(void);
-		Rocket(const Rocket &);
+		Rocket(const Rocket & src);
 		Rocket &operator=(const Rocket &);
 		~Rocket(void);
 		void move(void);

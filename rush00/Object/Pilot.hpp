@@ -8,7 +8,7 @@ class Pilot: public AObject
 {
 	public:
 		Pilot(void);
-		Pilot(const Pilot &);
+		Pilot(const Pilot & src);
 		Pilot &operator=(const Pilot &);
 		~Pilot(void);
 		void				move(void);

@@ -8,7 +8,7 @@ class EnemiesCollection: public ACollection
 {
     public:
         EnemiesCollection(void);
-        EnemiesCollection(const EnemiesCollection &);
+        EnemiesCollection(const EnemiesCollection & src);
         EnemiesCollection &operator=(const EnemiesCollection &);
         ~EnemiesCollection(void);
         void updateObjects(void);

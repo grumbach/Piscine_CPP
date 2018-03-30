@@ -8,7 +8,7 @@ class RocketsCollection: public ACollection
 {
     public:
         RocketsCollection(void);
-        RocketsCollection(const RocketsCollection &);
+        RocketsCollection(const RocketsCollection & src);
         RocketsCollection &operator=(const RocketsCollection &);
         ~RocketsCollection(void);
         void updateObjects(void);

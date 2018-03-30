@@ -6,8 +6,8 @@ RocketsCollection::RocketsCollection(void) {
 	this->data = new Rocket[this->size];
 };
 
-RocketsCollection::RocketsCollection(const RocketsCollection &) {
-
+RocketsCollection::RocketsCollection(const RocketsCollection & src) {
+	*this = src;
 };
 
 void RocketsCollection::fire(int y, int x) {

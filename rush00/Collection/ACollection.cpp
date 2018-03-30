@@ -7,8 +7,8 @@ ACollection::ACollection(void): size(0), data(NULL) {
 	this->lastUpdate = clock();
 };
 
-ACollection::ACollection(const ACollection &) {
-
+ACollection::ACollection(const ACollection & src) {
+	*this = src;
 };
 
 int ACollection::getSize(void) const {

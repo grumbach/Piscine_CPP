@@ -13,7 +13,7 @@ class AObject
 {
     public:
         AObject(void);
-        AObject(const AObject &);
+        AObject(const AObject & src);
         AObject &operator=(const AObject &);
         virtual ~AObject(void);
         virtual bool getEnabled(void);

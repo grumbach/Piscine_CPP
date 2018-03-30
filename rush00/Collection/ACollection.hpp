@@ -9,7 +9,7 @@ class ACollection
 {
     public:
         ACollection(void);
-        ACollection(const ACollection &);
+        ACollection(const ACollection & src);
         ACollection &operator=(const ACollection &);
         virtual ~ACollection(void);
         int             getSize(void) const;

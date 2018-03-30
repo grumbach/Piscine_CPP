@@ -8,8 +8,8 @@ AObject::AObject(void) {
     this->enabled = false;
 };
 
-AObject::AObject(const AObject &) {
-
+AObject::AObject(const AObject & src) {
+	*this = src;
 };
 
 bool AObject::getEnabled(void) {
