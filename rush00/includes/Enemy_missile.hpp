@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Missile.hpp                                        :+:      :+:    :+:   */
+/*   Enemy_missile.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/30 19:15:59 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 19:28:16 by agrumbac         ###   ########.fr       */
+/*   Created: 2018/03/31 19:06:27 by agrumbac          #+#    #+#             */
+/*   Updated: 2018/03/31 19:09:34 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MISSILE_H
-# define MISSILE_H
+#ifndef ENEMY_MISSILE_H
+# define ENEMY_MISSILE_H
 
-#include "A_spacecraft.hpp"
+#include "Missile.hpp"
 
-class Missile : public A_spacecraft {
+class Enemy_missile : public Missile {
 
 public:
 
-	Missile( void );
-	Missile( int const velocity, int const skin );
-	Missile( Missile const & src );
-	~Missile();
+	Enemy_missile( void );
+	Enemy_missile( Enemy_missile const & src );
+	~Enemy_missile();
 
-	Missile &		operator=( Missile const & rhs );
+	Enemy_missile &			operator=( Enemy_missile const & rhs );
 
-	virtual void	move();
+	virtual void			move();
 
 };
 

@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 18:02:58 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 20:04:33 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ Game::Game( void )
 	init_pair(PLAYER_COLOR, COLOR_GREEN, COLOR_BLACK);
 	init_pair(MISSILES_COLOR, COLOR_RED, COLOR_BLACK);
 	init_pair(ENEMIES_COLOR, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(EMISSILES_COLOR, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(STARS_COLOR, COLOR_WHITE, COLOR_BLACK);
 
 	std::srand(std::time(nullptr));
 
 	this->_window_height = LINES;
 	this->_window_width = COLS;
+	this->_score = 0;
 
 	this->_player.pos_y = LINES - 10;
 	this->_player.pos_x = COLS / 2;
@@ -127,6 +129,11 @@ inline void		Game::_update_positions()
 	{
 		ufo = &this->_enemies[i];
 		ufo->move();
+		for (size_t j = 0; j < ENEMIES_MISSILES; j++)
+		{
+			ufo = &this->_enemies[i].missiles[j];
+			ufo->move();
+		}
 	}
 	for (size_t i = 0; i < MISSILES; i++)
 	{
@@ -145,6 +152,18 @@ bool					Game::_check_collision()
 			this->_player.hp--;
 			this->_enemies[i].hp--;
 			break ;
+		}
+		for (size_t j = 0; j < ENEMIES_MISSILES; j++)
+		{
+			if (this->_player.pos_x == this->_enemies[i].missiles[j].pos_x && \
+				this->_player.pos_y == this->_enemies[i].missiles[j].pos_y)
+			{
+				this->_player.hp--;
+				this->_enemies[i].missiles[j].hp--;
+				this->_enemies[i].missiles[j].pos_x = -1;
+				this->_enemies[i].missiles[j].pos_y = -1;
+				break ;
+			}
 		}
 	}
 	for (size_t i = 0; i < MISSILES; i++)
@@ -183,6 +202,11 @@ void			Game::_redraw_window()
 	{
 		ufo = &this->_enemies[i];
 		mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
+		for (size_t j = 0; j < ENEMIES_MISSILES; j++)
+		{
+			ufo = &this->_enemies[i].missiles[j];
+			mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
+		}
 	}
 	for (size_t i = 0; i < MISSILES; i++)
 	{
@@ -192,7 +216,7 @@ void			Game::_redraw_window()
 	ufo = &this->_player;
 	mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
 
-	for (size_t i = 0; i < this->_player.hp; i++)
+	for (int i = 0; i < this->_player.hp; i++)
 	{
 		//display HP
 		attron(COLOR_PAIR(MISSILES_COLOR));

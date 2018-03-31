@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:53:48 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 15:44:27 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 19:42:48 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,10 @@ Player::Player( void ) : A_spacecraft(0, PLAYER_SKIN)
 }
 
 Player::Player( Player const & src ) : A_spacecraft(src)
-{
-	*this = src;
-}
+{ }
 
 Player::~Player()
-{
-	return ;
-}
+{ }
 
 
 Player &			Player::operator=( Player const & rhs )

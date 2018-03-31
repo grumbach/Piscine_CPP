@@ -6,7 +6,7 @@
 #    By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 16:59:39 by agrumbac          #+#    #+#              #
-#    Updated: 2018/03/31 17:27:43 by agrumbac         ###   ########.fr        #
+#    Updated: 2018/03/31 19:43:35 by agrumbac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,13 @@ NAME = ft_retro
 
 CC = clang++
 
-CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -g -std=c++98 -fsanitize=address
 
 SRC_PATH = ./srcs/
 OBJ_PATH = ./obj/
 INC_PATH = ./includes/
 
-SRC_NAME = main.cpp A_spacecraft.cpp A_ufo.cpp Enemy.cpp Game.cpp Missile.cpp Player.cpp Star.cpp Menu.cpp
+SRC_NAME = main.cpp A_spacecraft.cpp A_ufo.cpp Enemy.cpp Game.cpp Missile.cpp Player.cpp Star.cpp Menu.cpp Enemy_missile.cpp
 
 HDR_NAME = settings.hpp
 
@@ -35,11 +35,11 @@ all:
 	@make $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -lcurses $(CFLAGS) $^ -o $@
+	$(CC) -lcurses $(CPPFLAGS) $^ -o $@
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp #$(INC_PATH)%.hpp $(HDR_NAME)
 	@mkdir -p $(OBJ_PATH)
-	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
+	$(CC) $(CPPFLAGS) $(INC) -o $@ -c $<
 
 clean:
 	@echo "\033[32;44m Make clean $(NAME) \033[0m"

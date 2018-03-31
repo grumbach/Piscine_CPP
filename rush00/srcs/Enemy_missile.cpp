@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Missile.cpp                                        :+:      :+:    :+:   */
+/*   Enemy_missile.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/31 10:51:40 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 19:40:06 by agrumbac         ###   ########.fr       */
+/*   Created: 2018/03/31 19:07:24 by agrumbac          #+#    #+#             */
+/*   Updated: 2018/03/31 19:41:15 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Missile.hpp"
+#include "Enemy_missile.hpp"
 
-Missile::Missile( void ) : A_spacecraft(MISSILES_DELAY, MISSILES_SKIN)
+Enemy_missile::Enemy_missile( void ) : Missile(MISSILES_DELAY, EMISSILES_SKIN)
 {
 	this->hp = 0;
 }
 
-Missile::Missile( int const velocity, int const skin ) : A_spacecraft(velocity, skin)
+Enemy_missile::Enemy_missile( Enemy_missile const & src ) : Missile(src)
 { }
 
-Missile::Missile( Missile const & src ) : A_spacecraft(src)
-{
-	*this = src;
-}
-
-Missile::~Missile()
+Enemy_missile::~Enemy_missile()
 { }
 
 
-Missile &			Missile::operator=( Missile const & rhs )
+Enemy_missile &			Enemy_missile::operator=( Enemy_missile const & rhs )
 {
-	this->hp = rhs.hp;
+	(void)rhs;
 	return *this;
 }
 
-void				Missile::move()
+void					Enemy_missile::move()
 {
 	if (this->out_of_bounds())
 	{
@@ -45,5 +40,5 @@ void				Missile::move()
 	}
 
 	if (this->hp && this->can_move())
-		this->pos_y--;
+		this->pos_y++;
 }

@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 10:54:38 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 16:50:52 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 20:03:14 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,27 @@ Enemy::Enemy( Enemy const & src ) : A_spacecraft(src)
 }
 
 Enemy::~Enemy()
-{
-	return ;
-}
+{ }
 
 
 Enemy &			Enemy::operator=( Enemy const & rhs )
 {
+	(void)rhs;
 	return *this;
 }
 
 void			Enemy::move()
 {
-	//TODO clock velocity
-
 	if (this->_spawn_delay < 0 && out_of_bounds())
 		this->hp = 0;
 	if (this->hp)
 	{
 		if (this->can_move() && --this->_spawn_delay < 0)
+		{
 			this->pos_y++;
+			if (!(std::rand() % ENEMIES_RANK))
+				this->_shoot_missile();
+		}
 	}
 	else
 	{
@@ -50,5 +51,19 @@ void			Enemy::move()
 		this->pos_y = -1;
 		this->pos_x = RANDOM_X_SPAWN;
 		this->_spawn_delay = RANDOM_SPAWN_DELAY;
+	}
+}
+
+void			Enemy::_shoot_missile()
+{
+	for (size_t i = 0; i < ENEMIES_MISSILES; i++)
+	{
+		if (this->missiles[i].hp == 0)
+		{
+			this->missiles[i].hp = 1;
+			this->missiles[i].pos_y = this->pos_y;
+			this->missiles[i].pos_x = this->pos_x;
+			break;
+		}
 	}
 }

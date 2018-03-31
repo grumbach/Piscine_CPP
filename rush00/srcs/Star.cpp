@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 10:59:26 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 15:18:36 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 19:40:46 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,15 @@ Star::Star( void ) : A_ufo(STARS_DELAY, STARS_SKIN)
 { }
 
 Star::Star( Star const & src ) : A_ufo(src)
-{
-	*this = src;
-}
+{ }
 
 Star::~Star()
-{
-	return ;
-}
+{ }
 
 
 Star &			Star::operator=( Star const & rhs )
 {
+	(void)rhs;
 	return *this;
 }
 

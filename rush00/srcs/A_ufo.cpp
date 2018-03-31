@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:58:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 15:21:23 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 19:39:03 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,15 @@ A_ufo::A_ufo( int const velocity, int const skin )
 	, skin(skin)
 	, velocity(velocity)
 	, _last_move(clock())
-{
-	return ;
-}
+{ }
 
 A_ufo::A_ufo( A_ufo const & src )
 {
 	*this = src;
-	return ;
 }
 
 A_ufo::~A_ufo()
-{
-	return ;
-}
+{ }
 
 
 A_ufo &			A_ufo::operator=( A_ufo const & rhs )

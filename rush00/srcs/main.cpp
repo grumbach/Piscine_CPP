@@ -6,13 +6,13 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:26:38 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 18:03:07 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 19:37:08 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game.hpp"
 
-int			main(int ac, char **av)
+int			main( void )
 {
 	Game	game;
 
