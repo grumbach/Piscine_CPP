@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 16:49:59 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 18:02:58 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ Game::Game( void )
 	this->_window_height = LINES;
 	this->_window_width = COLS;
 
-	this->player.pos_y = LINES - 10;
-	this->player.pos_x = COLS / 2;
+	this->_player.pos_y = LINES - 10;
+	this->_player.pos_x = COLS / 2;
 
 	for (size_t i = 0; i < STARS; i++)
 	{
-		this->stars[i].pos_x = RANDOM_X_SPAWN;
-		this->stars[i].pos_y = RANDOM_Y_SPAWN;
+		this->_stars[i].pos_x = RANDOM_X_SPAWN;
+		this->_stars[i].pos_y = RANDOM_Y_SPAWN;
 	}
 }
 
@@ -49,7 +49,9 @@ Game::Game( Game const & src )
 }
 
 Game::~Game()
-{ }
+{
+	endwin();
+}
 
 Game &			Game::operator=( Game const & rhs )
 {
@@ -63,9 +65,10 @@ Game &			Game::operator=( Game const & rhs )
 
 void			Game::play_game()
 {
-	_show_menu("< FT_RETRO >     insert coin");
+	if (!this->_menu.welcome())
+		return ;
 
-	while (this->player.hp > 0)
+	while (this->_player.hp > 0)
 	{
 		if (!_get_input())
 			break;
@@ -74,62 +77,37 @@ void			Game::play_game()
 		_redraw_window();
 	}
 
-	if (this->player.hp <= 0)
-		_show_menu("GAME OVER");
-}
-
-void			Game::end_game()
-{
-	endwin();
-	exit(0);
+	if (this->_player.hp <= 0)
+		this->_menu.game_over(std::string("Score: ") + this->_get_score_str());
 }
 
 /*
 ** ------------------------------ Private --------------------------------------
 */
 
-void			Game::_show_menu( std::string const & message )
-{
-	int			ch = getch();
-
-	clear();
-	box(stdscr, 0, 0);
-	mvprintw(this->_window_height / 2, this->_window_width / 3, message.c_str());
-	refresh();
-
-	while (ch != KEY_RETURN)
-	{
-		ch = getch();
-		if (ch == KEY_ESC)
-			this->end_game();
-	}
-}
-
-
 inline bool		Game::_get_input()
 {
 	int			ch = getch();
 
-
 	if (ch == KEY_ESC)
 		return false;
-	else if (ch == KEY_DOWN && this->player.pos_y < LINES - 2)
-		this->player.pos_y++;
-	else if (ch == KEY_UP && this->player.pos_y > 1)
-		this->player.pos_y--;
-	else if (ch == KEY_LEFT && this->player.pos_x > 1)
-		this->player.pos_x--;
-	else if (ch == KEY_RIGHT && this->player.pos_x < COLS - 2)
-		this->player.pos_x++;
+	else if (ch == KEY_DOWN && this->_player.pos_y < LINES - 2)
+		this->_player.pos_y++;
+	else if (ch == KEY_UP && this->_player.pos_y > 1)
+		this->_player.pos_y--;
+	else if (ch == KEY_LEFT && this->_player.pos_x > 1)
+		this->_player.pos_x--;
+	else if (ch == KEY_RIGHT && this->_player.pos_x < COLS - 2)
+		this->_player.pos_x++;
 	else if (ch == KEY_SPACE)
-		this->player.shoot_missile();
+		this->_player.shoot_missile();
 
 	if (this->_window_width != COLS || this->_window_height != LINES)
 	{
 		if (this->_window_width > COLS || this->_window_height > LINES)
-			_show_menu("Space distortion detected, BIG CRUNCH!");
+			this->_menu.game_over("Space distortion detected, BIG CRUNCH! Score: -42");
 		else
-			_show_menu("Space distortion detected, BIG BANG!");
+			this->_menu.game_over("Space distortion detected, BIG BANG! Score: -42");
 		return false;
 	}
 	return true;
@@ -142,17 +120,17 @@ inline void		Game::_update_positions()
 	//TODO beautify this
 	for (size_t i = 0; i < STARS; i++)
 	{
-		ufo = &this->stars[i];
+		ufo = &this->_stars[i];
 		ufo->move();
 	}
 	for (size_t i = 0; i < ENEMIES; i++)
 	{
-		ufo = &this->enemies[i];
+		ufo = &this->_enemies[i];
 		ufo->move();
 	}
 	for (size_t i = 0; i < MISSILES; i++)
 	{
-		ufo = &this->player.missiles[i];
+		ufo = &this->_player.missiles[i];
 		ufo->move();
 	}
 }
@@ -161,27 +139,27 @@ bool					Game::_check_collision()
 {
 	for (size_t i = 0; i < ENEMIES; i++)
 	{
-		if (this->player.pos_x == this->enemies[i].pos_x && \
-			this->player.pos_y == this->enemies[i].pos_y)
+		if (this->_player.pos_x == this->_enemies[i].pos_x && \
+			this->_player.pos_y == this->_enemies[i].pos_y)
 		{
-			this->player.hp--;
-			this->enemies[i].hp--;
+			this->_player.hp--;
+			this->_enemies[i].hp--;
 			break ;
 		}
 	}
 	for (size_t i = 0; i < MISSILES; i++)
 	{
-		for (size_t j = 0; this->player.missiles[i].hp && \
-			this->enemies[j].hp && j < ENEMIES; j++)
+		for (size_t j = 0; this->_player.missiles[i].hp && \
+			this->_enemies[j].hp && j < ENEMIES; j++)
 		{
-			if (this->enemies[j].pos_x == this->player.missiles[i].pos_x && \
-				this->enemies[j].pos_y == this->player.missiles[i].pos_y)
+			if (this->_enemies[j].pos_x == this->_player.missiles[i].pos_x && \
+				this->_enemies[j].pos_y == this->_player.missiles[i].pos_y)
 			{
 				this->_score++;
-				this->enemies[j].hp--;
-				this->player.missiles[i].hp--;
-				this->player.missiles[i].pos_x = -1;
-				this->player.missiles[i].pos_y = -1;
+				this->_enemies[j].hp--;
+				this->_player.missiles[i].hp--;
+				this->_player.missiles[i].pos_x = -1;
+				this->_player.missiles[i].pos_y = -1;
 				break;
 			}
 		}
@@ -198,23 +176,23 @@ void			Game::_redraw_window()
 	//TODO beautify this
 	for (size_t i = 0; i < STARS; i++)
 	{
-		ufo = &this->stars[i];
+		ufo = &this->_stars[i];
 		mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
 	}
 	for (size_t i = 0; i < ENEMIES; i++)
 	{
-		ufo = &this->enemies[i];
+		ufo = &this->_enemies[i];
 		mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
 	}
 	for (size_t i = 0; i < MISSILES; i++)
 	{
-		ufo = &this->player.missiles[i];
+		ufo = &this->_player.missiles[i];
 		mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
 	}
-	ufo = &this->player;
+	ufo = &this->_player;
 	mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
 
-	for (size_t i = 0; i < this->player.hp; i++)
+	for (size_t i = 0; i < this->_player.hp; i++)
 	{
 		//display HP
 		attron(COLOR_PAIR(MISSILES_COLOR));
@@ -223,12 +201,16 @@ void			Game::_redraw_window()
 
 		//diplay score
 		attron(COLOR_PAIR(PLAYER_COLOR));
-		std::ostringstream s;
-		s << this->_score;
-		const std::string str(s.str());
-		mvprintw(0, COLS / 2, str.c_str());
+		mvprintw(0, COLS / 2, this->_get_score_str().c_str());
 		attroff(COLOR_PAIR(PLAYER_COLOR));
 	}
 
 	refresh();
+}
+
+std::string			Game::_get_score_str()
+{
+	std::ostringstream s;
+	s << this->_score;
+	return s.str();
 }
