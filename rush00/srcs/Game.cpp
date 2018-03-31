@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 20:04:33 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 20:44:14 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ inline void		Game::_update_positions()
 		ufo = &this->_stars[i];
 		ufo->move();
 	}
-	for (size_t i = 0; i < ENEMIES; i++)
+	for (size_t i = 0; i < (this->_score / 4) + 8 && i < ENEMIES; i++)
 	{
 		ufo = &this->_enemies[i];
 		ufo->move();

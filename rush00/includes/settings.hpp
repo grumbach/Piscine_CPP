@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:06:58 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 20:14:07 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 22:50:51 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define SETTING_H
 
 # define MISSILES			42
-# define ENEMIES			20
+# define ENEMIES			42
 # define ENEMIES_MISSILES	3
 # define STARS				42
 
@@ -53,3 +53,11 @@
 # define KEY_RETURN			10
 
 #endif
+
+/*
+
+  ^
+/<|>\
+  ^
+
+*/
