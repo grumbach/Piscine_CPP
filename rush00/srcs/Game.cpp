@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 15:45:26 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 16:31:17 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ bool					Game::_check_collision()
 			if (this->enemies[j].pos_x == this->player.missiles[i].pos_x && \
 				this->enemies[j].pos_y == this->player.missiles[i].pos_y)
 			{
+				this->_score++;
 				this->enemies[j].hp--;
 				this->player.missiles[i].hp--;
 				this->player.missiles[i].pos_x = -1;
@@ -211,6 +212,22 @@ void			Game::_redraw_window()
 	}
 	ufo = &this->player;
 	mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
+
+	for (size_t i = 0; i < this->player.hp; i++)
+	{
+		//display HP
+		attron(COLOR_PAIR(MISSILES_COLOR));
+		mvprintw(0, i * 3, "<3");
+		attroff(COLOR_PAIR(MISSILES_COLOR));
+
+		//diplay score
+		attron(COLOR_PAIR(PLAYER_COLOR));
+		std::ostringstream s;
+		s << this->_score;
+		const std::string str(s.str());
+		mvprintw(0, COLS / 2, str.c_str());
+		attroff(COLOR_PAIR(PLAYER_COLOR));
+	}
 
 	refresh();
 }

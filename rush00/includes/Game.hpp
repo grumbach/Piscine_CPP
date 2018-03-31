@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:34:30 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 11:52:27 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 16:24:39 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ private:
 	bool				_check_collision();
 	void				_redraw_window();
 
+	unsigned int		_score;
 
 };
 

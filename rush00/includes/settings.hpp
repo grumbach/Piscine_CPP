@@ -6,13 +6,14 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:06:58 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 15:53:28 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 16:27:33 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ncurses.h>
 #include <unistd.h>
 #include <iostream>
+#include <sstream>
 
 #ifndef SETTING_H
 # define SETTING_H
