@@ -6,14 +6,35 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/30 21:34:36 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:23:57 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Game.hpp"
 
 Game::Game( void )
-{ }
+{
+	initscr();
+	cbreak();
+	noecho();
+	curs_set(0);
+	keypad(stdscr, TRUE);
+	nodelay(stdscr, TRUE);
+
+	start_color();
+	init_pair(PLAYER_COLOR, COLOR_GREEN, COLOR_BLACK);
+	init_pair(MISSILES_COLOR, COLOR_RED, COLOR_BLACK);
+	init_pair(ENEMIES_COLOR, COLOR_WHITE, COLOR_BLACK);
+	init_pair(STARS_COLOR, COLOR_BLUE, COLOR_BLACK);
+
+	std::srand(std::time(nullptr));
+
+	this->_window_height = LINES;
+	this->_window_width = COLS;
+
+	this->player.pos_y = LINES - 10;
+	this->player.pos_x = COLS / 2;
+}
 
 Game::Game( Game const & src )
 { (void)src; }
@@ -30,28 +51,6 @@ Game &			Game::operator=( Game const & rhs )
 /*
 ** Public
 */
-
-void			Game::init_game()
-{
-	initscr();
-	cbreak();
-	noecho();
-	curs_set(0);
-	keypad(stdscr, TRUE);
-	nodelay(stdscr, TRUE);
-
-	start_color();
-	init_pair(PLAYER_COLOR, COLOR_GREEN, COLOR_BLACK);
-	init_pair(MISSILES_COLOR, COLOR_RED, COLOR_BLACK);
-	init_pair(ENEMIES_COLOR, COLOR_WHITE, COLOR_BLACK);
-	init_pair(STARS_COLOR, COLOR_BLUE, COLOR_BLACK);
-
-	this->_window_height = LINES;
-	this->_window_width = COLS;
-
-	this->player.pos_y = LINES - 10;
-	this->player.pos_x = COLS / 2;
-}
 
 void			Game::play_game()
 {

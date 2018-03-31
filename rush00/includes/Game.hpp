@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:34:30 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/30 21:24:47 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:24:24 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <unistd.h>
 #include <iostream>
 
-#include "settings.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
 #include "Star.hpp"
@@ -32,14 +31,13 @@ public:
 
 	Game &			operator=( Game const & rhs );
 
-	void			init_game();
 	void			play_game();
 	void			end_game();
 
 
 	Player			player;
-	// Enemy			enemies[ENEMIES];
-	// Star			stars[STARS];
+	Enemy			enemies[ENEMIES];
+	Star			stars[STARS];
 
 private:
 
@@ -50,8 +48,8 @@ private:
 	void				_move_ufo( A_ufo & );
 	void			_redraw_window();
 
-	int				_window_width;
-	int				_window_height;
+	static int		_window_width;
+	static int		_window_height;
 
 };
 

@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:55:41 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/30 19:22:00 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:21:19 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class A_spacecraft : public A_ufo {
 
 public:
 
-	A_spacecraft( void );
+	A_spacecraft( int const velocity );
 	A_spacecraft( A_spacecraft const & src );
 	~A_spacecraft();
 
