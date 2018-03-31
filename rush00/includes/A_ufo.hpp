@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:41:06 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 12:13:27 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 14:04:47 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,18 @@ public:
 
 	A_ufo &			operator=( A_ufo const & rhs );
 
+	bool			can_move();
 	bool			out_of_bounds();
 	virtual void	move() = 0;
 
 	int				pos_x;
 	int				pos_y;
-	int				velocity;
 	int				skin;
+	int				velocity;
+
+private:
+
+	clock_t			_last_move;
 
 };
 

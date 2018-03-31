@@ -6,13 +6,13 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 10:51:40 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 12:37:13 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 14:11:17 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Missile.hpp"
 
-Missile::Missile( void ) : A_spacecraft(MISSILES_VELOCITY, MISSILES_SKIN)
+Missile::Missile( void ) : A_spacecraft(MISSILES_DELAY, MISSILES_SKIN)
 {
 	this->hp = 0;
 	return ;
@@ -44,6 +44,6 @@ void				Missile::move()
 		this->hp = 0;
 	}
 
-	if (this->hp)
+	if (this->hp && this->can_move())
 		this->pos_y--;
 }

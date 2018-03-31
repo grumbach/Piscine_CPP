@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 12:44:12 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 14:33:20 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,11 +155,11 @@ bool					Game::_check_collision()
 		this->player.pos_y == this->enemies[i].pos_y)
 		{
 			this->player.hp--;
-			this->player.skin = '&';
+			this->player.skin = EXPLOSION_SKIN;
 			break ;
 		}
 	for (size_t i = 0; i < MISSILES; i++)
-	{	
+	{
 		for (size_t j = 0; this->player.missiles[i].hp && this->enemies[i].hp && \
 		j < ENEMIES; j++)
 			if (this->enemies[j].hp && \
@@ -169,8 +169,8 @@ bool					Game::_check_collision()
 				this->enemies[j].hp--;
 				this->player.missiles[i].hp--;
 				this->player.missiles[i].pos_x = -1;
-				this->player.missiles[i].pos_y = -1;				
-				this->enemies[j].skin = '&';
+				this->player.missiles[i].pos_y = -1;
+				this->enemies[j].skin = EXPLOSION_SKIN;
 				break;
 			}
 	}

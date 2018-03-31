@@ -6,17 +6,18 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:58:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 12:40:12 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 14:25:14 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "A_ufo.hpp"
 
 A_ufo::A_ufo( int const velocity, int const skin )
-	: pos_x(-1)//%TODO replace 42!  Game::_window_width)
-	, pos_y(-1)//TODO
-	, velocity(velocity)
+	: pos_x(-1)
+	, pos_y(-1)
 	, skin(skin)
+	, velocity(velocity)
+	, _last_move(clock() + RANDOM_CLOCK)
 {
 	return ;
 }
@@ -50,4 +51,19 @@ bool			A_ufo::out_of_bounds()
 {
 	return (this->pos_y > LINES || this->pos_y < 0 || \
 			this->pos_x > COLS || this->pos_x < 0);
+}
+
+bool			A_ufo::can_move()
+{
+	clock_t		now = clock();
+	double		diffticks = now - this->_last_move;
+	double		diffms = diffticks / ( CLOCKS_PER_SEC / 1000 );
+
+	dprintf(2, "clock[%f]", diffticks);
+
+	if (diffms < this->velocity)
+		return false;
+
+	this->_last_move = now;
+	return true;
 }

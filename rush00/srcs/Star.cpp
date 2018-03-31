@@ -6,15 +6,16 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 10:59:26 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 12:18:27 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 14:32:38 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Star.hpp"
 
-Star::Star( void ) : A_ufo(STARS_VELOCITY, STARS_SKIN)
+Star::Star( void ) : A_ufo(STARS_DELAY, STARS_SKIN)
 {
-	return ;
+	// this->pos_x = RANDOM_X_SPAWN;
+	// this->pos_y = RANDOM_Y_SPAWN;
 }
 
 Star::Star( Star const & src ) : A_ufo(src)
@@ -38,8 +39,8 @@ void			Star::move()
 	if (this->out_of_bounds())
 	{
 		this->pos_y = 0;
-		this->pos_x = RANDOM_SPAWN;
+		this->pos_x = RANDOM_X_SPAWN;
 	}
-	else
+	else if (this->can_move())
 		this->pos_y++;
 }
