@@ -13,17 +13,33 @@
 #include "A_ufo.hpp"
 
 A_ufo::A_ufo( void )
-{ }
+{ 
+    return ;
+}
 
 A_ufo::A_ufo( A_ufo const & src )
-{ }
+{ 
+    *this = src;
+    return ;
+}
 
 A_ufo::~A_ufo()
-{ }
+{ 
+    return ;
+}
 
 
 A_ufo &			A_ufo::operator=( A_ufo const & rhs )
-{ }
+{ 
+    if (this != &rhs)
+    {
+        this->pos_x = rhs.pos_x;
+        this->pos_y = rhs.pos_y;
+        this->direction = rhs.direction;
+        this->velocity = rhs.velocity;
+    }
+    return (*this);
+}
 
 void			A_ufo::move()
 { }

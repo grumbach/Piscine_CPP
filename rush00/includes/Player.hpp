@@ -29,7 +29,7 @@ public:
 
 	void				shoot_missile();
 
-	// Missile				missiles[MISSILES];
+	Missile				missiles[MISSILES];
 
 };
 

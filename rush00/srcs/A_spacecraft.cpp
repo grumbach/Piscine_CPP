@@ -13,13 +13,17 @@
 #include "A_spacecraft.hpp"
 
 A_spacecraft::A_spacecraft( void ) : A_ufo()
-{ }
+{ 
+    return ;
+}
 
 A_spacecraft::A_spacecraft( A_spacecraft const & src ) : A_ufo(src)
 { }
 
 A_spacecraft::~A_spacecraft()
-{ }
+{ 
+    return ;
+}
 
 
 A_spacecraft &			A_spacecraft::operator=( A_spacecraft const & rhs )

@@ -109,8 +109,8 @@ inline bool		Game::_get_input()
 		this->player.pos_x--;
 	else if (ch == KEY_RIGHT)
 		this->player.pos_x++;
-	// else if (ch == KEY_SPACE)
-	// 	this->player.shoot_missile();
+	else if (ch == KEY_SPACE)
+		this->player.shoot_missile();
 
 	if (this->_window_width != COLS || this->_window_height != LINES)
 	{
