@@ -45,7 +45,9 @@ private:
 
 	bool				_get_input();
 	void				_update_positions();
+	bool				_check_collision();
 	void				_redraw_window();
+
 
 };
 

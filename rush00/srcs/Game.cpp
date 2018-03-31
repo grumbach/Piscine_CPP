@@ -19,7 +19,7 @@ Game::Game( void )
 	noecho();
 	curs_set(0);
 	keypad(stdscr, TRUE);
-	// nodelay(stdscr, TRUE);
+	nodelay(stdscr, TRUE);
 
 	start_color();
 	init_pair(PLAYER_COLOR, COLOR_GREEN, COLOR_BLACK);
@@ -58,11 +58,12 @@ void			Game::play_game()
 {
 	_show_menu("< FT_RETRO >     insert coin");
 
-	while (42)
+	while (this->player.hp)
 	{
 		if (!_get_input())
 			break;
 		_update_positions();
+		_check_collision();
 		_redraw_window();
 	}
 }
@@ -144,6 +145,36 @@ inline void		Game::_update_positions()
 		ufo = &this->player.missiles[i];
 		ufo->move();
 	}
+}
+
+bool					Game::_check_collision()
+{
+	for (size_t i = 0; i < ENEMIES; i++)
+		if (this->enemies[i].hp && \
+		this->player.pos_x == this->enemies[i].pos_x && \
+		this->player.pos_y == this->enemies[i].pos_y)
+		{
+			this->player.hp--;
+			this->player.skin = '&';
+			break ;
+		}
+	for (size_t i = 0; i < MISSILES; i++)
+	{	
+		for (size_t j = 0; this->player.missiles[i].hp && this->enemies[i].hp && \
+		j < ENEMIES; j++)
+			if (this->enemies[j].hp && \
+			this->enemies[j].pos_x == this->player.missiles[i].pos_x && \
+			this->enemies[j].pos_y == this->player.missiles[i].pos_y)
+			{
+				this->enemies[j].hp--;
+				this->player.missiles[i].hp--;
+				this->player.missiles[i].pos_x = -1;
+				this->player.missiles[i].pos_y = -1;				
+				this->enemies[j].skin = '&';
+				break;
+			}
+	}
+	return (false);
 }
 
 void			Game::_redraw_window()
