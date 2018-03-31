@@ -6,7 +6,7 @@
 #    By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 16:59:39 by agrumbac          #+#    #+#              #
-#    Updated: 2018/03/31 12:26:45 by agrumbac         ###   ########.fr        #
+#    Updated: 2018/03/31 12:33:24 by agrumbac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ all:
 $(NAME): $(OBJ)
 	$(CC) -lcurses $(CFLAGS) $^ -o $@
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(INC_PATH)%.hpp $(HDR_NAME)
+$(OBJ_PATH)%.o: $(SRC_PATH)%.cpp #$(INC_PATH)%.hpp $(HDR_NAME)
 	@mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
 

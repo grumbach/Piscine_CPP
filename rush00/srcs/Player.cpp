@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:53:48 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 12:07:56 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 12:39:39 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void				Player::shoot_missile()
 		if (this->missiles[i].hp == 0)
 		{
 			this->missiles[i].hp = 1;
-			this->missiles[i].pos_y = this->pos_y - 1;
+			this->missiles[i].pos_y = this->pos_y;
 			this->missiles[i].pos_x = this->pos_x;
+			break;
 		}
 	}
 }

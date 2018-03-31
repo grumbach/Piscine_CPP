@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 11:59:58 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 12:44:12 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,13 @@ inline bool		Game::_get_input()
 
 	if (ch == KEY_ESC)
 		return false;
-	else if (ch == KEY_DOWN)
+	else if (ch == KEY_DOWN && this->player.pos_y < LINES - 2)
 		this->player.pos_y++;
-	else if (ch == KEY_UP)
+	else if (ch == KEY_UP && this->player.pos_y > 1)
 		this->player.pos_y--;
-	else if (ch == KEY_LEFT)
+	else if (ch == KEY_LEFT && this->player.pos_x > 1)
 		this->player.pos_x--;
-	else if (ch == KEY_RIGHT)
+	else if (ch == KEY_RIGHT && this->player.pos_x < COLS - 2)
 		this->player.pos_x++;
 	else if (ch == KEY_SPACE)
 		this->player.shoot_missile();
@@ -156,7 +156,6 @@ void			Game::_redraw_window()
 	for (size_t i = 0; i < STARS; i++)
 	{
 		ufo = &this->stars[i];
-		dprintf(2, "loop %d %d %d ", ufo->pos_y, ufo->pos_x, ufo->skin);
 		mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
 	}
 	for (size_t i = 0; i < ENEMIES; i++)

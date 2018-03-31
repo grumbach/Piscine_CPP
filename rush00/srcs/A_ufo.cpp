@@ -6,15 +6,15 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:58:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 12:17:59 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 12:40:12 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "A_ufo.hpp"
 
 A_ufo::A_ufo( int const velocity, int const skin )
-	: pos_x(std::rand() % 10)//%TODO replace 42!  Game::_window_width)
-	, pos_y(10)//TODO
+	: pos_x(-1)//%TODO replace 42!  Game::_window_width)
+	, pos_y(-1)//TODO
 	, velocity(velocity)
 	, skin(skin)
 {

@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 10:54:38 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 12:29:31 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 12:35:53 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void			Enemy::move()
 {
 	//TODO clock velocity
 
+	if (out_of_bounds())
+		this->hp = 0;
 	if (this->hp)
 		this->pos_y++;
 	else
