@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 16:31:17 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 16:49:59 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ bool					Game::_check_collision()
 			this->player.pos_y == this->enemies[i].pos_y)
 		{
 			this->player.hp--;
+			this->enemies[i].hp--;
 			break ;
 		}
 	}

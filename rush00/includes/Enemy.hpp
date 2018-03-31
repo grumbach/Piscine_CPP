@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:53:23 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 15:48:49 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 16:50:31 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ public:
 
 	virtual void	move();
 
-	int				spawn_delay;
+private:
+
+	int				_spawn_delay;
 
 };
 
