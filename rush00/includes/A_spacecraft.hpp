@@ -19,7 +19,7 @@ class A_spacecraft : public A_ufo {
 
 public:
 
-	A_spacecraft( int const velocity );
+	A_spacecraft( int const velocity, int const skin );
 	A_spacecraft( A_spacecraft const & src );
 	~A_spacecraft();
 

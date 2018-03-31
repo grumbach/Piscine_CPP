@@ -6,17 +6,14 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:34:30 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 11:24:24 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:35:45 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
 
-#include <ncurses.h>
-#include <unistd.h>
-#include <iostream>
-
+#include "settings.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
 #include "Star.hpp"

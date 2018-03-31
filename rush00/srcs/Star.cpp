@@ -6,13 +6,13 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 10:59:26 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 11:20:10 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:33:32 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Star.hpp"
 
-Star::Star( void ) : A_ufo(STARS_VELOCITY)
+Star::Star( void ) : A_ufo(STARS_VELOCITY, STARS_SKIN)
 {
 	return ;
 }

@@ -6,9 +6,13 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:06:58 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 11:20:26 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:35:23 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <ncurses.h>
+#include <unistd.h>
+#include <iostream>
 
 #ifndef SETTING_H
 # define SETTING_H
@@ -28,10 +32,10 @@
 # define ENEMIES_VELOCITY	300
 # define STARS_VELOCITY		100
 
-# define PLAYER_SKIN		'^'
-# define MISSILES_SKIN		'\''
-# define ENEMIES_SKIN		'H'
-# define STARS_SKIN			'.'
+# define PLAYER_SKIN		('^' | A_BOLD | COLOR_PAIR(PLAYER_COLOR))
+# define MISSILES_SKIN		('\'' | COLOR_PAIR(MISSILES_COLOR))
+# define ENEMIES_SKIN		('H' | COLOR_PAIR(ENEMIES_COLOR))
+# define STARS_SKIN			('.' | COLOR_PAIR(STARS_COLOR))
 
 # define KEY_ESC			27
 # define KEY_SPACE			32

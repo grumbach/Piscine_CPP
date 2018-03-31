@@ -6,13 +6,13 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:53:48 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 11:20:32 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:32:06 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Player.hpp"
 
-Player::Player( void ) : A_spacecraft(0)
+Player::Player( void ) : A_spacecraft(0, PLAYER_SKIN)
 {
 	return ;
 }

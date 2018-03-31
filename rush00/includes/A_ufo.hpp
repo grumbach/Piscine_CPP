@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:41:06 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 11:22:05 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:29:53 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class A_ufo {
 
 public:
 
-	A_ufo( int const velocity );
+	A_ufo( int const velocity, int const skin );
 	A_ufo( A_ufo const & src );
 	~A_ufo();
 
@@ -33,6 +33,7 @@ public:
 	int				pos_x;
 	int				pos_y;
 	int				velocity;
+	int				skin;
 
 };
 

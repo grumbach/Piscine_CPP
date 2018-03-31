@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 11:23:57 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:39:25 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ Game::Game( void )
 }
 
 Game::Game( Game const & src )
-{ (void)src; }
+{
+	(void)src;
+}
 
 Game::~Game()
 { }
@@ -137,8 +139,7 @@ void			Game::_redraw_window()
 	clear();
 	//draw all;
 
-	mvaddch(this->player.pos_y, this->player.pos_x, \
-		PLAYER_SKIN | A_BOLD | COLOR_PAIR(PLAYER_COLOR));
+	mvaddch(this->player.pos_y, this->player.pos_x, this->player.skin);
 
 	refresh();
 }
