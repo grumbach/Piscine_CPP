@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 14:33:20 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 15:45:26 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ Game::Game( void )
 	nodelay(stdscr, TRUE);
 
 	start_color();
+
 	init_pair(PLAYER_COLOR, COLOR_GREEN, COLOR_BLACK);
 	init_pair(MISSILES_COLOR, COLOR_RED, COLOR_BLACK);
-	init_pair(ENEMIES_COLOR, COLOR_WHITE, COLOR_BLACK);
-	init_pair(STARS_COLOR, COLOR_BLUE, COLOR_BLACK);
+	init_pair(ENEMIES_COLOR, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(STARS_COLOR, COLOR_WHITE, COLOR_BLACK);
 
 	std::srand(std::time(nullptr));
 
@@ -34,6 +35,12 @@ Game::Game( void )
 
 	this->player.pos_y = LINES - 10;
 	this->player.pos_x = COLS / 2;
+
+	for (size_t i = 0; i < STARS; i++)
+	{
+		this->stars[i].pos_x = RANDOM_X_SPAWN;
+		this->stars[i].pos_y = RANDOM_Y_SPAWN;
+	}
 }
 
 Game::Game( Game const & src )
@@ -51,14 +58,14 @@ Game &			Game::operator=( Game const & rhs )
 }
 
 /*
-** Public
+** ------------------------------- Public --------------------------------------
 */
 
 void			Game::play_game()
 {
 	_show_menu("< FT_RETRO >     insert coin");
 
-	while (this->player.hp)
+	while (this->player.hp > 0)
 	{
 		if (!_get_input())
 			break;
@@ -66,6 +73,9 @@ void			Game::play_game()
 		_check_collision();
 		_redraw_window();
 	}
+
+	if (this->player.hp <= 0)
+		_show_menu("GAME OVER");
 }
 
 void			Game::end_game()
@@ -75,7 +85,7 @@ void			Game::end_game()
 }
 
 /*
-** Private
+** ------------------------------ Private --------------------------------------
 */
 
 void			Game::_show_menu( std::string const & message )
@@ -86,7 +96,7 @@ void			Game::_show_menu( std::string const & message )
 	box(stdscr, 0, 0);
 	mvprintw(this->_window_height / 2, this->_window_width / 3, message.c_str());
 	refresh();
-	//press RETURN to start
+
 	while (ch != KEY_RETURN)
 	{
 		ch = getch();
@@ -150,29 +160,29 @@ inline void		Game::_update_positions()
 bool					Game::_check_collision()
 {
 	for (size_t i = 0; i < ENEMIES; i++)
-		if (this->enemies[i].hp && \
-		this->player.pos_x == this->enemies[i].pos_x && \
-		this->player.pos_y == this->enemies[i].pos_y)
+	{
+		if (this->player.pos_x == this->enemies[i].pos_x && \
+			this->player.pos_y == this->enemies[i].pos_y)
 		{
 			this->player.hp--;
-			this->player.skin = EXPLOSION_SKIN;
 			break ;
 		}
+	}
 	for (size_t i = 0; i < MISSILES; i++)
 	{
-		for (size_t j = 0; this->player.missiles[i].hp && this->enemies[i].hp && \
-		j < ENEMIES; j++)
-			if (this->enemies[j].hp && \
-			this->enemies[j].pos_x == this->player.missiles[i].pos_x && \
-			this->enemies[j].pos_y == this->player.missiles[i].pos_y)
+		for (size_t j = 0; this->player.missiles[i].hp && \
+			this->enemies[j].hp && j < ENEMIES; j++)
+		{
+			if (this->enemies[j].pos_x == this->player.missiles[i].pos_x && \
+				this->enemies[j].pos_y == this->player.missiles[i].pos_y)
 			{
 				this->enemies[j].hp--;
 				this->player.missiles[i].hp--;
 				this->player.missiles[i].pos_x = -1;
 				this->player.missiles[i].pos_y = -1;
-				this->enemies[j].skin = EXPLOSION_SKIN;
 				break;
 			}
+		}
 	}
 	return (false);
 }

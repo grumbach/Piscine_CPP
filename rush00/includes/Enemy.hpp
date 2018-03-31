@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:53:23 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 12:10:15 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 15:48:49 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ public:
 	Enemy &			operator=( Enemy const & rhs );
 
 	virtual void	move();
+
+	int				spawn_delay;
 
 };
 

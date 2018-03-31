@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:58:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 14:25:14 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 15:21:23 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ A_ufo::A_ufo( int const velocity, int const skin )
 	, pos_y(-1)
 	, skin(skin)
 	, velocity(velocity)
-	, _last_move(clock() + RANDOM_CLOCK)
+	, _last_move(clock())
 {
 	return ;
 }
@@ -58,8 +58,6 @@ bool			A_ufo::can_move()
 	clock_t		now = clock();
 	double		diffticks = now - this->_last_move;
 	double		diffms = diffticks / ( CLOCKS_PER_SEC / 1000 );
-
-	dprintf(2, "clock[%f]", diffticks);
 
 	if (diffms < this->velocity)
 		return false;
