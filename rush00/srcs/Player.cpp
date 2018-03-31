@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:53:48 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 11:32:06 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 12:07:56 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,22 @@ Player::~Player()
 
 Player &			Player::operator=( Player const & rhs )
 {
-	if (this != &rhs)
-	{
-		for (int i = 0; i < MISSILES; i++)
-			this->missiles[i] = rhs.missiles[i];
-	}
+	(void)rhs;
 	return (*this);
 }
 
 void				Player::shoot_missile()
 {
-	std::cout << "piou piou" << std::endl;
+	for (size_t i = 0; i < MISSILES; i++)
+	{
+		if (this->missiles[i].hp == 0)
+		{
+			this->missiles[i].hp = 1;
+			this->missiles[i].pos_y = this->pos_y - 1;
+			this->missiles[i].pos_x = this->pos_x;
+		}
+	}
 }
+
+void				Player::move()
+{ }

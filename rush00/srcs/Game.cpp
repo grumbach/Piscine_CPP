@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 11:39:25 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:59:58 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Game::Game( void )
 	noecho();
 	curs_set(0);
 	keypad(stdscr, TRUE);
-	nodelay(stdscr, TRUE);
+	// nodelay(stdscr, TRUE);
 
 	start_color();
 	init_pair(PLAYER_COLOR, COLOR_GREEN, COLOR_BLACK);
@@ -126,20 +126,51 @@ inline bool		Game::_get_input()
 
 inline void		Game::_update_positions()
 {
-	;
-}
+	A_ufo		*ufo;
 
-inline void		Game::_move_ufo( A_ufo & )
-{
-	;
+	//TODO beautify this
+	for (size_t i = 0; i < STARS; i++)
+	{
+		ufo = &this->stars[i];
+		ufo->move();
+	}
+	for (size_t i = 0; i < ENEMIES; i++)
+	{
+		ufo = &this->enemies[i];
+		ufo->move();
+	}
+	for (size_t i = 0; i < MISSILES; i++)
+	{
+		ufo = &this->player.missiles[i];
+		ufo->move();
+	}
 }
 
 void			Game::_redraw_window()
 {
-	clear();
-	//draw all;
+	A_ufo		*ufo;
 
-	mvaddch(this->player.pos_y, this->player.pos_x, this->player.skin);
+	clear();
+
+	//TODO beautify this
+	for (size_t i = 0; i < STARS; i++)
+	{
+		ufo = &this->stars[i];
+		dprintf(2, "loop %d %d %d ", ufo->pos_y, ufo->pos_x, ufo->skin);
+		mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
+	}
+	for (size_t i = 0; i < ENEMIES; i++)
+	{
+		ufo = &this->enemies[i];
+		mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
+	}
+	for (size_t i = 0; i < MISSILES; i++)
+	{
+		ufo = &this->player.missiles[i];
+		mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
+	}
+	ufo = &this->player;
+	mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
 
 	refresh();
 }

@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:55:41 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 11:21:19 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 12:06:33 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ public:
 
 	A_spacecraft &	operator=( A_spacecraft const & rhs );
 
-	int			hp;
+	virtual void	move() = 0;
+
+	int				hp;
 
 };
 

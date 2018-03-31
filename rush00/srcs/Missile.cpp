@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 10:51:40 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 11:33:42 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 12:17:21 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 Missile::Missile( void ) : A_spacecraft(MISSILES_VELOCITY, MISSILES_SKIN)
 {
+	this->hp = 0;
 	return ;
 }
 
@@ -31,4 +32,14 @@ Missile::~Missile()
 Missile &			Missile::operator=( Missile const & rhs )
 {
 	return *this;
+}
+
+void				Missile::move()
+{
+	//TODO clock with velocity
+	if (this->out_of_bounds())
+		this->hp = 0;
+
+	if (this->hp)
+		this->pos_y--;
 }

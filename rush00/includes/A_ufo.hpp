@@ -6,14 +6,13 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:41:06 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 11:29:53 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 12:13:27 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef A_UFO_H
 # define A_UFO_H
 
-#include <iostream>
 #include "settings.hpp"
 
 class Game;
@@ -28,7 +27,8 @@ public:
 
 	A_ufo &			operator=( A_ufo const & rhs );
 
-	void			move();
+	bool			out_of_bounds();
+	virtual void	move() = 0;
 
 	int				pos_x;
 	int				pos_y;

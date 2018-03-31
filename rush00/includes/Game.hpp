@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:34:30 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 11:35:45 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 11:52:27 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,26 @@ public:
 	Game( Game const & src );
 	~Game();
 
-	Game &			operator=( Game const & rhs );
+	Game &				operator=( Game const & rhs );
 
-	void			play_game();
-	void			end_game();
+	void				play_game();
+	void				end_game();
 
 
-	Player			player;
-	Enemy			enemies[ENEMIES];
-	Star			stars[STARS];
+	Player				player;
+	Enemy				enemies[ENEMIES];
+	Star				stars[STARS];
+
+	int					_window_width;
+	int					_window_height;
 
 private:
 
-	void			_show_menu( std::string const & message );
+	void				_show_menu( std::string const & message );
 
-	bool			_get_input();
-	void			_update_positions();
-	void				_move_ufo( A_ufo & );
-	void			_redraw_window();
-
-	static int		_window_width;
-	static int		_window_height;
+	bool				_get_input();
+	void				_update_positions();
+	void				_redraw_window();
 
 };
 
