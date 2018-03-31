@@ -6,7 +6,7 @@
 #    By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 16:59:39 by agrumbac          #+#    #+#              #
-#    Updated: 2018/03/30 20:42:41 by agrumbac         ###   ########.fr        #
+#    Updated: 2018/03/31 12:26:45 by agrumbac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ INC_PATH = ./includes/
 
 SRC_NAME = main.cpp A_spacecraft.cpp A_ufo.cpp Enemy.cpp Game.cpp Missile.cpp Player.cpp Star.cpp
 
-HDR = settings.hpp A_spacecraft.hpp A_ufo.hpp Enemy.hpp Game.hpp Missile.hpp Player.hpp Star.hpp settings.hpp
+HDR_NAME = settings.hpp
 
 OBJ_NAME = $(SRC_NAME:.cpp=.o)
 
@@ -37,7 +37,7 @@ all:
 $(NAME): $(OBJ)
 	$(CC) -lcurses $(CFLAGS) $^ -o $@
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.cpp
+$(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(INC_PATH)%.hpp $(HDR_NAME)
 	@mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
 

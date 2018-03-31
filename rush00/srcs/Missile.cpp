@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 10:51:40 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 12:17:21 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 12:30:22 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,11 @@ void				Missile::move()
 {
 	//TODO clock with velocity
 	if (this->out_of_bounds())
+	{
+		this->pos_y = -1;
+		this->pos_x = -1;
 		this->hp = 0;
+	}
 
 	if (this->hp)
 		this->pos_y--;

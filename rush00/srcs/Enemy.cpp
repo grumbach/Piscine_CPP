@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 10:54:38 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 12:18:15 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/31 12:29:31 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void			Enemy::move()
 		this->pos_y++;
 	else
 	{
+		this->hp = 1;
 		this->pos_y = 0;
 		this->pos_x = RANDOM_SPAWN;
 	}
