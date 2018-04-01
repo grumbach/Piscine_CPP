@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:06:58 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 12:59:12 by stmartin         ###   ########.fr       */
+/*   Updated: 2018/04/01 15:46:08 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@
 # define MISSILES_DELAY		42
 # define ENEMIES_DELAY		300
 # define STARS_DELAY		90
+
+# define BOSS_SPAWN			42
 
 # define RANDOM_X_SPAWN		(std::rand() % (COLS - 1))
 # define RANDOM_Y_SPAWN		(std::rand() % (LINES - 1))
