@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:34:30 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 16:12:01 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 16:59:40 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ private:
 	void				_init_game();
 	bool				_get_input();
 	void				_update_positions();
-	void				_check_collision();
+	void				_check_collision( Player & player );
 	void				_redraw_window();
 	std::string			_get_score_str();
 

@@ -6,7 +6,7 @@
 /*   By: stmartin <stmartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 00:36:14 by stmartin          #+#    #+#             */
-/*   Updated: 2018/04/01 16:15:38 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 17:41:50 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,44 @@ Boss &			Boss::operator=( Boss const & rhs )
 }
 
 /*
+** Features
+*/
+
+void			Boss::check_collision( Player & player )
+{
+	const int hit_box_x_end = this->pos_x + 32;
+	const int hit_box_y_end = this->pos_y + 6;
+
+	//boss and player
+	if (this->pos_x < player.pos_x && player.pos_x < hit_box_x_end && \
+		this->pos_y < player.pos_y && player.pos_y < hit_box_y_end)
+	{
+		player.take_damage(1);
+		this->take_damage(1);
+	}
+
+	//boss and player missiles
+	for (size_t i = 0; i < MISSILES; i++)
+	{
+		if (this->pos_x < player.missiles[i].pos_x && player.missiles[i].pos_x < hit_box_x_end && \
+			this->pos_y < player.missiles[i].pos_y && player.missiles[i].pos_y < hit_box_y_end)
+		{
+			player.missiles[i].take_damage(1);
+			this->take_damage(1);
+		}
+	}
+}
+
+/*
 ** this->_side_move 1:RIGHT 2:LEFT
 */
+
+void			Boss::awaken( int const score )
+{
+	this->hp = score;
+	this->pos_y = 3;
+	this->pos_x = std::rand() % COLS - 42;
+}
 
 void			Boss::move()
 {
@@ -103,7 +139,7 @@ void			Boss::draw()
 	mvprintw(this->pos_y + 9, this->pos_x, "              ' [ ' ] '");
 	mvprintw(this->pos_y + 10, this->pos_x, "                 [_]");
 	mvprintw(this->pos_y + 11, this->pos_x, "                  Y");
-	attroff(COLOR_PAIR(ENEMIES_COLOR));
+	attroff(COLOR_PAIR(MISSILES_COLOR));
 }
 
 void			Boss::draw_missiles()

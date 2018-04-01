@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:06:58 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 16:16:42 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 16:51:28 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 # define SETTING_H
 
 # define MISSILES			42
-# define ENEMIES			42
+# define ENEMIES			21
 # define ENEMIES_MISSILES	3
-# define STARS				42
-# define BOSS_MISSILES		42
+# define STARS				21
+# define BOSS_MISSILES		21
 
 # define PLAYER_DIRECTION	(-1)
 # define ENEMIES_DIRECTION	1

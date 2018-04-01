@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 16:23:24 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 17:48:15 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void			Game::play_game()
 		if (!_get_input())
 			break;
 		_update_positions();
-		_check_collision();
+		_check_collision(this->_player);
+		_check_collision(this->_player2);
 		_redraw_window();
 	}
 
@@ -96,8 +97,8 @@ void			Game::_init_game()
 		this->_stars[i].pos_y = RANDOM_Y_SPAWN;
 	}
 
-	this->_player.set_bindings(KEY_DOWN, KEY_UP, KEY_LEFT, KEY_RIGHT, KEY_ENDL);
-	this->_player2.set_bindings('s', 'w', 'a', 'd', KEY_SPACE);
+	this->_player.set_bindings('s', 'w', 'a', 'd', KEY_SPACE);
+	this->_player2.set_bindings(KEY_DOWN, KEY_UP, KEY_LEFT, KEY_RIGHT, KEY_ENDL);
 
 	this->_player2.skin = PLAYER2_SKIN;
 }
@@ -126,41 +127,27 @@ inline bool		Game::_get_input()
 
 inline void		Game::_update_positions()
 {
-	A_ufo		*ufo;
-
-	//TODO beautify this
 	for (size_t i = 0; i < STARS; i++)
-	{
-		ufo = &this->_stars[i];
-		ufo->move();
-	}
+		this->_stars[i].move();
 	if (this->_boss.hp)
 	{
-		ufo = &this->_boss;
-		ufo->move();
+		this->_boss.move();
 		for (size_t j = 0; j < BOSS_MISSILES; j++)
-		{
-			ufo = &this->_boss.missiles[j];
-			ufo->move();
-		}
+			this->_boss.missiles[j].move();
 	}
 	for (size_t i = 0; i < SPAWNED_ENEMIES(this->_score); i++)
 	{
-		ufo = &this->_enemies[i];
-		ufo->move();
+		this->_enemies[i].move();
 		for (size_t j = 0; j < ENEMIES_MISSILES; j++)
-		{
-			ufo = &this->_enemies[i].missiles[j];
-			ufo->move();
-		}
+			this->_enemies[i].missiles[j].move();
 	}
 	for (size_t i = 0; i < MISSILES; i++)
 	{
-		ufo = &this->_player.missiles[i];
-		ufo->move();
-		ufo = &this->_player2.missiles[i];
-		ufo->move();
+		this->_player.missiles[i].move();
+		this->_player2.missiles[i].move();
 	}
+	if (this->_boss.hp <= 0 && this->_score && this->_score % BOSS_SPAWN == 0)
+		this->_boss.awaken(this->_score);
 }
 
 /*
@@ -172,49 +159,29 @@ inline void		Game::_update_positions()
 **		player with enemy missiles
 **		enemy with player missiles
 **
-**	player with boss
-**	player with boss missiles
-**	boss with player missiles
+**	if (boss is alive)
+**		boss with player && boss with player missiles
+**		player with boss missiles
 */
 
-inline void		Game::_check_collision()
+inline void		Game::_check_collision( Player & player )
 {
+	if (player.hp > 0)
+	{
+		for (size_t i = 0; i < SPAWNED_ENEMIES(this->_score); i++)
+		{
+			player.check_collision(FREEDOM(&this->_enemies[i]), 1);
+			player.check_collision(FREEDOM(&this->_enemies[i].missiles), \
+				ENEMIES_MISSILES);
+			this->_score += this->_enemies[i].check_collision(\
+				FREEDOM(&player.missiles), MISSILES);
+		}
 
-	if (this->_player.hp > 0)
-	{
-		this->_player.check_collision(FREEDOM(&this->_enemies), \
-			SPAWNED_ENEMIES(this->_score));
-		for (size_t i = 0; i < SPAWNED_ENEMIES(this->_score); i++)
+		if (this->_boss.hp > 0)
 		{
-			this->_player.check_collision(FREEDOM(&this->_enemies[i].missiles), \
-				ENEMIES_MISSILES);
-			this->_score += this->_enemies[i].check_collision(\
-				FREEDOM(&this->_player.missiles), MISSILES);
+			this->_boss.check_collision(player);
+			player.check_collision(FREEDOM(&this->_boss.missiles), BOSS_MISSILES);
 		}
-		// if (this->_boss.hp > 0)
-		// {
-		// 	PLAYER - BOSS COLLISIONS HERE!
-		// 	PLAYER - BOSS MISSILESS COLLISIONS HERE!
-		// 	BOSS - PLAYERMISSILES HERE!
-		// }
-	}
-	if (this->_player2.hp > 0)
-	{
-		this->_player2.check_collision(FREEDOM(&this->_enemies), \
-			SPAWNED_ENEMIES(this->_score));
-		for (size_t i = 0; i < SPAWNED_ENEMIES(this->_score); i++)
-		{
-			this->_player2.check_collision(FREEDOM(&this->_enemies[i].missiles), \
-				ENEMIES_MISSILES);
-			this->_score += this->_enemies[i].check_collision(\
-				FREEDOM(&this->_player2.missiles), MISSILES);
-		}
-		// if (this->_boss.hp > 0)
-		// {
-		// 	PLAYER - BOSS COLLISIONS HERE!
-		// 	PLAYER - BOSS MISSILESS COLLISIONS HERE!
-		// 	BOSS - PLAYERMISSILES HERE!
-		// }
 	}
 }
 
@@ -259,8 +226,6 @@ inline void		Game::_redraw_window()
 
 	this->_menu.show_top_bar(this->_player.hp, this->_player2.hp, \
 		this->_get_score_str());
-	if (this->_score && this->_score % BOSS_SPAWN == 0)
-		this->_boss.hp = 42;
 	refresh();
 }
 
