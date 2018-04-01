@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 10:54:38 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 20:03:14 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 12:09:04 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 Enemy::Enemy( void ) : A_spacecraft(ENEMIES_DELAY, ENEMIES_SKIN)
 {
 	this->_spawn_delay = RANDOM_SPAWN_DELAY;
+	for (size_t i = 0; i < ENEMIES_MISSILES; i++)
+	{
+		this->missiles[i].direction = ENEMIES_DIRECTION;
+		this->missiles[i].skin = EMISSILES_SKIN;
+	}
 }
 
 Enemy::Enemy( Enemy const & src ) : A_spacecraft(src)

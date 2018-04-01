@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:53:48 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 02:15:58 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 11:36:21 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void				Player::set_bindings( int d, int u, int l, int r, int s )
 	this->_binding_right = r;
 	this->_binding_shoot = s;
 }
-
 
 /*
 

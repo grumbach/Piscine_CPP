@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:15:59 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 19:28:16 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 11:53:59 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ class Missile : public A_spacecraft {
 public:
 
 	Missile( void );
-	Missile( int const velocity, int const skin );
 	Missile( Missile const & src );
 	~Missile();
 
 	Missile &		operator=( Missile const & rhs );
 
 	virtual void	move();
+
+	int				direction;	//1 enemy, -1 player
 
 };
 

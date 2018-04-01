@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 02:15:19 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 12:07:19 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ Game::Game( void )
 	start_color();
 
 	init_pair(PLAYER_COLOR, COLOR_GREEN, COLOR_BLACK);
+	init_pair(PLAYER2_COLOR, COLOR_CYAN, COLOR_BLACK);
 	init_pair(MISSILES_COLOR, COLOR_RED, COLOR_BLACK);
 	init_pair(ENEMIES_COLOR, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(EMISSILES_COLOR, COLOR_MAGENTA, COLOR_BLACK);
-	init_pair(STARS_COLOR, COLOR_WHITE, COLOR_BLACK);
+	init_pair(STARS_COLOR, COLOR_BLACK, COLOR_BLACK);
 
 	std::srand(std::time(nullptr));
 
@@ -95,18 +96,20 @@ void			Game::_init_game()
 
 	this->_player.set_bindings(KEY_DOWN, KEY_UP, KEY_LEFT, KEY_RIGHT, KEY_ENDL);
 	this->_player2.set_bindings('s', 'w', 'a', 'd', KEY_SPACE);
+
+	this->_player2.skin = PLAYER2_SKIN;
 }
 
 inline bool		Game::_get_input()
 {
 	int			ch = getch();
 
-	std::cerr << "/* error message */" << ch << '\n';//TODO rm
-
 	if (ch == KEY_ESC)
 		return false;
-	this->_player.apply_input(ch);
-	this->_player2.apply_input(ch);
+	if (this->_player.hp > 0)
+		this->_player.apply_input(ch);
+	if (this->_player2.hp > 0)
+		this->_player2.apply_input(ch);
 
 	if (this->_window_width != COLS || this->_window_height != LINES)
 	{
@@ -150,6 +153,7 @@ inline void		Game::_update_positions()
 
 //TODO beautify this.. uhm no.. make this watchable
 //super evil function....... MUUHAHAHAHAAHAHAHAHAHAHAH! >:D-
+//only check for collison on objects that ARE ALIVE!!
 bool					Game::_check_collision()
 {
 	for (size_t i = 0; i < ENEMIES; i++)
@@ -157,15 +161,15 @@ bool					Game::_check_collision()
 		if (this->_player.pos_x == this->_enemies[i].pos_x && \
 			this->_player.pos_y == this->_enemies[i].pos_y)
 		{
-			this->_player.hp--;
-			this->_enemies[i].hp--;
+			this->_player.take_damage(1);
+			this->_enemies[i].take_damage(1);
 			break ;
 		}
 		if (this->_player2.pos_x == this->_enemies[i].pos_x && \
 			this->_player2.pos_y == this->_enemies[i].pos_y)
 		{
-			this->_player2.hp--;
-			this->_enemies[i].hp--;
+			this->_player2.take_damage(1);
+			this->_enemies[i].take_damage(1);
 			break ;
 		}
 		for (size_t j = 0; j < ENEMIES_MISSILES; j++)
@@ -173,10 +177,8 @@ bool					Game::_check_collision()
 			if (this->_player.pos_x == this->_enemies[i].missiles[j].pos_x && \
 				this->_player.pos_y == this->_enemies[i].missiles[j].pos_y)
 			{
-				this->_player.hp--;
-				this->_enemies[i].missiles[j].hp--;
-				this->_enemies[i].missiles[j].pos_x = -1;
-				this->_enemies[i].missiles[j].pos_y = -1;
+				this->_player.take_damage(1);
+				this->_enemies[i].missiles[j].take_damage(1);
 				break ;
 			}
 		}
@@ -185,10 +187,8 @@ bool					Game::_check_collision()
 			if (this->_player2.pos_x == this->_enemies[i].missiles[j].pos_x && \
 				this->_player2.pos_y == this->_enemies[i].missiles[j].pos_y)
 			{
-				this->_player2.hp--;
-				this->_enemies[i].missiles[j].hp--;
-				this->_enemies[i].missiles[j].pos_x = -1;
-				this->_enemies[i].missiles[j].pos_y = -1;
+				this->_player2.take_damage(1);
+				this->_enemies[i].missiles[j].take_damage(1);
 				break ;
 			}
 		}
@@ -202,10 +202,8 @@ bool					Game::_check_collision()
 				this->_enemies[j].pos_y == this->_player.missiles[i].pos_y)
 			{
 				this->_score++;
-				this->_enemies[j].hp--;
-				this->_player.missiles[i].hp--;
-				this->_player.missiles[i].pos_x = -1;
-				this->_player.missiles[i].pos_y = -1;
+				this->_enemies[j].take_damage(1);
+				this->_player.missiles[i].take_damage(1);
 				break;
 			}
 		}
@@ -216,10 +214,8 @@ bool					Game::_check_collision()
 				this->_enemies[j].pos_y == this->_player2.missiles[i].pos_y)
 			{
 				this->_score++;
-				this->_enemies[j].hp--;
-				this->_player2.missiles[i].hp--;
-				this->_player2.missiles[i].pos_x = -1;
-				this->_player2.missiles[i].pos_y = -1;
+				this->_enemies[j].take_damage(1);
+				this->_player2.missiles[i].take_damage(1);
 				break;
 			}
 		}
