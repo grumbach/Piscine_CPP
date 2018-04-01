@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 15:42:41 by stmartin         ###   ########.fr       */
+/*   Updated: 2018/04/01 16:23:24 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Game::Game( void )
 	init_pair(MISSILES_COLOR, COLOR_RED, COLOR_BLACK);
 	init_pair(ENEMIES_COLOR, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(EMISSILES_COLOR, COLOR_MAGENTA, COLOR_BLACK);
-	init_pair(STARS_COLOR, COLOR_BLACK, COLOR_BLACK);
+	init_pair(STARS_COLOR, COLOR_WHITE, COLOR_BLACK);
 
 	std::srand(std::time(nullptr));
 
@@ -144,7 +144,7 @@ inline void		Game::_update_positions()
 			ufo->move();
 		}
 	}
-	for (size_t i = 0; i < (this->_score / 4) + 8 && i < ENEMIES; i++)
+	for (size_t i = 0; i < SPAWNED_ENEMIES(this->_score); i++)
 	{
 		ufo = &this->_enemies[i];
 		ufo->move();
@@ -163,79 +163,62 @@ inline void		Game::_update_positions()
 	}
 }
 
-//TODO beautify this.. uhm no.. make this watchable
-//super evil function....... MUUHAHAHAHAAHAHAHAHAHAHAH! >:D-
-//only check for collison on objects that ARE ALIVE!!
-bool					Game::_check_collision()
+/*
+**	_check_collision checks :
+**
+** 	player with enemies
+**
+**	for (enemies)
+**		player with enemy missiles
+**		enemy with player missiles
+**
+**	player with boss
+**	player with boss missiles
+**	boss with player missiles
+*/
+
+inline void		Game::_check_collision()
 {
-	for (size_t i = 0; i < ENEMIES; i++)
+
+	if (this->_player.hp > 0)
 	{
-		if (this->_player.pos_x == this->_enemies[i].pos_x && \
-			this->_player.pos_y == this->_enemies[i].pos_y)
+		this->_player.check_collision(FREEDOM(&this->_enemies), \
+			SPAWNED_ENEMIES(this->_score));
+		for (size_t i = 0; i < SPAWNED_ENEMIES(this->_score); i++)
 		{
-			this->_player.take_damage(1);
-			this->_enemies[i].take_damage(1);
-			break ;
+			this->_player.check_collision(FREEDOM(&this->_enemies[i].missiles), \
+				ENEMIES_MISSILES);
+			this->_score += this->_enemies[i].check_collision(\
+				FREEDOM(&this->_player.missiles), MISSILES);
 		}
-		if (this->_player2.pos_x == this->_enemies[i].pos_x && \
-			this->_player2.pos_y == this->_enemies[i].pos_y)
-		{
-			this->_player2.take_damage(1);
-			this->_enemies[i].take_damage(1);
-			break ;
-		}
-		for (size_t j = 0; j < ENEMIES_MISSILES; j++)
-		{
-			if (this->_player.pos_x == this->_enemies[i].missiles[j].pos_x && \
-				this->_player.pos_y == this->_enemies[i].missiles[j].pos_y)
-			{
-				this->_player.take_damage(1);
-				this->_enemies[i].missiles[j].take_damage(1);
-				break ;
-			}
-		}
-		for (size_t j = 0; j < ENEMIES_MISSILES; j++)
-		{
-			if (this->_player2.pos_x == this->_enemies[i].missiles[j].pos_x && \
-				this->_player2.pos_y == this->_enemies[i].missiles[j].pos_y)
-			{
-				this->_player2.take_damage(1);
-				this->_enemies[i].missiles[j].take_damage(1);
-				break ;
-			}
-		}
+		// if (this->_boss.hp > 0)
+		// {
+		// 	PLAYER - BOSS COLLISIONS HERE!
+		// 	PLAYER - BOSS MISSILESS COLLISIONS HERE!
+		// 	BOSS - PLAYERMISSILES HERE!
+		// }
 	}
-	for (size_t i = 0; i < MISSILES; i++)
+	if (this->_player2.hp > 0)
 	{
-		for (size_t j = 0; this->_player.missiles[i].hp && \
-			this->_enemies[j].hp && j < ENEMIES; j++)
+		this->_player2.check_collision(FREEDOM(&this->_enemies), \
+			SPAWNED_ENEMIES(this->_score));
+		for (size_t i = 0; i < SPAWNED_ENEMIES(this->_score); i++)
 		{
-			if (this->_enemies[j].pos_x == this->_player.missiles[i].pos_x && \
-				this->_enemies[j].pos_y == this->_player.missiles[i].pos_y)
-			{
-				this->_score++;
-				this->_enemies[j].take_damage(1);
-				this->_player.missiles[i].take_damage(1);
-				break;
-			}
+			this->_player2.check_collision(FREEDOM(&this->_enemies[i].missiles), \
+				ENEMIES_MISSILES);
+			this->_score += this->_enemies[i].check_collision(\
+				FREEDOM(&this->_player2.missiles), MISSILES);
 		}
-		for (size_t j = 0; this->_player2.missiles[i].hp && \
-			this->_enemies[j].hp && j < ENEMIES; j++)
-		{
-			if (this->_enemies[j].pos_x == this->_player2.missiles[i].pos_x && \
-				this->_enemies[j].pos_y == this->_player2.missiles[i].pos_y)
-			{
-				this->_score++;
-				this->_enemies[j].take_damage(1);
-				this->_player2.missiles[i].take_damage(1);
-				break;
-			}
-		}
+		// if (this->_boss.hp > 0)
+		// {
+		// 	PLAYER - BOSS COLLISIONS HERE!
+		// 	PLAYER - BOSS MISSILESS COLLISIONS HERE!
+		// 	BOSS - PLAYERMISSILES HERE!
+		// }
 	}
-	return (false);
 }
 
-void			Game::_redraw_window()
+inline void		Game::_redraw_window()
 {
 	A_ufo		*ufo;
 
@@ -252,7 +235,7 @@ void			Game::_redraw_window()
 		this->_boss.draw();
 		this->_boss.draw_missiles();
 	}
-	for (size_t i = 0; i < ENEMIES; i++)
+	for (size_t i = 0; i < SPAWNED_ENEMIES(this->_score); i++)
 	{
 		ufo = &this->_enemies[i];
 		mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);

@@ -6,7 +6,7 @@
 /*   By: stmartin <stmartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 00:36:14 by stmartin          #+#    #+#             */
-/*   Updated: 2018/04/01 15:23:12 by stmartin         ###   ########.fr       */
+/*   Updated: 2018/04/01 16:15:38 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,26 @@ Boss &			Boss::operator=( Boss const & rhs )
 	return *this;
 }
 
+/*
+** this->_side_move 1:RIGHT 2:LEFT
+*/
+
 void			Boss::move()
 {
 	if (this->can_move())
 	{
-		if (this->_side_move == MOVE_RIGHT && this->pos_x + 39 < COLS)
+		if (this->_side_move == 1 && this->pos_x + 39 < COLS)
 			this->pos_x++;
-		else if (this->_side_move == MOVE_LEFT && this->pos_x > 0)
+		else if (this->_side_move == 2 && this->pos_x > 0)
 			this->pos_x--;
 		this->_change_side--;
 
 		if (!this->_change_side)
 		{
 			if (std::rand() % 2)
-				this->_side_move = MOVE_RIGHT;
+				this->_side_move = 1;
 			else
-				this->_side_move = MOVE_LEFT;
+				this->_side_move = 2;
 			this->_change_side = 10;
 		}
 
