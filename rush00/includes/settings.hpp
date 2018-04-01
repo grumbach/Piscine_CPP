@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:06:58 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 11:59:13 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 12:59:12 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@
 # define ENEMIES			42
 # define ENEMIES_MISSILES	3
 # define STARS				42
+# define BOSS_MISSILES		42
 
+# define MOVE_RIGHT			1
+# define MOVE_LEFT			2
 # define PLAYER_DIRECTION	(-1)
 # define ENEMIES_DIRECTION	1
 

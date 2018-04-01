@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 12:39:32 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 15:42:41 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,16 @@ inline void		Game::_update_positions()
 		ufo = &this->_stars[i];
 		ufo->move();
 	}
+	if (this->_boss.hp)
+	{
+		ufo = &this->_boss;
+		ufo->move();
+		for (size_t j = 0; j < BOSS_MISSILES; j++)
+		{
+			ufo = &this->_boss.missiles[j];
+			ufo->move();
+		}
+	}
 	for (size_t i = 0; i < (this->_score / 4) + 8 && i < ENEMIES; i++)
 	{
 		ufo = &this->_enemies[i];
@@ -237,6 +247,11 @@ void			Game::_redraw_window()
 		ufo = &this->_stars[i];
 		mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
 	}
+	if (this->_boss.hp)
+	{
+		this->_boss.draw();
+		this->_boss.draw_missiles();
+	}
 	for (size_t i = 0; i < ENEMIES; i++)
 	{
 		ufo = &this->_enemies[i];
@@ -261,7 +276,8 @@ void			Game::_redraw_window()
 
 	this->_menu.show_top_bar(this->_player.hp, this->_player2.hp, \
 		this->_get_score_str());
-
+	if (this->_score && this->_score % BOSS_SPAWN == 0)
+		this->_boss.hp = 42;
 	refresh();
 }
 

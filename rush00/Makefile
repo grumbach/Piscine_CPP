@@ -6,7 +6,7 @@
 #    By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/15 16:59:39 by agrumbac          #+#    #+#              #
-#    Updated: 2018/04/01 12:01:57 by agrumbac         ###   ########.fr        #
+#    Updated: 2018/04/01 14:16:05 by stmartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC_PATH = ./srcs/
 OBJ_PATH = ./obj/
 INC_PATH = ./includes/
 
-SRC_NAME = main.cpp A_spacecraft.cpp A_ufo.cpp Enemy.cpp Game.cpp Missile.cpp Player.cpp Star.cpp Menu.cpp
+SRC_NAME = main.cpp A_spacecraft.cpp A_ufo.cpp Enemy.cpp Game.cpp Missile.cpp Player.cpp Star.cpp Menu.cpp Boss.cpp
 
 HDR_NAME = settings.hpp
 
