@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:15:59 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 11:53:59 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 21:39:52 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ public:
 
 	Missile( void );
 	Missile( Missile const & src );
-	~Missile();
+	virtual ~Missile();
 
 	Missile &		operator=( Missile const & rhs );
 

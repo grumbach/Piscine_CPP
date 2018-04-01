@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:56:18 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 11:37:10 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 21:39:52 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
 
 	Player( void );
 	Player( Player const & src );
-	~Player();
+	virtual ~Player();
 
 	Player &			operator=( Player const & rhs );
 

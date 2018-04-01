@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:50:37 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 12:09:54 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 21:39:52 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ public:
 
 	Star( void );
 	Star( Star const & src );
-	~Star();
+	virtual ~Star();
 
 	Star &			operator=( Star const & rhs );
 

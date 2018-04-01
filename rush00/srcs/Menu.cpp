@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 17:07:58 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 12:45:18 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 21:47:40 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ Menu &			Menu::operator=( Menu const & rhs )
 ** GUI
 */
 
-void			Menu::show_top_bar( int const hp, int const hp2, std::string score)
+void			Menu::show_top_bar( int const hp, int const hp2, \
+				std::string score) const
 {
 	//display player's HP
 	for (int i = 0; i < hp; i++)
@@ -60,7 +61,7 @@ void			Menu::show_top_bar( int const hp, int const hp2, std::string score)
 ** Menus
 */
 
-int			Menu::welcome()
+int			Menu::welcome() const
 {
 	clear();
 	attron(COLOR_PAIR(PLAYER_COLOR));
@@ -105,7 +106,7 @@ int			Menu::welcome()
 	return 1;
 }
 
-void			Menu::game_over( std::string const score )
+void			Menu::game_over( std::string const score ) const
 {
 	clear();
 	attron(COLOR_PAIR(MISSILES_COLOR));
@@ -144,7 +145,7 @@ void			Menu::game_over( std::string const score )
 	while (this->_wait_for_input() != KEY_ESC);
 }
 
-int				Menu::_wait_for_input( void )
+int				Menu::_wait_for_input( void ) const
 {
 	int			ch = getch();
 

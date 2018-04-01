@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 18:58:29 by stmartin         ###   ########.fr       */
+/*   Updated: 2018/04/01 21:52:45 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ inline void		Game::_redraw_window()
 {
 	A_ufo		*ufo;
 
-	clear();
+	erase();
 
 	//TODO beautify this
 	for (size_t i = 0; i < STARS; i++)
@@ -233,7 +233,7 @@ inline void		Game::_redraw_window()
 	refresh();
 }
 
-std::string			Game::_get_score_str()
+std::string			Game::_get_score_str() const
 {
 	std::ostringstream s;
 	s << this->_score;
