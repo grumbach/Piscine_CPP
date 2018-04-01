@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:53:48 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 17:54:32 by stmartin         ###   ########.fr       */
+/*   Updated: 2018/04/01 19:07:34 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void				Player::move()
 
 void				Player::apply_input( int const ch )
 {
-	if (ch == this->_binding_down && this->pos_y < LINES - 2)
+	if (ch == this->_binding_down && this->pos_y < LINES - 1)
 		this->pos_y++;
 	else if (ch == this->_binding_up && this->pos_y > 1)
 		this->pos_y--;

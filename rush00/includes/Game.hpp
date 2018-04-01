@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:34:30 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 16:59:40 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 18:15:26 by stmartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "Star.hpp"
 #include "Menu.hpp"
 #include "Boss.hpp"
+#include "Bonus.hpp"
 
 class Game {
 
@@ -47,6 +48,7 @@ private:
 	Enemy				_enemies[ENEMIES];
 	Star				_stars[STARS];
 	Boss				_boss;
+	Bonus				_bonus;
 
 	int					_window_width;
 	int					_window_height;
