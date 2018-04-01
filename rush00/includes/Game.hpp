@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:34:30 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 01:43:47 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 12:36:35 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ private:
 	int					_window_width;
 	int					_window_height;
 	unsigned int		_score;
+	int					_number_of_players;
 
 };
 

@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 17:07:23 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 12:03:36 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 12:29:04 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ public:
 
 	void			show_top_bar( int const hp, int const hp2, std::string score);
 
-	bool			welcome( void );
+	int				welcome( void );
 	void			game_over( std::string const score );
 
 private:

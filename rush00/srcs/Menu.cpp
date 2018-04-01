@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 17:07:58 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 11:30:57 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 12:45:18 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			Menu::show_top_bar( int const hp, int const hp2, std::string score)
 ** Menus
 */
 
-bool			Menu::welcome()
+int			Menu::welcome()
 {
 	clear();
 	attron(COLOR_PAIR(PLAYER_COLOR));
@@ -69,6 +69,7 @@ bool			Menu::welcome()
 	mvprintw(LINES / 3 + 2, COLS / 4, " / _/  / /   / , _/ _/  / / / , _/ /_/ / ");
 	mvprintw(LINES / 3 + 3, COLS / 4, "/_/   /_/___/_/|_/___/ /_/ /_/|_|\\____/  ");
 	mvprintw(LINES / 3 + 4, COLS / 4, "       /___/                             ");
+	mvprintw(LINES / 3 + 7, COLS / 4, "     1: Single Player    2: Multiplayer");
 	mvprintw(LINES / 3 + 10, COLS / 5,	"                           *     .--.");
 	mvprintw(LINES / 3 + 11, COLS / 5,	"                                / /  `");
 	mvprintw(LINES / 3 + 12, COLS / 5,	"               +               | |");
@@ -91,7 +92,17 @@ bool			Menu::welcome()
 	box(stdscr, 0, 0);
 	attroff(COLOR_PAIR(PLAYER_COLOR));
 	refresh();
-	return !(this->_wait_for_input() == KEY_ESC);
+
+	for (int ch = -1;; ch = this->_wait_for_input())
+	{
+		if (ch == KEY_ESC)
+			return 0;
+		if (ch == '1')
+			return 1;
+		if (ch == '2')
+			return 2;
+	}
+	return 1;
 }
 
 void			Menu::game_over( std::string const score )

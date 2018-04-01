@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 12:07:19 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 12:39:32 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ Game &			Game::operator=( Game const & rhs )
 
 void			Game::play_game()
 {
-	if (!this->_menu.welcome())
+	if (!(this->_number_of_players = this->_menu.welcome()))
 		return ;
+	if (this->_number_of_players == 1)
+		this->_player2.take_damage(DEFAULT_HP);
 
 	while (this->_player.hp > 0 || this->_player2.hp > 0)
 	{
