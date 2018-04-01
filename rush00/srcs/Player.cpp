@@ -49,7 +49,7 @@ void				Player::move()
 
 void				Player::apply_input( int const ch )
 {
-	if (ch == this->_binding_down && this->pos_y < LINES - 2)
+	if (ch == this->_binding_down && this->pos_y < LINES - 1)
 		this->pos_y++;
 	else if (ch == this->_binding_up && this->pos_y > 1)
 		this->pos_y--;

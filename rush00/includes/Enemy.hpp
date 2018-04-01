@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:53:23 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 12:01:36 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 21:39:52 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
 
 	Enemy( void );
 	Enemy( Enemy const & src );
-	~Enemy();
+	virtual ~Enemy();
 
 	Enemy &			operator=( Enemy const & rhs );
 

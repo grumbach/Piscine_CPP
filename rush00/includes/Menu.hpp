@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 17:07:23 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 12:29:04 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 21:43:09 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ public:
 
 	Menu( void );
 	Menu( Menu const & src );
-	~Menu();
+	virtual ~Menu();
 
 	Menu &			operator=( Menu const & rhs );
 
-	void			show_top_bar( int const hp, int const hp2, std::string score);
+	void			show_top_bar( int const hp, int const hp2, std::string score) const;
 
-	int				welcome( void );
-	void			game_over( std::string const score );
+	int				welcome( void ) const;
+	void			game_over( std::string const score ) const;
 
 private:
 
-	int				_wait_for_input( void );
+	int				_wait_for_input( void ) const;
 
 };
 

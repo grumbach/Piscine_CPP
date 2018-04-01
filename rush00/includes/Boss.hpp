@@ -6,7 +6,7 @@
 /*   By: stmartin <stmartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/01 00:35:45 by stmartin          #+#    #+#             */
-/*   Updated: 2018/04/01 17:40:38 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 21:39:52 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ public:
 	Boss( void );
 	Boss( std::string const & name );
 	Boss( Boss const & src );
-	~Boss();
+	virtual ~Boss();
 
 	Boss &			operator=( Boss const & rhs );
 

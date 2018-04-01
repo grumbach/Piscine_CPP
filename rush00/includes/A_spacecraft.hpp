@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:55:41 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 14:16:04 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 21:49:28 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ public:
 
 	A_spacecraft( int const velocity, int const skin );
 	A_spacecraft( A_spacecraft const & src );
-	~A_spacecraft();
+	virtual ~A_spacecraft();
 
 	A_spacecraft &	operator=( A_spacecraft const & rhs );
 

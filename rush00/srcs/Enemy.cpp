@@ -14,7 +14,7 @@
 
 Enemy::Enemy( void ) : A_spacecraft(ENEMIES_DELAY, ENEMIES_SKIN)
 {
-	this->_spawn_delay = RANDOM_SPAWN_DELAY;
+	this->_spawn_delay = ENEMY_SPAWN_DELAY;
 	for (size_t i = 0; i < ENEMIES_MISSILES; i++)
 	{
 		this->missiles[i].direction = ENEMIES_DIRECTION;
@@ -55,7 +55,7 @@ void			Enemy::move()
 		this->hp = 1;
 		this->pos_y = -1;
 		this->pos_x = RANDOM_X_SPAWN;
-		this->_spawn_delay = RANDOM_SPAWN_DELAY;
+		this->_spawn_delay = ENEMY_SPAWN_DELAY;
 	}
 }
 

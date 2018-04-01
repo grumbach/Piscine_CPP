@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:38:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 17:48:15 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 21:52:45 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ inline void		Game::_update_positions()
 		this->_player.missiles[i].move();
 		this->_player2.missiles[i].move();
 	}
+	this->_bonus.move();
 	if (this->_boss.hp <= 0 && this->_score && this->_score % BOSS_SPAWN == 0)
 		this->_boss.awaken(this->_score);
 }
@@ -182,6 +183,8 @@ inline void		Game::_check_collision( Player & player )
 			this->_boss.check_collision(player);
 			player.check_collision(FREEDOM(&this->_boss.missiles), BOSS_MISSILES);
 		}
+		if (this->_bonus.hp > 0)
+			this->_bonus.check_collision(player);
 	}
 }
 
@@ -189,7 +192,7 @@ inline void		Game::_redraw_window()
 {
 	A_ufo		*ufo;
 
-	clear();
+	erase();
 
 	//TODO beautify this
 	for (size_t i = 0; i < STARS; i++)
@@ -219,6 +222,7 @@ inline void		Game::_redraw_window()
 		ufo = &this->_player2.missiles[i];
 		mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
 	}
+	mvaddch(this->_bonus.pos_y, this->_bonus.pos_x, this->_bonus.skin);
 	ufo = &this->_player;
 	mvaddch(ufo->pos_y, ufo->pos_x, ufo->skin);
 	ufo = &this->_player2;
@@ -229,7 +233,7 @@ inline void		Game::_redraw_window()
 	refresh();
 }
 
-std::string			Game::_get_score_str()
+std::string			Game::_get_score_str() const
 {
 	std::ostringstream s;
 	s << this->_score;

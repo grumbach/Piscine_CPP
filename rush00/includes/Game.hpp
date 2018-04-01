@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:34:30 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/01 16:59:40 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 21:43:40 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "Star.hpp"
 #include "Menu.hpp"
 #include "Boss.hpp"
+#include "Bonus.hpp"
 
 class Game {
 
@@ -26,7 +27,7 @@ public:
 
 	Game( void );
 	Game( Game const & src );
-	~Game();
+	virtual ~Game();
 
 	Game &				operator=( Game const & rhs );
 
@@ -39,7 +40,7 @@ private:
 	void				_update_positions();
 	void				_check_collision( Player & player );
 	void				_redraw_window();
-	std::string			_get_score_str();
+	std::string			_get_score_str() const;
 
 	Menu				_menu;
 	Player				_player;
@@ -47,6 +48,7 @@ private:
 	Enemy				_enemies[ENEMIES];
 	Star				_stars[STARS];
 	Boss				_boss;
+	Bonus				_bonus;
 
 	int					_window_width;
 	int					_window_height;
