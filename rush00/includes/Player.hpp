@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:56:18 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 12:10:27 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 01:47:39 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,18 @@ public:
 
 	void				shoot_missile();
 	virtual void		move();
+	void				apply_input( int const ch );
+	void				set_bindings( int, int, int, int, int );
 
 	Missile				missiles[MISSILES];
+
+private:
+
+	int					_binding_down;
+	int					_binding_up;
+	int					_binding_left;
+	int					_binding_right;
+	int					_binding_shoot;
 
 };
 

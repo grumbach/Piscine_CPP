@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/31 17:07:58 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 19:03:50 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 02:19:28 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,36 @@ Menu &			Menu::operator=( Menu const & rhs )
 }
 
 /*
-** Features
+** GUI
+*/
+
+void			Menu::show_top_bar( unsigned int const hp, \
+				unsigned int const hp2, std::string score)
+{
+	//display player's HP
+	for (uint i = 0; i < hp; i++)
+	{
+		attron(COLOR_PAIR(MISSILES_COLOR));
+		mvprintw(0, i * 3, "<3");
+		attroff(COLOR_PAIR(MISSILES_COLOR));
+	}
+
+	//display player2's HP
+	for (uint i = 0; i < hp2; i++)
+	{
+		attron(COLOR_PAIR(MISSILES_COLOR));
+		mvprintw(0, (COLS - 2 - i * 3), "<3");
+		attroff(COLOR_PAIR(MISSILES_COLOR));
+	}
+
+	//diplay score
+	attron(COLOR_PAIR(PLAYER_COLOR));
+	mvprintw(0, COLS / 2, score.c_str());
+	attroff(COLOR_PAIR(PLAYER_COLOR));
+}
+
+/*
+** Menus
 */
 
 bool			Menu::welcome()

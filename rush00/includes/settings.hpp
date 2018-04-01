@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 19:06:58 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 22:50:51 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 02:15:38 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,6 @@
 
 # define KEY_ESC			27
 # define KEY_SPACE			32
-# define KEY_RETURN			10
+# define KEY_ENDL			10
 
 #endif
-
-/*
-
-  ^
-/<|>\
-  ^
-
-*/

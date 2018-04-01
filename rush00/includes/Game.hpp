@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 18:34:30 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 18:03:21 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 01:43:47 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ public:
 
 private:
 
+	void				_init_game();
 	bool				_get_input();
 	void				_update_positions();
 	bool				_check_collision();
@@ -41,6 +42,7 @@ private:
 
 	Menu				_menu;
 	Player				_player;
+	Player				_player2;
 	Enemy				_enemies[ENEMIES];
 	Star				_stars[STARS];
 

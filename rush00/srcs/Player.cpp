@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:53:48 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/31 19:42:48 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/01 02:15:58 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,35 @@ void				Player::shoot_missile()
 
 void				Player::move()
 { }
+
+void				Player::apply_input( int const ch )
+{
+	if (ch == this->_binding_down && this->pos_y < LINES - 2)
+		this->pos_y++;
+	else if (ch == this->_binding_up && this->pos_y > 1)
+		this->pos_y--;
+	else if (ch == this->_binding_left && this->pos_x > 1)
+		this->pos_x--;
+	else if (ch == this->_binding_right && this->pos_x < COLS - 2)
+		this->pos_x++;
+	else if (ch == this->_binding_shoot)
+		this->shoot_missile();
+}
+
+void				Player::set_bindings( int d, int u, int l, int r, int s )
+{
+	this->_binding_down = d;
+	this->_binding_up = u;
+	this->_binding_left = l;
+	this->_binding_right = r;
+	this->_binding_shoot = s;
+}
+
+
+/*
+
+  ^
+/<|>\
+  ^
+
+*/
