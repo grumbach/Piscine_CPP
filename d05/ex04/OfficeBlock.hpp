@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 17:08:36 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/30 17:59:20 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/02 11:38:43 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ public:
 			{ return ("Office block is not operational!"); }
 	};
 
-	class InvalidOfficeBlockException : public std::exception {
+	class CrashOfficeBlockException : public std::exception {
 	public:
 		virtual const char *what() const throw()
-			{ return ("Office block is not operational!"); }
+			{ return ("Office block failed to deliver!"); }
 	};
 
 	OfficeBlock( void );
-	OfficeBlock( Intern &intern, Bureaucrat &bureaucrat1, Bureaucrat &bureaucrat2 );
-	~OfficeBlock();
+	OfficeBlock( Intern *intern, Bureaucrat *bureaucrat1, Bureaucrat *bureaucrat2 );
+	virtual ~OfficeBlock();
 
-	void					setIntern( Intern const * a );
-	void					setSigner( Bureaucrat const * a );
-	void					setExecutor( Bureaucrat const * a );
+	void					setIntern( Intern * a );
+	void					setSigner( Bureaucrat * a );
+	void					setExecutor( Bureaucrat * a );
 
 	void					doBureaucracy( std::string const & form_type, \
 								std::string const & target ) const;
