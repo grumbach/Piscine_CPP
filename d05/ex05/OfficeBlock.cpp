@@ -28,39 +28,37 @@ OfficeBlock::~OfficeBlock()
 { }
 
 
-void					OfficeBlock::setIntern( Intern * a )
+void	OfficeBlock::setIntern( Intern * intern )
 {
-	this->_intern = a;
+	this->_intern = intern;
 }
 
-void					OfficeBlock::setSigner( Bureaucrat * a )
+Intern * OfficeBlock::getIntern( void )
 {
-	this->_bureaucrat1 = a;
+	return this->_intern;
 }
 
-void					OfficeBlock::setExecutor( Bureaucrat * a )
+void	OfficeBlock::setSigner( Bureaucrat * bureaucrat )
 {
-	this->_bureaucrat2 = a;
+	this->_bureaucrat1 = bureaucrat;
 }
 
-bool					OfficeBlock::isComplete() const
+Bureaucrat * OfficeBlock::getSigner( void )
 {
-	return (this->_intern && this->_bureaucrat1 && this->_bureaucrat2);
+	return this->_bureaucrat1;
 }
 
-bool					OfficeBlock::hasSigner() const
+void	OfficeBlock::setExecutor( Bureaucrat * bureaucrat )
 {
-	return (this->_bureaucrat1);
+	this->_bureaucrat2 = bureaucrat;
 }
 
-bool					OfficeBlock::hasExecutor() const
+Bureaucrat * OfficeBlock::getExecutor( void )
 {
-	return (this->_bureaucrat2);
+	return this->_bureaucrat2;
 }
 
-
-void					OfficeBlock::doBureaucracy( std::string const & form_type, \
-							std::string const & target ) const
+void	OfficeBlock::doBureaucracy( std::string const & form_type, std::string const & target ) const
 {
 	if (!this->_intern || !this->_bureaucrat1 || !this->_bureaucrat2)
 		throw OfficeBlock::InvalidOfficeBlockException();

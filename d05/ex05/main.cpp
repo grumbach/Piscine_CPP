@@ -10,17 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Bureaucrat.hpp"
+#include "Intern.hpp"
+#include "OfficeBlock.hpp"
 #include "CentralBureaucracy.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
-int			main( void )
+std::string genRandomName(void) {
+    std::string s(10, ' ');
+    static const char voyel[] =
+        "aeiouy";
+	static const char consone[] =
+        "bcdfghjklmnpqrstvwxz";
+
+    for (int i = 0; i < 10; ++i) {
+        s[i++] = consone[rand() % (sizeof(consone) - 1)];
+		s[i] = voyel[rand() % (sizeof(voyel) - 1)];
+    }
+    return s;
+}
+
+int		main(void)
 {
-	CentralBureaucracy	boring;
-	Bureaucrat			a("a", 42);
-	Bureaucrat			b("b", 42);
+	CentralBureaucracy	central;
+	Bureaucrat			*bureaucrat;
 
-	boring.feed_company(&a);
-	boring.feed_company(&b);
-
-	std::cout << "bored, not doing the rest..." << std::endl;
+	for (int i = 0; i < 2; i++) {
+		bureaucrat = new Bureaucrat(genRandomName(), 1);
+		if (central.setBureaucrat(bureaucrat) == false)
+			break ;
+	}
+	for (int i = 0; i < 4; i++) {
+		central.queueUp(genRandomName());
+	}
+	central.doBureaucracy();
 	return (0);
 }

@@ -20,11 +20,11 @@ int		main(void)
 		std::cout << darwin;
 
 		std::cout << "# MacOS SnowLeopard, Darwin upgrade 28.. " << std::endl;
-		darwin.UpGrade(28);
+		darwin.UpGrade();
 		std::cout << "# Darwin grade: " << darwin.getGrade() << std::endl;
 
 		std::cout << "# Steve Jobs dies, Darwin downgrade.. " << std::endl;
-		darwin.DownGrade(4000);
+		darwin.DownGrade();
 	}
 	catch (std::exception & e)
 	{

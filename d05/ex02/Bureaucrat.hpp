@@ -45,8 +45,8 @@ public:
 
 	std::string 		getName( void ) const;
 	int 				getGrade( void ) const;
-	void				UpGrade( int const & levels );
-	void				DownGrade( int const & levels );
+	void				UpGrade( void );
+	void				DownGrade( void );
 	void				signForm( Form & form ) const;
 	void				executeForm( Form const & form ) const;
 

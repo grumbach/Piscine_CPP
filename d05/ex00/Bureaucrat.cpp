@@ -61,20 +61,20 @@ int 				Bureaucrat::getGrade( void ) const
 ** yeah.. it's reversed... but a bureaucrat does what he's asked to do.
 */
 
-void				Bureaucrat::UpGrade( int const & levels )
+void				Bureaucrat::UpGrade( void )
 {
-	if (this->_grade - levels < HIGHEST_GRADE)
+	if (this->_grade - 1 < HIGHEST_GRADE)
 		throw Bureaucrat::GradeTooHighException();
 	else
-		this->_grade -= levels;
+		this->_grade -= 1;
 }
 
-void				Bureaucrat::DownGrade( int const & levels )
+void				Bureaucrat::DownGrade( void )
 {
-	if (this->_grade + levels > LOWEST_GRADE)
+	if (this->_grade + 1 > LOWEST_GRADE)
 		throw Bureaucrat::GradeTooLowException();
 	else
-		this->_grade += levels;
+		this->_grade += 1;
 }
 
 

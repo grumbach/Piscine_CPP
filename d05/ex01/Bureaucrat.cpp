@@ -58,7 +58,15 @@ int 				Bureaucrat::getGrade( void ) const
 
 void				Bureaucrat::signForm( Form & form ) const
 {
-	if (form.beSigned(*this))
+	bool formSigned;
+
+	try {
+		formSigned = form.beSigned(*this);
+	} catch (Form::GradeTooLowException & e) {
+		formSigned = false;
+	}
+
+	if (formSigned)
 		std::cout << this->_name << " signs form " << form.getName() << std::endl;
 	else
 	{
@@ -77,20 +85,20 @@ void				Bureaucrat::signForm( Form & form ) const
 ** yeah.. it's reversed... but a bureaucrat does what he's asked to do.
 */
 
-void				Bureaucrat::UpGrade( int const & levels )
+void				Bureaucrat::UpGrade( void )
 {
-	if (this->_grade - levels < HIGHEST_GRADE)
+	if (this->_grade - 1 < HIGHEST_GRADE)
 		throw Bureaucrat::GradeTooHighException();
 	else
-		this->_grade -= levels;
+		this->_grade -= 1;
 }
 
-void				Bureaucrat::DownGrade( int const & levels )
+void				Bureaucrat::DownGrade( void )
 {
-	if (this->_grade + levels > LOWEST_GRADE)
+	if (this->_grade + 1 > LOWEST_GRADE)
 		throw Bureaucrat::GradeTooLowException();
 	else
-		this->_grade += levels;
+		this->_grade += 1;
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 12:59:59 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/29 15:38:16 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/28 16:01:33 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,15 @@ int 				Bureaucrat::getGrade( void ) const
 
 void				Bureaucrat::signForm( Form & form ) const
 {
-	if (form.beSigned(*this))
+	bool formSigned;
+
+	try {
+		formSigned = form.beSigned(*this);
+	} catch (Form::GradeTooLowException & e) {
+		formSigned = false;
+	}
+
+	if (formSigned)
 		std::cout << this->_name << " signs form " << form.getName() << std::endl;
 	else
 	{
@@ -74,12 +82,16 @@ void				Bureaucrat::signForm( Form & form ) const
 
 void				Bureaucrat::executeForm( Form const & form ) const
 {
-	if (form.execute(*this))
-		std::cout << this->_name << " executes " << form.getName() << std::endl;
-	else
-	{
+	try {
+		if (form.execute(*this)) {
+			std::cout << this->_name << " executed " << form.getName() << std::endl;
+		}
+	} catch (Form::GradeTooLowException & e) {
 		std::cout << this->_name << " cannot execute " << form.getName();
 		std::cout << " because bureaucrat grade isn't high enough!" << std::endl;
+	} catch(Form::NotSignedException & e) {
+		std::cout << this->_name << " cannot execute " << form.getName();
+		std::cout << " because form isn't signed!" << std::endl;
 	}
 }
 
@@ -88,20 +100,20 @@ void				Bureaucrat::executeForm( Form const & form ) const
 ** yeah.. it's reversed... but a bureaucrat does what he's asked to do.
 */
 
-void				Bureaucrat::UpGrade( int const & levels )
+void				Bureaucrat::UpGrade( void )
 {
-	if (this->_grade - levels < HIGHEST_GRADE)
+	if (this->_grade - 1 < HIGHEST_GRADE)
 		throw Bureaucrat::GradeTooHighException();
 	else
-		this->_grade -= levels;
+		this->_grade -= 1;
 }
 
-void				Bureaucrat::DownGrade( int const & levels )
+void				Bureaucrat::DownGrade( void )
 {
-	if (this->_grade + levels > LOWEST_GRADE)
+	if (this->_grade + 1 > LOWEST_GRADE)
 		throw Bureaucrat::GradeTooLowException();
 	else
-		this->_grade += levels;
+		this->_grade += 1;
 }
 
 

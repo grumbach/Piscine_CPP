@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 15:36:55 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/30 17:02:07 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/29 16:13:26 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ public:
 	public:
 		virtual const char *what() const throw()
 			{ return ("Grade too low for form!"); }
+	};
+
+	class NotSignedException : public std::exception {
+	public:
+		virtual const char *what() const throw()
+			{ return (" the form is not signed yet"); }
 	};
 
 	Form( std::string const & name, std::string const & target, \

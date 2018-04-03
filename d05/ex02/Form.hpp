@@ -34,6 +34,12 @@ public:
 			{ return ("Grade too low for form!"); }
 	};
 
+	class NotSignedException : public std::exception {
+	public:
+		virtual const char *what() const throw()
+			{ return (" the form is not signed yet"); }
+	};
+
 	Form( std::string const & name, std::string const & target, \
 		int const required_sign_grade, int const required_exec_grade );
 	Form( Form const & src );
