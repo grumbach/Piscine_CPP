@@ -23,12 +23,15 @@ int		main(void)
 		ShrubberyCreationForm		work("house");
 		ShrubberyCreationForm		work1("house_copy");
 		work1 = work;
+		worker.signForm(work1);
 		worker.executeForm(work1);
 
 		PresidentialPardonForm		work2("rbadia");
+		worker.signForm(work2);
 		worker.executeForm(work2);
 
 		RobotomyRequestForm			work3("hmasson");
+		worker.signForm(work3);
 		worker.executeForm(work3);
 	}
 	catch (std::exception & e)
@@ -37,7 +40,7 @@ int		main(void)
 	}
 	try
 	{
-		Bureaucrat					worker("angavrel", 150);
+		Bureaucrat					worker("angavrel", 1);
 		ShrubberyCreationForm		work("microsoft_vba");
 
 		worker.executeForm(work);
@@ -48,8 +51,9 @@ int		main(void)
 	}
 	try
 	{
-		Bureaucrat					worker("kneth", 150);
+		Bureaucrat					worker("kneth", 24);
 		PresidentialPardonForm		work2("htmlcss");
+		worker.signForm(work2);
 		worker.executeForm(work2);
 	}
 	catch (std::exception & e)
