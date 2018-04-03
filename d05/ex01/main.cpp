@@ -17,8 +17,8 @@ int		main(void)
 {
 	try
 	{
-		Form		darwin("Darwin", 42);
-		Form		dar("Dar", 42);
+		Form		darwin("Darwin", 42, 21);
+		Form		dar("Dar", 42, 23);
 		std::cout << darwin;
 		std::cout << dar;
 
@@ -34,7 +34,7 @@ int		main(void)
 	}
 	try
 	{
-		Form		linux("Linux", 0);
+		Form		linux("Linux", 12, 0);
 		std::cout << linux;
 	}
 	catch (std::exception & e)
@@ -43,7 +43,7 @@ int		main(void)
 	}
 	try
 	{
-		Form		windows("Windows", 2147483647);
+		Form		windows("Windows", 1, 2147483647);
 		std::cout << windows;
 	}
 	catch (std::exception & e)

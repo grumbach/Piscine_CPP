@@ -34,21 +34,23 @@ public:
 			{ return ("Grade too low for form!"); }
 	};
 
-	Form( std::string const & name, int const required_grade );
+	Form( std::string const & name, int const required_grade_sign, int const required_grade_exec );
 	Form( Form const & src );
 	~Form();
 
 	Form &			operator=( Form const & rhs );
 
 	std::string 	getName( void ) const;
-	int 			getRequiredGrade( void ) const;
+	int 			getRequiredGradeSign( void ) const;
+	int 			getRequiredGradeExec( void ) const;
 	bool 			getSignedStatus( void ) const;
 	bool			beSigned( Bureaucrat const & signer );
 
 private:
 
 	std::string		_name;
-	int				_required_grade;
+	int				_required_grade_sign;
+	int				_required_grade_exec;
 	bool			_signed;
 
 };

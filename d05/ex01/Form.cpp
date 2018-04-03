@@ -12,25 +12,35 @@
 
 #include "Form.hpp"
 
-Form::Form( std::string const & name, int const required_grade )
+Form::Form( std::string const & name, int const required_grade_sign, int const required_grade_exec )
 	: _name(name)
-	, _required_grade(required_grade)
+	, _required_grade_sign(required_grade_sign)
+	, _required_grade_exec(required_grade_exec)
 	, _signed(false)
 {
-	if (this->_required_grade > LOWEST_GRADE)
+	if (this->_required_grade_sign > LOWEST_GRADE)
 		throw Form::GradeTooLowException();
-	if (this->_required_grade < HIGHEST_GRADE)
+	if (this->_required_grade_sign < HIGHEST_GRADE)
+		throw Form::GradeTooHighException();
+	if (this->_required_grade_exec > LOWEST_GRADE)
+		throw Form::GradeTooLowException();
+	if (this->_required_grade_exec < HIGHEST_GRADE)
 		throw Form::GradeTooHighException();
 }
 
 Form::Form( Form const & src )
 	: _name(src.getName())
-	, _required_grade(src.getRequiredGrade())
+	, _required_grade_sign(src.getRequiredGradeSign())
+	, _required_grade_exec(src.getRequiredGradeExec())
 	, _signed(src.getSignedStatus())
 {
-	if (this->_required_grade > LOWEST_GRADE)
+	if (this->_required_grade_sign > LOWEST_GRADE)
 		throw Form::GradeTooLowException();
-	if (this->_required_grade < HIGHEST_GRADE)
+	if (this->_required_grade_sign < HIGHEST_GRADE)
+		throw Form::GradeTooHighException();
+	if (this->_required_grade_exec > LOWEST_GRADE)
+		throw Form::GradeTooLowException();
+	if (this->_required_grade_exec < HIGHEST_GRADE)
 		throw Form::GradeTooHighException();
 }
 
@@ -40,7 +50,8 @@ Form::~Form()
 Form &			Form::operator=( Form const & rhs )
 {
 	this->_name = rhs.getName();
-	this->_required_grade = rhs.getRequiredGrade();
+	this->_required_grade_sign = rhs.getRequiredGradeSign();
+	this->_required_grade_exec = rhs.getRequiredGradeExec();
 	this->_signed = rhs.getSignedStatus();
 
 	return *this;
@@ -55,9 +66,14 @@ std::string 	Form::getName( void ) const
 	return (this->_name);
 }
 
-int 			Form::getRequiredGrade( void ) const
+int 			Form::getRequiredGradeSign( void ) const
 {
-	return (this->_required_grade);
+	return (this->_required_grade_sign);
+}
+
+int 			Form::getRequiredGradeExec( void ) const
+{
+	return (this->_required_grade_exec);
 }
 
 bool 			Form::getSignedStatus( void ) const
@@ -67,7 +83,7 @@ bool 			Form::getSignedStatus( void ) const
 
 bool			Form::beSigned( Bureaucrat const & signer )
 {
-	if (signer.getGrade() > this->_required_grade)
+	if (signer.getGrade() > this->_required_grade_sign)
 		throw Form::GradeTooLowException();
 	else if (this->_signed == true)
 		return false;
@@ -82,8 +98,9 @@ bool			Form::beSigned( Bureaucrat const & signer )
 
 std::ostream &		operator<<( std::ostream & o, Form const & i )
 {
-	o << i.getName() << ", form requiring grade " << i.getRequiredGrade() << \
-		(i.getSignedStatus() ? ", signed." : ", not signed yet.") << std::endl;
+	o << "<" << i.getName() << ">, form signature requiring grade <" << i.getRequiredGradeSign() << ">";
+	o << ", form execution requiring grade <" << i.getRequiredGradeExec() << ">";
+	o << (i.getSignedStatus() ? " is signed." : " is not signed.") << std::endl;
 
 	return o;
 }

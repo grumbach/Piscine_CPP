@@ -6,7 +6,7 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/28 12:59:56 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/03/28 16:22:24 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/03/28 15:15:53 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ public:
 
 	std::string 		getName( void ) const;
 	int 				getGrade( void ) const;
-	void				UpGrade( int const & levels );
-	void				DownGrade( int const & levels );
+	void				UpGrade( void );
+	void				DownGrade( void );
 	void				signForm( Form & form ) const;
 
 private:
