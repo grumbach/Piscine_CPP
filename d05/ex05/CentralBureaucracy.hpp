@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CENTRALBUREAUCRACY
-# define CENTRALBUREAUCRACY
+#ifndef CENTRALBUREAUCRACY_H
+# define CENTRALBUREAUCRACY_H
 
+#include "Form.hpp"
 #include "OfficeBlock.hpp"
-
-# define OFFICES			20
 
 class CentralBureaucracy {
 
@@ -23,16 +22,16 @@ public:
 
 	CentralBureaucracy( void );
 	CentralBureaucracy( CentralBureaucracy const & src );
-	virtual ~CentralBureaucracy();
-
+	~CentralBureaucracy();
 	CentralBureaucracy &	operator=( CentralBureaucracy const & rhs );
 
-	bool					feed_company( Bureaucrat * livestock);
+	void	queueUp(std::string target);
+	void	doBureaucracy(void);
+	bool	setBureaucrat(Bureaucrat * bureaucrat);
 
 private:
-
-	Intern			_interns[OFFICES];
-	OfficeBlock		_offices[OFFICES];
+	OfficeBlock *	_blocks[20];
+	std::string	*	_targets;
 
 };
 

@@ -36,16 +36,13 @@ public:
 	OfficeBlock( Intern *intern, Bureaucrat *bureaucrat1, Bureaucrat *bureaucrat2 );
 	virtual ~OfficeBlock();
 
-	void					setIntern( Intern * a );
-	void					setSigner( Bureaucrat * a );
-	void					setExecutor( Bureaucrat * a );
-
-	void					doBureaucracy( std::string const & form_type, \
-								std::string const & target ) const;
-
-	bool					isComplete() const;
-	bool					hasExecutor() const;
-	bool					hasSigner() const;
+	void	setIntern( Intern * intern );
+	Intern * getIntern( void );
+	void	setSigner( Bureaucrat * bureaucrat );
+	Bureaucrat * getSigner( void );
+	void	setExecutor( Bureaucrat * bureaucrat );
+	Bureaucrat * getExecutor( void );
+	void	doBureaucracy( std::string const & form_type, std::string const & target ) const;
 
 private:
 

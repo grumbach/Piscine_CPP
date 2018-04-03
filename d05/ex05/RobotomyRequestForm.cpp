@@ -39,6 +39,8 @@ RobotomyRequestForm &	RobotomyRequestForm::operator=( RobotomyRequestForm const 
 
 bool			RobotomyRequestForm::execute( Bureaucrat const & executor ) const
 {
+	if (!this->getSignedStatus())
+		throw Form::NotSignedException();
 	if (executor.getGrade() > this->getRequiredExecGrade())
 		throw Form::GradeTooLowException();
 
