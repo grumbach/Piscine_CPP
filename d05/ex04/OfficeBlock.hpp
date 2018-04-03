@@ -34,7 +34,9 @@ public:
 
 	OfficeBlock( void );
 	OfficeBlock( Intern *intern, Bureaucrat *bureaucrat1, Bureaucrat *bureaucrat2 );
+	OfficeBlock( OfficeBlock const & src );
 	virtual ~OfficeBlock();
+	OfficeBlock &operator=( OfficeBlock const & rhs );
 
 	void					setIntern( Intern * a );
 	void					setSigner( Bureaucrat * a );

@@ -24,23 +24,26 @@ OfficeBlock::OfficeBlock( Intern *intern, Bureaucrat *bureaucrat1, Bureaucrat *b
 	, _bureaucrat2(bureaucrat2)
 { }
 
+OfficeBlock::OfficeBlock( OfficeBlock const & src )
+{ (void)src; }
+
 OfficeBlock::~OfficeBlock()
 { }
 
 
-void					OfficeBlock::setIntern( Intern * a )
+void					OfficeBlock::setIntern( Intern * i )
 {
-	this->_intern = a;
+	this->_intern = i;
 }
 
-void					OfficeBlock::setSigner( Bureaucrat * a )
+void					OfficeBlock::setSigner( Bureaucrat * b )
 {
-	this->_bureaucrat1 = a;
+	this->_bureaucrat1 = b;
 }
 
-void					OfficeBlock::setExecutor( Bureaucrat * a )
+void					OfficeBlock::setExecutor( Bureaucrat * b )
 {
-	this->_bureaucrat2 = a;
+	this->_bureaucrat2 = b;
 }
 
 
@@ -69,4 +72,10 @@ void					OfficeBlock::doBureaucracy( std::string const & form_type, \
 			throw e;
 		}
 	}
+}
+
+OfficeBlock &	OfficeBlock::operator=( OfficeBlock const & rhs )
+{
+	(void)rhs;
+	return *this;
 }
