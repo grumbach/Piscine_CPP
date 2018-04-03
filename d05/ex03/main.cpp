@@ -21,9 +21,10 @@ int		main(void)
 
 	f = someRandomIntern.makeForm("robotomy request", "Windows");
 
-	if (f)
+	if (f) {
+		boss.signForm(*f);
 		boss.executeForm(*f);
-
+	}
 	delete f;
 	return (0);
 }
