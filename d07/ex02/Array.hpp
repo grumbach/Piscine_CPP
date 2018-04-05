@@ -6,9 +6,12 @@
 /*   By: agrumbac <agrumbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 14:37:17 by agrumbac          #+#    #+#             */
-/*   Updated: 2018/04/04 16:57:57 by agrumbac         ###   ########.fr       */
+/*   Updated: 2018/04/04 20:20:08 by agrumbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef ARRAY_H
+# define ARRAY_H
 
 #include <iostream>
 #include <stdexcept>
@@ -57,3 +60,5 @@ private:
 	size_t		_size;
 
 };
+
+#endif
